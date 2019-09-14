@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe BlogPostsController do
+describe PostsController do
   describe '#index' do
     before do
-      create(:blog_post, title: 'Sample title')
-      create(:blog_post, title: 'My Post title')
+      create(:post, title: 'Sample title')
+      create(:post, title: 'My Post title')
     end
 
     context 'when requesting in html format' do
@@ -25,10 +25,10 @@ describe BlogPostsController do
   end
 
   describe '#show' do
-    let(:blog_post) { create(:blog_post, title: 'This is my selected post') }
+    let(:post) { create(:post, title: 'This is my selected post') }
 
     context 'when requesting in html format' do
-      before { get :show, params: { id: blog_post.id } }
+      before { get :show, params: { id: post.id } }
 
       it 'responds successfully' do
         expect(response.status).to eq(200)
@@ -36,7 +36,7 @@ describe BlogPostsController do
     end
 
     context 'when requesting in json format' do
-      before { get :show, params: { id: blog_post.id }, format: :json }
+      before { get :show, params: { id: post.id }, format: :json }
 
       it 'responds successfully' do
         expect(response.status).to eq(200)
