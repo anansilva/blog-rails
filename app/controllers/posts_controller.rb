@@ -14,15 +14,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    respond_to do |format|
-      binding.pry
-      if @post.save
-        format.html { redirect_to post_path(@post), notice: 'Post was successfully created.' }
-        format.json { render :show, status: :create, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to post_path(@post), notice: 'Post was successfully created.'
+    else
+      render :new
     end
   end
 
