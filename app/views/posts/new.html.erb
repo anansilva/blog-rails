@@ -1,6 +1,12 @@
+<h1>New Post</h1>
 <%= form_with(model: @post) do |form| %>
-  <div class="field">
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="form-group">
     <%= form.label :body %>
     <%= form.rich_text_area :body %>
+    <%= form.submit %>
   </div>
 <% end %>
