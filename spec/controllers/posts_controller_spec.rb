@@ -3,8 +3,8 @@ require 'rails_helper'
 describe PostsController do
   describe '#index' do
     before do
-      create(:post, title: 'Sample title')
-      create(:post, title: 'My Post title')
+      create(:post)
+      create(:post)
     end
 
     context 'when requesting in html format' do
@@ -25,7 +25,9 @@ describe PostsController do
   end
 
   describe '#show' do
-    let(:post) { create(:post, title: 'This is my selected post') }
+    let(:post) do
+      create(:post, title: 'This is my selected post', body: 'this is my body')
+    end
 
     context 'when requesting in html format' do
       before { get :show, params: { id: post.id } }
@@ -62,7 +64,17 @@ describe PostsController do
       post :create, params: { post: { title: 'hey', body: 'to sexy for my shirt' } }
 
       expect(Post.last.title).to eq('hey')
-      expect(Post.last.body).to eq('to sexy for my shirt')
+      expect(Post.last.body.class).to eq(ActionText::RichText)
+    end
+  end
+
+  describe '#update' do
+    let(:post) { create(:post, title: 'current title', body: 'your body is a wonderland') }
+
+    it 'updates the post' do
+      put :update, params: { id: post.id, post: { title: 'this is a new title'} }
+
+      expect(post.reload.title).to eq('this is a new title')
     end
   end
 end
