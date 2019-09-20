@@ -53,11 +53,14 @@ describe PostsController do
 
   describe '#create' do
     it 'responds successfully' do
-      get :create, params: { post: { title: 'hey', body: 'to sexy for my shirt' } }
-      expect(response.status).to eq(200)
+      post :create, params: { post: { title: 'hey', body: 'to sexy for my shirt' } }
+
+      expect(response.status).to eq(302)
     end
 
     it 'creates a Post with a body' do
+      post :create, params: { post: { title: 'hey', body: 'to sexy for my shirt' } }
+
       expect(Post.last.title).to eq('hey')
       expect(Post.last.body).to eq('to sexy for my shirt')
     end
