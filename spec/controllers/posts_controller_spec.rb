@@ -74,7 +74,7 @@ describe PostsController do
     it 'redirects to the edit page' do
       get :edit, params: { id: post.id }
 
-      expect(response.status).to eq(302)
+      expect(response.status).to eq(200)
     end
   end
 
@@ -85,6 +85,16 @@ describe PostsController do
       put :update, params: { id: post.id, post: { title: 'this is a new title'} }
 
       expect(post.reload.title).to eq('this is a new title')
+    end
+  end
+
+  describe '#destroy' do
+    let(:post) { create(:post) }
+
+    it 'deletes a given post' do
+      delete :destroy, params: { id: post.id }
+
+      expect { post.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
