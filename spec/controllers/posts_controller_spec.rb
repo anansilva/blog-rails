@@ -67,6 +67,16 @@ describe PostsController do
       expect(Post.last.body.class).to eq(ActionText::RichText)
     end
   end
+  
+  describe '#edit' do
+    let(:post) { create(:post) }
+
+    it 'redirects to the edit page' do
+      get :edit, params: { id: post.id }
+
+      expect(response.status).to eq(302)
+    end
+  end
 
   describe '#update' do
     let(:post) { create(:post, title: 'current title', body: 'your body is a wonderland') }
