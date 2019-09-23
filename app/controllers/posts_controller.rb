@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: 'Post was successfully created.'
+      redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
     post_title = post.title
 
     if post.destroy
-      redirect_to posts_path, notice: "#{post_title} deleted successfully"
+      redirect_to posts_url, notice: "#{post_title} was successfully destroyed."
     else
       redirect_to posts_path
     end
