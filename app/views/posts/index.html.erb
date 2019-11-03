@@ -1,24 +1,5 @@
-<h1>Posts</h1>
-
-<% if @posts.empty? %>
-  <h2>You have no posts</h2>
-<% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @posts.each do |post| %>
-        <%= render partial: 'shared/post_intro', locals: { post: post } %>
-      <% end %>
-    </tbody>
-  </table>
-<% end%>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+<div class="flex flex-wrap">
+  <% @posts.each do |post| %>
+    <%= render partial: 'shared/post_intro', locals: { post: post } %>
+  <% end %>
+</div>
