@@ -1,5 +1,5 @@
 <div class="flex flex-wrap">
   <% @posts.each do |post| %>
-    <%= render partial: 'shared/post_intro', locals: { post: post } %>
+    <%= render partial: 'shared/post_card', locals: { post: post } %>
   <% end %>
 </div>
