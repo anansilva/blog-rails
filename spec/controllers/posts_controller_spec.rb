@@ -53,7 +53,7 @@ describe PostsController do
   end
 
   describe '#create' do
-    post_params = { title: 'hey', body: 'to sexy for my shirt' }
+    post_params = { title: 'hey', body: 'to sexy for my shirt', intro: 'to sexy' }
 
     it 'responds successfully' do
       post :create, params: { post: post_params }
@@ -65,6 +65,7 @@ describe PostsController do
       post :create, params: { post: post_params }
 
       expect(Post.last.title).to eq('hey')
+      expect(Post.last.intro).to eq('to sexy')
       expect(Post.last.body.class).to eq(ActionText::RichText)
       expect(Post.last.body.body.to_html).to eq('to sexy for my shirt')
     end
