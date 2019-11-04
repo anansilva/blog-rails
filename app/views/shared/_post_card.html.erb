@@ -1,8 +1,13 @@
-<div class="w-full sm:w-full md:w-full lg:w-1/3 xl:1/4 p-2 mb-4">
-  <div class="text-gray-700 text-center bg-gray-100 p-2">
-    <%= post.title %>
-  </div>
-  <div class="text-gray-700 text-center bg-gray-100 p-2">
-    <%= post.intro %>
-  </div>
+<div class="w-full sm:w-full md:w-full lg:w-1/4 xl:1/4 mb-4 mx-6 cursor-pointer">
+  <article class="rounded overflow-hidden shadow-md">
+    <img class="w-full" src="assets/abstract-done.png" alt="Dummy Image">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2">
+        <%= post.title %>
+      </div>
+      <p class="text-gray-700 text-base">
+        <%= post.intro %>
+      </p>
+    </div>
+  </article>
 </div>

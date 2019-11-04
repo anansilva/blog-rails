@@ -1,4 +1,4 @@
-<div class="flex flex-wrap">
+<div class="flex flex-wrap justify-center mt-10 -mb-4 -mx-16">
   <% @posts.each do |post| %>
     <%= render partial: 'shared/post_card', locals: { post: post } %>
   <% end %>
