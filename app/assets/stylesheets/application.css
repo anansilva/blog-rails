@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: 'Open Sans'
+}
+
+h1 {
+  font-family: 'Montserrat';
+}
