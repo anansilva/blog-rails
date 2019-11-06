@@ -7,14 +7,25 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:700|Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/build/tailwind.css">
   </head>
 
   <body>
-    <%= render partial: 'shared/navbar' %>
-    <div class="container mx-auto">
-      <%= yield %>
-    <div>
+    <header class="text-gray-900 bg-gray-100">
+      <nav class="flex flex-wrap p-4 font-semibold items-center justify-between">
+        <%= render partial: 'shared/navbar' %>
+      </nav>
+      
+      <section class="pt-8 pb-16 lg:pt-16 lg:pb-16">
+        <%= render partial: 'shared/about' %>
+      </section>
+    <header>
+
+    <section class="bg-white">
+      <div class="container mx-auto pt-2">
+        <%= yield %>
+      <div>
+    </section>
   </body>
 </html>
