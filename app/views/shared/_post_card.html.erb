@@ -2,12 +2,16 @@
   <article class="overflow-hidden">
     <img class="w-full cursor-pointer pt-4" src="assets/abstract-done.png" alt="Dummy Image">
     <div class="px-6 py-4 bg-gray-100">
-      <h1 class="text-xl mb-2 tracking-wide cursor-pointer hover:underline">
+      <h1 class="text-xl tracking-wide cursor-pointer hover:underline mb-1">
         <%= post.title %>
       </h1>
-      <p class="text-gray-700 text-sm font-thin">
+      <p class="text-gray-500 text-xs font-thin mb-2">
+        <%= post.created_at.strftime('%b, %Y') %>
+      <p>
+      <p class="text-gray-700 text-sm font-thin mb-4">
         <%= post.intro %>
       </p>
+      <%= link_to 'Keep reading >>', post_path(post), class: "cursor-pointer hover:underline text-sm uppercase text-gray-700 text-blue-500"%>
     </div>
   </article>
 </div>
