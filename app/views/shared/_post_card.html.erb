@@ -1,9 +1,9 @@
-<div class="w-full sm:w-full md:w-full lg:w-1/4 xl:1/4 mb-4 mx-6">
+<div class="bg-white w-full sm:w-full md:w-full lg:w-1/4 xl:1/4 mb-4 mx-6">
   <article class="overflow-hidden">
-    <img class="w-full cursor-pointer pt-4" src="assets/abstract-done.png" alt="Dummy Image">
-    <div class="px-6 py-4 bg-gray-100">
-      <h1 class="text-xl tracking-wide cursor-pointer hover:underline mb-1">
-        <%= post.title %>
+    <img class="w-full cursor-pointer" src="assets/abstract-done.png" alt="Dummy Image">
+    <div class="px-6 py-4">
+      <h1 class="text-xl tracking-wide hover:underline mb-1">
+        <%= link_to post.title, post %>
       </h1>
       <p class="text-gray-500 text-xs font-thin mb-2">
         <%= post.created_at.strftime('%b, %Y') %>
@@ -11,7 +11,7 @@
       <p class="text-gray-700 text-sm font-thin mb-4">
         <%= post.intro %>
       </p>
-      <%= link_to 'Keep reading >>', post_path(post), class: "cursor-pointer hover:underline text-sm uppercase text-gray-700 text-blue-500"%>
+      <%= link_to 'Keep reading >>', post, class: "hover:underline text-sm uppercase text-indigo-500"%>
     </div>
   </article>
 </div>
