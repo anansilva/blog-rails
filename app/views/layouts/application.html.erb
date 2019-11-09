@@ -17,9 +17,11 @@
         <%= render partial: 'shared/navbar' %>
       </nav>
       
-      <section class="pt-8 pb-16 lg:pt-16 lg:pb-16">
-        <%= render partial: 'shared/about' if current_page?(posts_path) %>
-      </section>
+      <% if current_page?(posts_path) %>
+        <section class="pt-8 pb-16 lg:pt-16 lg:pb-16">
+          <%= render partial: 'shared/about' %>
+        </section>
+      <% end %>
     <header>
 
     <section>

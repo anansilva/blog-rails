@@ -1,16 +1,18 @@
-<h1>New Post</h1>
-<%= form_with(model: @post) do |form| %>
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-    <div class="form-group">
-    <%= form.label :intro %>
-    <%= form.text_field :intro %>
-  </div>
-  <div class="form-group">
-    <%= form.label :body %>
-    <%= form.rich_text_area :body %>
-    <%= form.submit %>
-  </div>
-<% end %>
+<div class="bg-white container mx-auto p-4">
+  <h1 class="text-xl pb-4">New Post</h1>
+  <%= form_with(model: @post) do |form| %>
+    <div class="form-group pb-4 mb-2">
+      <%= form.label :title, class: "pr-2" %>
+      <%= form.text_field :title, class: "w-1/2 resize border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+      <div class="form-group pb-4">
+      <%= form.label :intro, class: "pr-2" %>
+      <%= form.text_area :intro, class: "w-1/2 resize border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="form-group pb-4">
+      <%= form.label :body %>
+      <%= form.rich_text_area :body %>
+      <%= form.submit :save, class: "border border-gray-500 rounded p-2 cursor-pointer mt-2" %>
+    </div>
+  <% end %>
+</div>
