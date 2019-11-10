@@ -1,35 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  describe '#title' do
-    it 'validates presence' do
-      post_without_title = Post.new(body: 'I have a body')
-
-      expect(post_without_title.valid?).to eq(false)
+  describe 'validations' do
+    subject do
+      described_class.new(title: 'My title', body: 'My body', intro: 'My intro')
     end
-  end
 
-  describe '#body' do
-    it 'validates presence' do
-      post_without_body = Post.new(title: 'I have a title')
-      post_with_body = Post.new(title: 'I have a title', body: 'and a body')
-
-      expect(post_without_body.valid?).to eq(false)
-      expect(post_with_body.valid?).to eq(true)
+    it 'is valid with valid attributes' do
+      expect(subject).to be_valid
     end
-  end
 
-  describe '#intro' do
-    it 'validates that length is at most 255' do
+    it 'is not valid without a title' do
+      subject.title = nil
+
+      expect(subject.valid?).to eq(false)
+    end
+
+    it 'is not valid without a body' do
+      subject.body = nil
+
+      expect(subject.valid?).to eq(false)
+    end
+
+    it 'is not valid with an intro bigger than 255 chars' do
       invalid_intro = Array.new(256){ [*'A'..'Z', *'0'..'9'].sample }.join
-      valid_intro = 'valid intro'
-      post_with_big_intro = Post.new(title: 'I have a title', body: 'hi',
-                                     intro: invalid_intro)
-      post_with_valid_intro = Post.new(title: 'I have a title', body: 'hi',
-                                       intro: valid_intro)
+      subject.intro = invalid_intro
 
-      expect(post_with_big_intro.valid?).to eq(false)
-      expect(post_with_valid_intro.valid?).to eq(true)
+      expect(subject.valid?).to eq(false)
     end
   end
 end
