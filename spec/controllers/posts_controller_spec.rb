@@ -53,7 +53,14 @@ describe PostsController do
   end
 
   describe '#create' do
-    post_params = { title: 'hey', body: 'to sexy for my shirt', intro: 'to sexy' }
+    let(:image_file) do
+      Rack::Test::UploadedFile.new("#{::Rails.root}/spec/fixtures/abstract-done.png", 'image/png')
+    end
+
+    let(:post_params) do
+      { title: 'hey', body: 'to sexy for my shirt',
+        intro: 'to sexy', cover_image: image_file }
+    end
 
     it 'responds successfully' do
       post :create, params: { post: post_params }
@@ -64,10 +71,13 @@ describe PostsController do
     it 'creates a Post with an ActionText body' do
       post :create, params: { post: post_params }
 
-      expect(Post.last.title).to eq('hey')
-      expect(Post.last.intro).to eq('to sexy')
-      expect(Post.last.body.class).to eq(ActionText::RichText)
-      expect(Post.last.body.body.to_html).to eq('to sexy for my shirt')
+      created_post = Post.last
+
+      expect(created_post.title).to eq('hey')
+      expect(created_post.intro).to eq('to sexy')
+      expect(created_post.body).to be_present
+      expect(created_post.body.body.to_html).to eq('to sexy for my shirt')
+      expect(created_post.cover_image).to be_present
     end
   end
 
