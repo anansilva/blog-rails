@@ -10,6 +10,10 @@
       <%= form.text_area :intro, class: "w-1/2 resize border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
     </div>
     <div class="form-group pb-4">
+      <%= form.label :cover, class: "pr-2" %>
+      <%= form.file_field :cove_image, class: "w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="form-group pb-4">
       <%= form.label :body %>
       <%= form.rich_text_area :body %>
       <%= form.submit :save, class: "border border-gray-500 rounded p-2 cursor-pointer mt-2" %>
