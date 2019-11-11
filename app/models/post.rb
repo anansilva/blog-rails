@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  has_many :tag_posts
+  has_many :tags, through: :tag_posts
+
   has_rich_text :body
   has_one_attached :cover_image
 

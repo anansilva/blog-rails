@@ -1,6 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
+  describe 'associations' do
+    let(:post) { create(:post) }
+
+    it 'has many tag posts' do
+      expect(post.tag_posts).to eq([])
+    end
+
+    it 'has many tags through tag posts' do
+      expect(post.tags).to eq([])
+    end
+  end
+
   describe 'validations' do
     subject do
       described_class.new(title: 'My title', body: 'My body', intro: 'My intro')
