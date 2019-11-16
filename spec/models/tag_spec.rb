@@ -25,5 +25,11 @@ RSpec.describe Tag, type: :model do
 
       expect(subject).to_not be_valid
     end
+
+    it 'has uniq names' do
+      subject.save
+
+      expect(Tag.new(name: 'ruby')).to_not be_valid
+    end
   end
 end
