@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 Post.create(
   title: 'Rspec tips',
   intro: 'Lorem ipsum is placeholder text commonly used in the graphic, print,
@@ -23,7 +24,7 @@ Post.create(
          convallis a cras semper auctor neque vitae tempus quam pellentesque nec nam
          aliquam sem et tortor consequat id porta nibh venenatis cras sed felis eget
          velit aliquet sagittis id consectetur purus',
-  cover_image: Rack::Test::UploadedFile.new("#{::Rails.root}/spec/fixtures/abstract-done.png", 'image/png')
+  cover_image: Rack::Test::UploadedFile.new("#{::Rails.root}/spec/fixtures/abstract-done.png", 'image/png'),
 )
 
 Post.create(
@@ -44,5 +45,13 @@ Post.create(
          convallis a cras semper auctor neque vitae tempus quam pellentesque nec nam
          aliquam sem et tortor consequat id porta nibh venenatis cras sed felis eget
          velit aliquet sagittis id consectetur purus',
-  cover_image: Rack::Test::UploadedFile.new("#{::Rails.root}/spec/fixtures/abstract-done.png", 'image/png')
+  cover_image: Rack::Test::UploadedFile.new("#{::Rails.root}/spec/fixtures/abstract-done.png", 'image/png'),
 )
+
+%w[Rspec Tests Performance Ruby Rails].each do |tag_name|
+  ActiveRecord::Base.transaction do
+    Tag.create(name: tag_name).tap do |tag|
+      TagPost.create(tag: tag, post: Post.all.sample)
+    end
+  end
+end
