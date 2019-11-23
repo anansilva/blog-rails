@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      TagRepository.create_bulk(tag_params)
       redirect_to post_path(@post), notice: 'Post was successfully created.'
     else
       render :new
@@ -48,6 +49,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def tag_params
+    params.require(:post).permit(:tags)[:tags]
+          .split(', ')
+          .each_with_object([]) do |tag, acc|
+            acc << { 'name': tag }
+          end
+  end
 
   def post_params
     params.require(:post).permit(:title, :body, :intro, :cover_image)

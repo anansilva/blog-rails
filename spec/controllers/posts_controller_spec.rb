@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe PostsController do
   describe '#index' do
     before do
@@ -59,7 +57,8 @@ describe PostsController do
 
     let(:post_params) do
       { title: 'hey', body: 'to sexy for my shirt',
-        intro: 'to sexy', cover_image: image_file }
+        intro: 'to sexy', cover_image: image_file,
+        tags: 'ruby, rails' }
     end
 
     it 'responds successfully' do
@@ -78,6 +77,16 @@ describe PostsController do
       expect(created_post.body).to be_present
       expect(created_post.body.body.to_html).to eq('to sexy for my shirt')
       expect(created_post.cover_image).to be_present
+    end
+
+    it 'calls Repositories::Tag.new_entity' do
+      allow(TagRepository).to receive(:create_bulk)
+
+      post :create, params: { post: post_params }
+
+      expect(TagRepository).to have_received(:create_bulk).with(
+        [{ name: 'ruby' }, { name: 'rails' }]
+      )
     end
   end
 

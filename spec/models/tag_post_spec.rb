@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe TagPost, type: :model do
   describe 'associations' do
     let(:tagpost) { create(:tag_post) }
