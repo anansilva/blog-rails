@@ -1,19 +1,9 @@
 class TagRepository
   class << self
-    def create_bulk(tags = [])
-      return if tags.empty?
+    def create_tag(tag_name)
+      return unless tag_name.present?
 
-      if attrs_valid?(tags)
-        tags.each { Tag.create(tags) }
-      else
-        raise ::Errors::InvalidAttributes unless attrs_valid?(tags)
-      end
-    end
-
-    private
-
-    def attrs_valid?(tags)
-      tags.flat_map(&:keys).uniq == [:name]
+      Tag.find_or_create_by(name: tag_name)
     end
   end
 end
