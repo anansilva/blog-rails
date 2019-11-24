@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  rescue_from ::Errors::InvalidAttributes, with: :unprocessable_entity
-
   def index
     @posts = Post.all
   end
@@ -33,6 +31,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
+      TagPosts::UpdatePostTags.execute!(@post, tag_names)
       redirect_to @post, notice: 'Post was successfully updated.'
     else
       render :edit
@@ -53,7 +52,7 @@ class PostsController < ApplicationController
   private
 
   def tag_names
-    tag_params[:tags].split(', ')
+    tag_params.fetch(:tags, '').split(', ')
   end
 
   def tag_params

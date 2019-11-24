@@ -56,8 +56,8 @@ describe PostsController do
     end
 
     let(:post_params) do
-      { title: 'hey', body: 'to sexy for my shirt',
-        intro: 'to sexy', cover_image: image_file,
+      { title: 'Rspec', body: 'This post is about rspec',
+        intro: 'Improve your test suite', cover_image: image_file,
         tags: 'ruby, rails' }
     end
 
@@ -72,19 +72,20 @@ describe PostsController do
 
       created_post = Post.last
 
-      expect(created_post.title).to eq('hey')
-      expect(created_post.intro).to eq('to sexy')
-      expect(created_post.body).to be_present
-      expect(created_post.body.body.to_html).to eq('to sexy for my shirt')
+      expect(created_post.title).to eq('Rspec')
+      expect(created_post.intro).to eq('Improve your test suite')
+      expect(created_post.body.body.to_html).to eq('This post is about rspec')
       expect(created_post.cover_image).to be_present
     end
 
-    it 'calls Repositories::Tag.new_entity' do
+    it 'calls the AddTagsToPost service' do
       allow(TagPosts::AddTagsToPost).to receive(:execute!)
 
       post :create, params: { post: post_params }
 
-      expect(TagPosts::AddTagsToPost).to have_received(:execute!)
+      post = Post.last
+
+      expect(TagPosts::AddTagsToPost).to have_received(:execute!).with(post, %w[ruby rails])
     end
   end
 
@@ -100,7 +101,7 @@ describe PostsController do
 
   describe '#update' do
     let(:post) do
-      create(:post, title: 'current title', body: 'your body is a wonderland')
+      create(:post, title: 'Rspec tips', body: 'Here are some tips')
     end
 
     it 'updates the post when updating title' do
@@ -117,6 +118,16 @@ describe PostsController do
       put :update, params: { id: post.id, post: { body: new_body } }
 
       expect(post.reload.body.body.to_html).to eq('this is a new body')
+    end
+
+    it 'calls the UpdatePostTags service' do
+      new_body = 'this is a new body'
+
+      allow(TagPosts::UpdatePostTags).to receive(:execute!)
+
+      put :update, params: { id: post.id, post: { body: new_body, tags: 'ruby' } }
+
+      expect(TagPosts::UpdatePostTags).to have_received(:execute!).with(post, ['ruby'])
     end
   end
 
