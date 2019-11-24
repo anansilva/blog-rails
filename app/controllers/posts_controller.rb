@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  rescue_from ::Errors::InvalidAttributes, with: :unprocessable_entity
+
   def index
     @posts = Post.all
   end
@@ -14,7 +16,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      TagRepository.create_bulk(tag_params)
+      TagPosts::AddTagsToPost.execute!(@post, tag_names)
       redirect_to post_path(@post), notice: 'Post was successfully created.'
     else
       render :new
@@ -50,12 +52,12 @@ class PostsController < ApplicationController
 
   private
 
+  def tag_names
+    tag_params[:tags].split(', ')
+  end
+
   def tag_params
-    params.require(:post).permit(:tags)[:tags]
-          .split(', ')
-          .each_with_object([]) do |tag, acc|
-            acc << { 'name': tag }
-          end
+    params.require(:post).permit(:tags)
   end
 
   def post_params

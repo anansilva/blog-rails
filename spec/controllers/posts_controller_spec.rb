@@ -80,13 +80,11 @@ describe PostsController do
     end
 
     it 'calls Repositories::Tag.new_entity' do
-      allow(TagRepository).to receive(:create_bulk)
+      allow(TagPosts::AddTagsToPost).to receive(:execute!)
 
       post :create, params: { post: post_params }
 
-      expect(TagRepository).to have_received(:create_bulk).with(
-        [{ name: 'ruby' }, { name: 'rails' }]
-      )
+      expect(TagPosts::AddTagsToPost).to have_received(:execute!)
     end
   end
 
