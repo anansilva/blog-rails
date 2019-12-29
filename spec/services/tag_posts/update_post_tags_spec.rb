@@ -12,13 +12,12 @@ describe TagPosts::UpdatePostTags do
     context 'when the tags remain equal' do
       it 'does not add those tags to the post' do
         tags = %w[ruby rails]
-        allow(TagRepository).to receive(:create_tag)
-        allow(TagPostRepository).to receive(:create_tag_post)
 
         described_class.execute!(post, tags)
 
-        expect(TagRepository).not_to have_received(:create_tag)
-        expect(TagPostRepository).not_to have_received(:create_tag_post)
+        tags_after_update = post.tags.pluck(:name)
+
+        expect(tags_after_update).to match_array(%w[ruby rails])
       end
     end
 

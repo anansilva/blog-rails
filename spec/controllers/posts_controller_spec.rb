@@ -78,14 +78,12 @@ describe PostsController do
       expect(created_post.cover_image).to be_present
     end
 
-    it 'calls the AddTagsToPost service' do
-      allow(TagPosts::AddTagsToPost).to receive(:execute!)
-
+    it 'calls the UpdatePostTags service' do
       post :create, params: { post: post_params }
 
-      post = Post.last
+      created_post = Post.last
 
-      expect(TagPosts::AddTagsToPost).to have_received(:execute!).with(post, %w[ruby rails])
+      expect(created_post.tags.pluck(:name)).to match_array(%w[ruby rails])
     end
   end
 

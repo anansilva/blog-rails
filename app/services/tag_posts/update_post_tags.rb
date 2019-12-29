@@ -19,8 +19,8 @@ class TagPosts::UpdatePostTags
     return unless tags_to_add?
 
     tags_to_add.each do |tag|
-      tag = TagRepository.create_tag(tag)
-      TagPostRepository.create_tag_post(@post, tag)
+      tag = Tag.find_or_create_by(name: tag)
+      TagPost.find_or_create_by(post: @post, tag: tag)
     end
   end
 

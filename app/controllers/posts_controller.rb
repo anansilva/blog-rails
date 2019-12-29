@@ -13,8 +13,9 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+
     if @post.save
-      TagPosts::AddTagsToPost.execute!(@post, tag_names)
+      TagPosts::UpdatePostTags.execute!(@post, tag_names)
       redirect_to post_path(@post), notice: 'Post was successfully created.'
     else
       render :new
