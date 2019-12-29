@@ -1,9 +1,9 @@
-<div class="flex flex-wrap mt-10 py-4 mb-4 justify-center w-full mx-auto border-b border-t">
-  <%= link_to posts_path(tag: ''), class: "block px-4 uppercase tracking-wide text-md" do %>
+<div class="flex flex-wrap mt-10 py-4 justify-center w-full mx-auto font-semibold text-sm">
+  <%= link_to posts_path(tag: ''), class: "block px-4 uppercase tracking-wide" do %>
     <%= 'All' =%>
   <% end %>
   <% Tag.all.each do |tag| %>
-    <%= link_to posts_path(tag: tag.name), class: "block px-4 uppercase tracking-wide text-md" do %>
+    <%= link_to posts_path(tag: tag.name), class: "block px-4 uppercase tracking-wide" do %>
       <%= tag.name =%>
     <% end %>
   <% end %>
