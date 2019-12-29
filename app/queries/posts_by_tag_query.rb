@@ -3,7 +3,11 @@ class PostsByTagQuery
     @tag = tag
   end
 
-  def all
+  def self.call(tag)
+    new(tag).run_query
+  end
+
+  def run_query
     return Post.all if @tag.empty?
 
     Post

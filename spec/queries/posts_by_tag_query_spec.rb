@@ -11,7 +11,7 @@ describe PostsByTagQuery do
 
   context 'when tag is empty' do
     it 'returns all posts' do
-      filtered_posts = described_class.new.all
+      filtered_posts = described_class.call('')
 
       expect(filtered_posts.count).to eq(2)
     end
@@ -19,7 +19,7 @@ describe PostsByTagQuery do
 
   context 'when tag exists' do
     it 'returns only the posts that are related to the tag' do
-      filtered_posts = described_class.new('ruby').all
+      filtered_posts = described_class.call('ruby')
 
       expect(filtered_posts.count).to eq(1)
     end

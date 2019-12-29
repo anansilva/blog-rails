@@ -7,7 +7,7 @@ describe PostsController do
 
     context 'when requesting in html format' do
       before do
-        allow(PostsByTagQuery).to receive(:new).with('').and_call_original
+        allow(PostsByTagQuery).to receive(:call).with('').and_call_original
 
         get :index, params: { tag: '' }
       end
@@ -17,7 +17,7 @@ describe PostsController do
       end
 
       it 'calls PostByTagQuery' do
-        expect(PostsByTagQuery).to have_received(:new).with('')
+        expect(PostsByTagQuery).to have_received(:call).with('')
       end
     end
 
