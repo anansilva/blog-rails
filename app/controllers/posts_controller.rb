@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = PostsByTagQuery.new(params[:tag]).all
   end
 
   def show

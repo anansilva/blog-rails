@@ -6,10 +6,18 @@ describe PostsController do
     end
 
     context 'when requesting in html format' do
-      before { get :index }
+      before do
+        allow(PostsByTagQuery).to receive(:new).with('').and_call_original
+
+        get :index, params: { tag: '' }
+      end
 
       it 'responds successfully' do
         expect(response.status).to eq(200)
+      end
+
+      it 'calls PostByTagQuery' do
+        expect(PostsByTagQuery).to have_received(:new).with('')
       end
     end
 
