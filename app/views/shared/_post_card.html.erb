@@ -3,7 +3,7 @@
     <% if post.cover_image.attached? %>
       <%= image_tag post.cover_image.variant(resize_to_limit: [300, 300]), class: 'w-full cursor-pointer' %>
     <% end %>
-    <div class="bg-white px-6 py-4">
+    <div class="bg-white px-4 py-4">
       <h1 class="text-2xl tracking-wide hover:underline mb-1">
         <%= link_to post.title, post %>
       </h1>
