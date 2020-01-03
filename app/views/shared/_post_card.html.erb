@@ -4,16 +4,16 @@
       <%= image_tag post.cover_image.variant(resize_to_limit: [300, 300]), class: 'w-full cursor-pointer' %>
     <% end %>
     <div class="bg-white px-4 py-4">
-      <h1 class="text-2xl tracking-wide hover:underline mb-1">
+      <h1 class="font-extrabold text-2xl tracking-wide hover:underline mb-1">
         <%= link_to post.title, post %>
       </h1>
       <p class="text-gray-600 text-xs font-thin mb-2">
         <%= post.created_at.strftime('%b, %Y') %>
       <p>
-      <p class="text-gray-700 text-normal font-thin mb-4">
+      <p class="text-gray-700 text-normal mb-4">
         <%= post.intro %>
       </p>
-      <%= link_to 'Keep reading >>', post, class: "hover:underline text-sm uppercase text-indigo-500"%>
+      <%= link_to 'Keep reading >>', post, class: "hover:underline text-sm uppercase text-indigo-700"%>
     </div>
   </article>
 </div>

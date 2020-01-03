@@ -1,2 +1,10 @@
-<h1 class="text-2xl text-center tracking-wide mb-6"><%= @post.title %></h1>
-<div class="mx-auto lg:px-16"><%= @post.body %></div>
+<article>
+  <% if @post.cover_image.attached? %>
+    <%= image_tag @post.cover_image, class: 'w-full cursor-pointer', style: 'width:100%;height:auto;' %>
+  <% end %>
+  <div class="relative bg-white p-12 lg:mx-64 lg:-mt-40">
+    <h1 class="font-black text-4xl tracking-wide mb-2"><%= @post.title %></h1>
+    <p class="text-left text-sm text-gray-600 tracking-wide mb-6"><%= @post.created_at.strftime('%b, %Y')%></p>
+    <div class="text-lg font-light leading-loose"><%= @post.body %></div>
+  </div>
+</article>

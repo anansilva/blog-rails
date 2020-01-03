@@ -1,5 +1,5 @@
 <%= render partial: 'shared/tags' %>
-<div class="flex flex-wrap mt-10 -mb-4 justify-start w-full mx-auto">
+<div class=" container flex flex-wrap mt-10 -mb-4 justify-start w-full mx-auto">
   <% @posts.each do |post| %>
     <%= render partial: 'shared/post_card', locals: { post: post } %>
   <% end %>
