@@ -1,9 +1,9 @@
 <article>
   <% if @post.cover_image.attached? %>
-    <%= image_tag @post.cover_image, class: 'w-full cursor-pointer', style: 'width:100%;height:auto;' %>
+    <%= image_tag @post.cover_image, class: 'w-full cursor-pointer h-auto' %>
   <% end %>
   <div class="container mx-auto">
-    <header class="relative bg-white pt-8 pb-40 px-16 lg:mx-64 lg:-mt-40">
+    <header class="relative bg-white lg:pt-8 md:pt-4 lg:pb-40 lg:px-16 lg:mx-56 lg:-mt-40">
       <% @post.tags.each do |tag| %>
         <p class="inline-block text-left text-lg font-bold text-indigo-800 tracking-wide mb-2 mr-1">
           <%= tag.name %>
@@ -30,10 +30,10 @@
     </header>
 
     <div class="relative block">
-      <div class="text-lg font-light leading-loose px-16 lg:mx-64 lg:-mt-40">
+      <div class="text-lg font-light leading-loose lg:px-16 lg:mx-64 lg:-mt-40">
         <%= @post.body %>
       </div>
-      <div class="absolute text-3xl pl-24 top-0 left-0 text-indigo-700">
+      <div class="absolute text-3xl pl-32 top-0 left-0 text-indigo-700 sm:hidden lg:block">
         <ul class="sticky top-0">
           <li class="block"><i class="fab fa-twitter-square"></i></li>
           <li class="block"><i class="fab fa-linkedin"></i></li>
