@@ -2,33 +2,46 @@
   <% if @post.cover_image.attached? %>
     <%= image_tag @post.cover_image, class: 'w-full cursor-pointer', style: 'width:100%;height:auto;' %>
   <% end %>
-  <div class="relative bg-white pt-8 px-16 lg:mx-64 lg:-mt-40">
-    <% @post.tags.each do |tag| %>
-      <p class="inline-block text-left text-lg font-bold text-indigo-800 tracking-wide mb-2 mr-1">
-        <%= tag.name %>
+  <div class="container mx-auto">
+    <header class="relative bg-white pt-8 pb-40 px-16 lg:mx-64 lg:-mt-40">
+      <% @post.tags.each do |tag| %>
+        <p class="inline-block text-left text-lg font-bold text-indigo-800 tracking-wide mb-2 mr-1">
+          <%= tag.name %>
+        </p>
+      <% end %>
+
+      <p class="inline-block text-left text-sm text-gray-600 tracking-wide mb-2">
+        <%= @post.created_at.strftime('%b, %Y')%>
       </p>
-    <% end %>
 
-    <p class="inline-block text-left text-sm text-gray-600 tracking-wide mb-2">
-      <%= @post.created_at.strftime('%b, %Y')%>
-    </p>
+      <h1 class="font-black text-4xl tracking-wide mb-8">
+        <%= @post.title %>
+      </h1>
 
-    <h1 class="font-black text-4xl tracking-wide mb-8">
-      <%= @post.title %>
-    </h1>
-
-    <div class="text-lg font-bold py-6 border-t border-b border-indigo-700 mb-8">
-      <%= @post.intro %>
-      </br>
-      <div class="float-right text-indigo-700">
-        <a class="text-sm font-normal underline"
-           href="<%= twitter_share_url(@post) %>">Share</a>
-        <i class="fab fa-twitter"></i>
+      <div class="text-lg font-bold pt-6 pb-2 border-t border-b border-indigo-700 mb-8">
+        <%= @post.intro %>
+        </br>
+        <div class="text-right text-indigo-700">
+          <a class="text-sm font-normal underline"
+             href="<%= twitter_share_url(@post) %>">Share</a>
+          <i class="fab fa-twitter text-sm"></i>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <div class="text-lg font-light leading-loose">
-      <%= @post.body %>
+    <div class="relative block">
+      <div class="text-lg font-light leading-loose px-16 lg:mx-64 lg:-mt-40">
+        <%= @post.body %>
+      </div>
+      <div class="absolute text-3xl pl-24 top-0 left-0 text-indigo-700">
+        <div class="sticky top-0">
+          <i class="block fab fa-twitter-square mb-2"></i>
+          <i class="block fab fa-linkedin mb-2"></i>
+          <i class="block fab fa-facebook-square mb-2"></i>
+        </div>
+      </div>
+      </div>
+      </div>
     </div>
   </div>
 </article>
