@@ -11,4 +11,8 @@ module PostsHelper
     return 'text-gray-900' unless params[:tag].present?
     'hover:text-gray-700'
   end
+
+  def twitter_share_url(post)
+    "https://twitter.com/intent/tweet?url=" + post_url(post) + "&text=" + post.intro
+  end
 end
