@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   resources :posts
 
-  get "/about/" => "about#show"
+  get "/about/", to: "about#show"
+
+  post '/sessions', to: "sessions#create"
 end
