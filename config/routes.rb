@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   get "/about/", to: "about#show"
 
-  post '/sessions', to: "sessions#create"
+  get '/login', to: 'sessions#new'
+  post '/sessions', to: 'sessions#create'
+  delete '/sessions', to: 'sessions#destroy'
 end

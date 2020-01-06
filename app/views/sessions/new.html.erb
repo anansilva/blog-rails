@@ -1,0 +1,7 @@
+<%= form_tag sessions_path do %>
+  <%= label_tag "Email" %>
+  <%= text_field_tag :email, nil, placeholder: "Email" %>
+  <%= label_tag "Password" %>
+  <%= password_field_tag :password, nil, placeholder: "Password" %>
+  <%= submit_tag "Log In"%>
+<% end %>
