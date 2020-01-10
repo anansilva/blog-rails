@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to new_post_path
+      redirect_to new_admin_post_path
     else
       redirect_to login_path
     end

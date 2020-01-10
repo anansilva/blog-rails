@@ -20,7 +20,7 @@ describe SessionsController do
       end
 
       it 'redirects to the new post page' do
-        expect(response).to redirect_to(new_post_path)
+        expect(response).to redirect_to(new_admin_post_path)
       end
     end
 
