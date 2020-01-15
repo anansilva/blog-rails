@@ -29,6 +29,7 @@ BODY
 6.times do
   Post.create(
     title: 'Rspec tips',
+    status: 'published',
     intro: intro,
     body: body,
     cover_image: Rack::Test::UploadedFile.new("#{::Rails.root}/spec/fixtures/abstract-done.png", 'image/png'),

@@ -7,17 +7,17 @@ describe PostsController do
 
     context 'when requesting in html format' do
       before do
-        allow(PostsByTagQuery).to receive(:call).with('').and_call_original
+        allow(Query::Posts).to receive(:call).and_call_original
 
-        get :index, params: { tag: '' }
+        get :index
       end
 
       it 'responds successfully' do
         expect(response.status).to eq(200)
       end
 
-      it 'calls PostByTagQuery' do
-        expect(PostsByTagQuery).to have_received(:call).with('')
+      it 'calls Query::Post' do
+        expect(Query::Posts).to have_received(:call)
       end
     end
 

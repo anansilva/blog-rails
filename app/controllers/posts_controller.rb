@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = PostsByTagQuery.call(params[:tag] || '')
+    @posts = Query::Posts.call(params[:tag])
   end
 
   def show

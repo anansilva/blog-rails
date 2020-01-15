@@ -1,5 +1,5 @@
 <div class="flex flex-wrap py-4 justify-center w-full mx-auto font-normal text-base text-gray-500 tracking-wide">
-  <%= link_to posts_path(tag: ''), class: "block px-4 uppercase #{all_tag}" do %>
+  <%= link_to posts_path, class: "block px-4 uppercase #{all_tag}" do %>
     <%= 'All' =%>
   <% end %>
   <% Tag.all.each do |tag| %>
