@@ -31,13 +31,21 @@ describe PostsController do
   end
 
   describe '#show' do
-    let(:post) { create(:post) }
+    let(:post) { create(:post, status: 'published') }
 
     context 'when requesting in html format' do
-      before { get :show, params: { id: post.id } }
-
       it 'responds successfully' do
+        get :show, params: { id: post.id }
+
         expect(response.status).to eq(200)
+      end
+
+      context 'when post is draft' do
+        let(:post) { create(:post, status: 'draft') }
+
+        it 'throws error' do
+          expect { get :show, params: { id: post.id } }.to raise_error(ActiveRecord::RecordNotFound)
+        end
       end
     end
 
