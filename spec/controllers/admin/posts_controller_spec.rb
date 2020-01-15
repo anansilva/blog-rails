@@ -47,6 +47,7 @@ describe Admin::PostsController do
         created_post = Post.last
 
         expect(created_post.title).to eq('Rspec')
+        expect(created_post.status).to eq('draft')
         expect(created_post.intro).to eq('Improve your test suite')
         expect(created_post.body.body.to_html).to eq('This post is about rspec')
         expect(created_post.cover_image).to be_present

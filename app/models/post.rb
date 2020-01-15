@@ -8,4 +8,6 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates_length_of :intro, maximum: 255
+
+  enum status: { draft: 0, published: 1 }
 end
