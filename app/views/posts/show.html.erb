@@ -18,9 +18,9 @@
         <%= @post.title %> <%= '[PREVIEW]' if @post.draft? %>
       </h1>
 
-      <% if @post.draft? && current_user %>
+      <% if @post.draft? && current_page?(admin_post_path(@post)) %>
         <%= button_to "Publish Post", admin_publish_post_path(id: @post.id), method: :put  %>
-      <% elsif @post.published? && current_user %>
+      <% elsif @post.published? && current_page?(admin_post_path(@post)) %>
         <%= button_to "Unpublish Post", admin_unpublish_post_path(id: @post.id), method: :put  %>
       <% end %>
 

@@ -15,4 +15,10 @@ module PostsHelper
   def twitter_share_url(post)
     "https://twitter.com/intent/tweet?url=" + post_url(post) + "&text=" + post.intro
   end
+
+  def link_to_post(post)
+    return admin_post_path(post) if current_user
+
+    post_path(post) if post.published?
+  end
 end

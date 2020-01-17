@@ -5,7 +5,7 @@
     <% end %>
     <div class="bg-white px-4 py-4">
       <h1 class="font-extrabold text-2xl tracking-wide hover:underline mb-1">
-        <%= link_to post.title, post %>
+        <%= link_to post.title, post %><%= '[PREVIEW]' if post.draft? %>
       </h1>
       <p class="text-gray-600 text-xs font-thin mb-2">
         <%= post.created_at.strftime('%b, %Y') %>
@@ -13,7 +13,7 @@
       <p class="text-gray-700 text-normal mb-4">
         <%= post.intro %>
       </p>
-      <%= link_to 'Keep reading >>', post, class: "hover:underline text-sm font-bold uppercase text-indigo-700"%>
+      <%= link_to 'Keep reading >>', link_to_post(post), class: "hover:underline text-sm font-bold uppercase text-indigo-700"%>
     </div>
   </article>
 </div>
