@@ -33,6 +33,16 @@ class Admin::PostsController < ApplicationController
     end
   end
 
+  def publish
+    @post = Post.find(params[:id])
+
+    if @post.published!
+      redirect_to @post, notice: 'Post was published?'
+    else
+      redirect_to @post, notice: 'Maybe something is missing?'
+    end
+  end
+
   def destroy
     post = Post.find(params[:id])
     post_title = post.title

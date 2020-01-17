@@ -150,4 +150,16 @@ describe Admin::PostsController do
       expect(response.status).to eq(302)
     end
   end
+
+  describe '#publish' do
+    let(:post) { create(:post, status: 'draft') }
+
+    before { session[:user_id] = user.id }
+
+    it 'updates the post status to publish' do
+      put :publish, params: { id: post.id }
+
+      expect(post.reload.status).to eq('published')
+    end
+  end
 end
