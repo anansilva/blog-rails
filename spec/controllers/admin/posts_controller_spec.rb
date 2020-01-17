@@ -174,4 +174,16 @@ describe Admin::PostsController do
       expect(post.reload.status).to eq('draft')
     end
   end
+
+  describe '#index' do
+    before do
+      session[:user_id] = user.id
+    end
+
+    it 'responds with draft and published posts' do
+      get :index
+
+      expect(response.status).to eq(200)
+    end
+  end
 end

@@ -66,7 +66,14 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
     render 'posts/show', post: @post
+  end
+
+  def index
+    @posts = Post.all
+
+    render 'posts/index', posts: @posts
   end
 
   private
