@@ -60,6 +60,14 @@ describe Admin::PostsController do
 
         expect(created_post.tags.pluck(:name)).to match_array(%w[ruby rails])
       end
+
+      it 'redirects to the admin posts page' do
+        post :create, params: { post: post_params }
+
+        created_post = Post.last
+
+        expect(response).to redirect_to(admin_post_path(created_post))
+      end
     end
   end
 
@@ -130,6 +138,16 @@ describe Admin::PostsController do
 
         expect(response.status).to eq(302)
       end
+    end
+  end
+
+  describe '#show' do
+    let(:post) { create(:post) }
+
+    it 'responds successfully' do
+      get :show, params: { id: post.id }
+
+      expect(response.status).to eq(302)
     end
   end
 end

@@ -10,7 +10,7 @@ class Admin::PostsController < ApplicationController
 
     if @post.save
       TagPosts::UpdatePostTags.execute!(@post, tag_names)
-      redirect_to post_path(@post), notice: 'Post was successfully created.'
+      redirect_to admin_post_path(@post), notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -42,6 +42,11 @@ class Admin::PostsController < ApplicationController
     else
       redirect_to posts_path
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    render 'posts/show', post: @post
   end
 
   private
