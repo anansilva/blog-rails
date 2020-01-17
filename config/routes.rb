@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :posts
-    put 'posts/:id/publish', to: 'posts#publish'
+    put 'posts/:id/publish', to: 'posts#publish', as: :publish_post
+    put 'posts/:id/unpublish', to: 'posts#unpublish', as: :unpublish_post
   end
 
   get "/about/", to: "about#show"

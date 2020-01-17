@@ -18,7 +18,11 @@
         <%= @post.title %> <%= '[PREVIEW]' if @post.draft? %>
       </h1>
 
-      <%= button_to "Publish Post", admin_path(id: @post.id), method: :put  %>
+      <% if @post.draft? && current_user %>
+        <%= button_to "Publish Post", admin_publish_post_path(id: @post.id), method: :put  %>
+      <% elsif @post.published? && current_user %>
+        <%= button_to "Unpublish Post", admin_unpublish_post_path(id: @post.id), method: :put  %>
+      <% end %>
 
       <div class="text-lg font-bold pt-6 pb-2 border-t border-b border-indigo-700 mb-8">
         <%= @post.intro %>

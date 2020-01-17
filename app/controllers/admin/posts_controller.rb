@@ -37,9 +37,19 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.published!
-      redirect_to @post, notice: 'Post was published?'
+      redirect_to admin_post_path(@post), notice: 'Post was published'
     else
-      redirect_to @post, notice: 'Maybe something is missing?'
+      redirect_to admin_post_path(@post), notice: 'Post is still draft. Maybe something is missing?'
+    end
+  end
+
+  def unpublish
+    @post = Post.find(params[:id])
+
+    if @post.draft!
+      redirect_to admin_post_path(@post), notice: 'Post is now a draft'
+    else
+      redirect_to admin_post_path(@post)
     end
   end
 

@@ -162,4 +162,16 @@ describe Admin::PostsController do
       expect(post.reload.status).to eq('published')
     end
   end
+
+  describe '#unpublish' do
+    let(:post) { create(:post, status: 'published') }
+
+    before { session[:user_id] = user.id }
+
+    it 'updates the post status to draft' do
+      put :unpublish, params: { id: post.id }
+
+      expect(post.reload.status).to eq('draft')
+    end
+  end
 end
