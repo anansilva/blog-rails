@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new;end
 
   def create
-    user = User.find_by(params[:user_id])
+    user = User.find_by(user_params[:user_id])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
@@ -15,5 +15,11 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to posts_path
+  end
+
+  private
+
+  def user_params
+    params.permit(:user_id)
   end
 end
