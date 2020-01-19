@@ -24,7 +24,6 @@ blocks:
             - cache restore
             - sem-version ruby 2.6.5
             - bundle install --deployment --path vendor/bundle
-            - bundle exec rubocop
             - bundle exec brakeman
 blocks:
   - name: Test
