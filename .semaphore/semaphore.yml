@@ -25,7 +25,6 @@ blocks:
             - sem-version ruby 2.6.5
             - bundle install --deployment --path vendor/bundle
             - bundle exec brakeman
-blocks:
   - name: Test
     task:
       env_vars:
