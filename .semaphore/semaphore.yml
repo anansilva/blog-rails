@@ -15,8 +15,7 @@ blocks:
             - sem-version ruby 2.6.5
             - bundle install --deployment --path vendor/bundle
             - chache store
-
-    - name: Code scanning
+  - name: Code scanning
     task:
       jobs:
         - name: check style + security
