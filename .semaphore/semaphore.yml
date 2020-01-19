@@ -1,15 +1,38 @@
 version: v1.0
-name: Test MyApp
+name: Blog
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
+  - name: Setup
+    task:
+      jobs:
+        - name: bundle
+          commands:
+            - checkout
+            - cache restore
+            - sem-version ruby 2.6.5
+            - bundle install --deployment --path vendor/bundle
+            - chache store
+
+    - name: Code scanning
+    task:
+      jobs:
+        - name: check style + security
+          commands:
+            - checkout
+            - cache restore
+            - sem-version ruby 2.6.5
+            - bundle install --deployment --path vendor/bundle
+            - bundle exec rubocop
+            - bundle exec brakeman
+blocks:
   - name: Test
     task:
       env_vars:
         - name: DATABASE_URL
-          value: 'postgresql://postgres:@0.0.0.0:5432/myapp_test'
+          value: 'postgresql://localhost/rails_blog_development?pool=5'
         - name: RAILS_ENV
           value: test
       jobs:
@@ -21,5 +44,5 @@ blocks:
             - cache restore
             - bundle install --deployment --path vendor/bundle
             - cache store
-            - 'bundle exec rake db:setup'
+            - bundle exec rake db:setup
             - bundle exec rspec
