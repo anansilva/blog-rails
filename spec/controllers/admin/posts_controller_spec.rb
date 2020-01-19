@@ -123,6 +123,11 @@ describe Admin::PostsController do
 
   describe '#destroy' do
     let(:post) { create(:post) }
+    let(:tag) { create(:tag, name: 'testing') }
+
+    before 'add tags to the post' do
+      create(:tag_post, tag: tag, post: post)
+    end
 
     context 'when the user is logged in' do
       before { session[:user_id] = user.id }
@@ -130,7 +135,7 @@ describe Admin::PostsController do
       it 'deletes a given post' do
         delete :destroy, params: { id: post.id }
 
-        expect { post.reload }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(Post.count).to eq(0)
       end
 
       it 'redirects to the index page' do

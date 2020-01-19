@@ -58,9 +58,9 @@ class Admin::PostsController < ApplicationController
     post_title = post.title
 
     if post.destroy
-      redirect_to posts_url, notice: "#{post_title} was successfully destroyed."
+      redirect_to admin_posts_path, notice: "#{post_title} was successfully destroyed."
     else
-      redirect_to posts_path
+      redirect_to admin_posts_path
     end
   end
 
