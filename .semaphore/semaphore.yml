@@ -22,6 +22,10 @@ blocks:
       jobs:
         - name: check style + security
           commands:
+            - checkout
+            - cache restore
+            - sem-version ruby 2.6.5
+            - bundle install --deployment --path vendor/bundle
             - bundle exec rubocop
             - bundle exec brakeman
   - name: Test
@@ -32,6 +36,10 @@ blocks:
       jobs:
         - name: Test
           commands:
+            - checkout
+            - cache restore
             - sem-service start postgres 11
+            - sem-version ruby 2.6.5
+            - bundle install --deployment --path vendor/bundle
             - bundle exec rake db:setup
             - bundle exec rspec
