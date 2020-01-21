@@ -1,1 +1,1 @@
-json.posts @posts 
+json.posts @posts

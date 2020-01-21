@@ -1,0 +1,34 @@
+AllCops:
+  Exclude:
+    - "db/schema.rb"
+    - "db/seeds.rb"
+    - "db/migrate/**/*"
+    - "lib/tasks/**/*"
+    - "bin/*"
+    - "config/**/*"
+    - Rakefile
+    - Gemfile
+    - "spec/spec_helper.rb"
+    - "spec/rails_helper.rb"
+    - "vendor/**/*"
+    - "spec/**/*"
+    - "node_modules/**/*"
+    - "test/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
