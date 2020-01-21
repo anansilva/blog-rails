@@ -42,5 +42,6 @@ blocks:
             - cp .semaphore/database.yml config/database.yml
             - sem-version ruby 2.6.5
             - bundle install --deployment --path vendor/bundle
-            - bundle exec rake db:setup
+            - bundle exec rake db:create
+            - bundle exec rake db:schema:load
             - bundle exec rspec
