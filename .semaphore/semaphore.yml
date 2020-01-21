@@ -11,7 +11,6 @@ blocks:
         - name: bundle
           commands:
             - checkout
-            - sudo apt-get update && sudo apt-get install -y libvips-dev
             - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
             - sem-version ruby 2.6.5
             - gem install bundler -v 2.0.2
@@ -38,7 +37,9 @@ blocks:
           commands:
             - checkout
             - cache restore
+            - sudo apt-get update && sudo apt-get install -y libvips-dev
             - sem-service start postgres 11
+            - cp .semaphore/database.yml config/database.yml
             - sem-version ruby 2.6.5
             - bundle install --deployment --path vendor/bundle
             - bundle exec rake db:setup
