@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :history
+
   has_many :tag_posts, dependent: :destroy
   has_many :tags, through: :tag_posts
 
