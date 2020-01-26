@@ -1,24 +1,8 @@
-# README
+https://anansilva.semaphoreci.com/badges/blog-rails.svg
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# [anaondev.com]
 
-Things you may want to cover:
+My personal blog. Built from scratch with rails and tailwindcss. 
 
-* Ruby version
+To run locally, `rails s`, then open https://localhost:3000.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
