@@ -1,4 +1,4 @@
-https://anansilva.semaphoreci.com/badges/blog-rails.svg
+<img src="https://anansilva.semaphoreci.com/badges/blog-rails.svg">
 
 # [anaondev.com]
 
