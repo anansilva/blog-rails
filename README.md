@@ -1,24 +1,21 @@
-# README
+<img src="https://anansilva.semaphoreci.com/badges/blog-rails.svg">
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+My personal blog. Built from scratch with rails and tailwindcss. 
 
-Things you may want to cover:
+To run locally, `rails s`, then open https://localhost:3000.
 
-* Ruby version
+## Features
+As an admin you can:
 
-* System dependencies
+- Login and access a Content Management Area
+- Create posts with text, images and tags
+- Update posts
+- Preview a post
+- Preview the list os posts
+- Delete posts
 
-* Configuration
+As a visitor you can:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- See a list of posts that can be filtered by tags
+- Read a post
+- Share a post on social media
