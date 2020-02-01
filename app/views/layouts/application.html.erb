@@ -16,9 +16,7 @@
 
   <body class="bg-white font-sans">
     <header class="text-gray-900">
-      <nav class="flex flex-wrap p-4 font-semibold items-center justify-between">
-        <%= render partial: 'shared/navbar' %>
-      </nav>
+      <%= render partial: 'shared/navbar' %>
     <header>
 
     <section>
@@ -26,5 +24,7 @@
         <%= yield %>
       <div>
     </section>
+
+    <%= render partial: 'shared/footer' %>
   </body>
 </html>
