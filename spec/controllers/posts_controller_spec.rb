@@ -43,8 +43,10 @@ describe PostsController do
       context 'when post is draft' do
         let(:post) { create(:post, status: 'draft') }
 
-        it 'throws error' do
-          expect { get :show, params: { id: post.id } }.to raise_error(ActiveRecord::RecordNotFound)
+        it 'returns a 404 response' do
+          get :show, params: { id: post.id }
+
+          expect(response.status).to eq(404)
         end
       end
     end
