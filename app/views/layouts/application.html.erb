@@ -14,16 +14,16 @@
     <link rel="stylesheet" href="/build/tailwind.css">
   </head>
 
-  <body class="bg-white font-sans">
-    <header class="text-gray-900">
-      <%= render partial: 'shared/navbar' %>
-    <header>
+  <body class="bg-white font-sans min-h-screen flex flex-col">
+    <div class="flex-grow">
+      <header class="text-gray-900">
+        <%= render partial: 'shared/navbar' %>
+      <header>
 
-    <section>
-      <div class="mx-auto">
+      <section>
         <%= yield %>
-      <div>
-    </section>
+      </section>
+    </div>
 
     <%= render partial: 'shared/footer' %>
   </body>
