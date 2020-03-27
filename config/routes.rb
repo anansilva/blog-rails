@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
 
   namespace :admin do
+    mount RailsEventStore::Browser => '/res'
+
     resources :posts, except: :destroy
     put 'posts/:id/publish', to: 'posts#publish', as: :publish_post
     put 'posts/:id/unpublish', to: 'posts#unpublish', as: :unpublish_post
