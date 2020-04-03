@@ -23,6 +23,7 @@ describe PostsController do
 
       it 'calls the publish service' do
         expect(::EventSourcing::PublishService).to have_received(:execute!)
+          .with('viewed_page', {:page=>"http://test.host/"}, 'posts')
       end
     end
 
@@ -44,6 +45,15 @@ describe PostsController do
           get :show, params: { id: post.id }
 
           expect(response.status).to eq(200)
+        end
+
+        it 'calls the publish service' do
+          allow(::EventSourcing::PublishService).to receive(:execute!)
+
+          get :show, params: { id: post.id }
+
+          expect(::EventSourcing::PublishService).to have_received(:execute!)
+            .with('viewed_page', {:page=>"http://test.host/posts/#{post.id}"}, 'post')
         end
       end
 

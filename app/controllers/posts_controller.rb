@@ -8,6 +8,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.published.friendly.find(params[:id])
+
+    ::EventSourcing::PublishService
+      .execute!('viewed_page', event_payload, 'post')
   end
 
   def new
