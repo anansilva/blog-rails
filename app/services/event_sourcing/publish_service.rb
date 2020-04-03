@@ -1,6 +1,6 @@
 module EventSourcing
   class PublishService
-    ALLOWED_EVENTS= {
+    ALLOWED_EVENTS = {
       viewed_page: 'ViewedPage'
     }.freeze
 
