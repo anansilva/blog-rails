@@ -2,13 +2,8 @@ class PostsController < ApplicationController
   def index
     @posts = Query::Posts.call(params[:tag])
 
-    stream_name = 'posts'
-
-    event = ::EventSourcing::Events::ViewedPage.new(data: {
-      page: 'index'
-    })
-
-    event_store.publish(event, stream_name: stream_name)
+    ::EventSourcing::PublishService
+      .execute!('viewed_page', event_payload, 'posts')
   end
 
   def show
@@ -19,9 +14,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  private
-
-  def event_store
-    Rails.configuration.event_store
+  def event_payload
+    { page: request.original_url }
   end
 end

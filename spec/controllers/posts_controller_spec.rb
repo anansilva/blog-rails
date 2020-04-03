@@ -8,6 +8,7 @@ describe PostsController do
     context 'when requesting in html format' do
       before do
         allow(Query::Posts).to receive(:call).and_call_original
+        allow(::EventSourcing::PublishService).to receive(:execute!)
 
         get :index
       end
@@ -18,6 +19,10 @@ describe PostsController do
 
       it 'calls Query::Post' do
         expect(Query::Posts).to have_received(:call)
+      end
+
+      it 'calls the publish service' do
+        expect(::EventSourcing::PublishService).to have_received(:execute!)
       end
     end
 
