@@ -22,8 +22,13 @@ describe PostsController do
       end
 
       it 'calls the publish service' do
+        payload = {
+          page: "http://test.host/",
+          ip_address: '0.0.0.0'
+        }
+
         expect(::EventSourcing::PublishService).to have_received(:execute!)
-          .with('viewed_page', {:page=>"http://test.host/"}, 'posts')
+          .with('viewed_page', payload, 'posts')
       end
     end
 
@@ -48,12 +53,19 @@ describe PostsController do
         end
 
         it 'calls the publish service' do
+          payload = {
+            page: "http://test.host/posts/#{post.id}",
+            ip_address: '0.0.0.0'
+          }
+
           allow(::EventSourcing::PublishService).to receive(:execute!)
 
           get :show, params: { id: post.id }
 
           expect(::EventSourcing::PublishService).to have_received(:execute!)
-            .with('viewed_page', {:page=>"http://test.host/posts/#{post.id}"}, 'post')
+            .with('viewed_page',
+                  payload,
+                  'post')
         end
       end
 

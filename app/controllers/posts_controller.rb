@@ -18,6 +18,9 @@ class PostsController < ApplicationController
   end
 
   def event_payload
-    { page: request.original_url }
+    {
+      page: request.original_url,
+      ip_address: request.remote_ip
+    }
   end
 end
