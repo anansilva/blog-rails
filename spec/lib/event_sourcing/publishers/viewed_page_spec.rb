@@ -17,7 +17,7 @@ describe EventSourcing::Publishers::ViewedPage do
     allow(::EventSourcing::PublishService).to receive(:execute!)
       .with('viewed_page', expected_payload, stream_name: 'posts')
 
-    described_class.execute!(request)
+    described_class.execute!(request, 'posts')
 
     expect(::EventSourcing::PublishService).to have_received(:execute!)
       .with('viewed_page', expected_payload, stream_name: 'posts')

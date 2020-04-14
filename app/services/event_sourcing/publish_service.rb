@@ -4,10 +4,10 @@ module EventSourcing
       viewed_page: 'ViewedPage'
     }.freeze
 
-    def initialize(type, data, stream_name)
+    def initialize(type, data, options = {})
       @type = type
       @data = data
-      @stream_name = stream_name
+      @stream_name = options.fetch(:stream_name, 'all')
     end
 
     def self.execute!(type, data, stream_name)

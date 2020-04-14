@@ -1,5 +1,7 @@
 describe PostsController do
   describe '#index' do
+    let(:publisher_klass) { ::EventSourcing::Publishers::ViewedPage }
+
     before do
       create(:post)
       create(:post)
@@ -8,7 +10,7 @@ describe PostsController do
     context 'when requesting in html format' do
       before do
         allow(Query::Posts).to receive(:call).and_call_original
-        allow(::EventSourcing::PublishService).to receive(:execute!)
+        allow(publisher_klass).to receive(:execute!)
 
         get :index
       end
@@ -22,15 +24,7 @@ describe PostsController do
       end
 
       it 'calls the publish service' do
-        payload = {
-          page: "http://test.host/",
-          ip_address: '0.0.0.0',
-          user_agent: 'Rails Testing',
-          referer: nil
-        }
-
-        expect(::EventSourcing::PublishService).to have_received(:execute!)
-          .with('viewed_page', payload, 'posts')
+        expect(publisher_klass).to have_received(:execute!).with(request, 'posts')
       end
     end
 
@@ -44,6 +38,8 @@ describe PostsController do
   end
 
   describe '#show' do
+    let(:publisher_klass) { ::EventSourcing::Publishers::ViewedPage }
+
     context 'when the post is published' do
       let(:post) { create(:post, status: 'published') }
 
@@ -55,21 +51,11 @@ describe PostsController do
         end
 
         it 'calls the publish service' do
-          payload = {
-            page: "http://test.host/posts/#{post.id}",
-            ip_address: '0.0.0.0',
-            user_agent: 'Rails Testing',
-            referer: nil
-          }
-
-          allow(::EventSourcing::PublishService).to receive(:execute!)
+          allow(publisher_klass).to receive(:execute!)
 
           get :show, params: { id: post.id }
 
-          expect(::EventSourcing::PublishService).to have_received(:execute!)
-            .with('viewed_page',
-                  payload,
-                  'post')
+          expect(publisher_klass).to have_received(:execute!).with(request, 'post')
         end
       end
 

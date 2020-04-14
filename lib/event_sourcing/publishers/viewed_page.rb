@@ -1,16 +1,17 @@
 module EventSourcing
   module Publishers
     class ViewedPage
-      def initialize(request)
+      def initialize(request, stream_name)
         @request = request
+        @stream_name = stream_name
       end
 
-      def self.execute!(request)
-        new(request).result
+      def self.execute!(request, stream_name = nil)
+        new(request, stream_name).result
       end
 
       def result
-        ::EventSourcing::PublishService.execute!('viewed_page', payload, stream_name: 'posts')
+        ::EventSourcing::PublishService.execute!('viewed_page', payload, stream_name: @stream_name)
       end
 
       private
