@@ -20,7 +20,9 @@ class PostsController < ApplicationController
   def event_payload
     {
       page: request.original_url,
-      ip_address: request.remote_ip
+      ip_address: request.remote_ip,
+      user_agent: request.user_agent,
+      referer: request.referer
     }
   end
 end

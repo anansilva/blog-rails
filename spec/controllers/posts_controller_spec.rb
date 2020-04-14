@@ -24,7 +24,9 @@ describe PostsController do
       it 'calls the publish service' do
         payload = {
           page: "http://test.host/",
-          ip_address: '0.0.0.0'
+          ip_address: '0.0.0.0',
+          user_agent: 'Rails Testing',
+          referer: nil
         }
 
         expect(::EventSourcing::PublishService).to have_received(:execute!)
@@ -55,7 +57,9 @@ describe PostsController do
         it 'calls the publish service' do
           payload = {
             page: "http://test.host/posts/#{post.id}",
-            ip_address: '0.0.0.0'
+            ip_address: '0.0.0.0',
+            user_agent: 'Rails Testing',
+            referer: nil
           }
 
           allow(::EventSourcing::PublishService).to receive(:execute!)
