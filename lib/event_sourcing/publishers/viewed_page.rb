@@ -11,7 +11,8 @@ module EventSourcing
       end
 
       def result
-        ::EventSourcing::PublishService.execute!('viewed_page', payload, stream_name: @stream_name)
+        ::EventSourcing::PublishService
+          .execute!('viewed_page', payload, stream_name: @stream_name)
       end
 
       private
