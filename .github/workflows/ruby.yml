@@ -31,6 +31,15 @@ jobs:
       run: |
        gem install bundler -v 2.0.2
        bundle install --jobs 4 --retry 3
+    
+    - name: Ruby Gem cache
+      uses: actions/cache@v1
+      with:
+       path: vendor/bundle
+       key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+       restore-keys: |
+         ${{ runner.os }}-gems-
+
     - name: Install libvips
       run: |
         sudo apt-get update && sudo apt-get install -y libvips-dev
