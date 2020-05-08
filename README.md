@@ -1,6 +1,6 @@
 <img src="https://anansilva.semaphoreci.com/badges/blog-rails.svg">
 
-![](https://github.com/actions/blog/workflows/.github/workflows/ruby.yml/badge.s
+![](https://github.com/actions/blog/workflows/.github/workflows/ruby.yml/badge.svg)
 
 My personal blog. Built from scratch with rails and tailwindcss. 
 
