@@ -36,3 +36,8 @@ jobs:
       run: |
         gem install bundler
         bundle install
+    - name: Setup db
+      env:
+        PGHOST: 127.0.0.1
+        PGUSER: postgres
+        RAILS_ENV: test
