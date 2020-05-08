@@ -31,4 +31,3 @@ jobs:
       run: |
         gem install bundler
         bundle install
-    - name: Setup db
