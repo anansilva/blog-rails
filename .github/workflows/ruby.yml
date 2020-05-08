@@ -17,6 +17,12 @@ jobs:
     services:
       postgres:
         image: postgres:11
+        env:
+          RAILS_ENV: test
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: blog_rails_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
