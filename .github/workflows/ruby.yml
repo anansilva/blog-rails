@@ -33,6 +33,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    
+    - name: Copy config files
+      run: |
+        cp .github/config/database.yml config/database.yml
+        
+    - name: Install libvips
+      run: |
+        sudo apt-get update && sudo apt-get install -y libvips-dev
+          
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
@@ -40,10 +50,6 @@ jobs:
       uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
         ruby-version: 2.6
-
-    - name: Install libvips
-      run: |
-        sudo apt-get update && sudo apt-get install -y libvips-dev
 
     - name: Ruby Gem cache
       uses: actions/cache@v1
