@@ -41,6 +41,10 @@ jobs:
       with:
         ruby-version: 2.6
 
+    - name: Install libvips
+      run: |
+        sudo apt-get update && sudo apt-get install -y libvips-dev
+
     - name: Ruby Gem cache
       uses: actions/cache@v1
       with:
@@ -57,6 +61,3 @@ jobs:
        bundle exec rake db:create
        bundle exec rake db:schema:load
 
-    - name: Install libvips
-      run: |
-        sudo apt-get update && sudo apt-get install -y libvips-dev
