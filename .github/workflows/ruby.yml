@@ -21,6 +21,7 @@ jobs:
           RAILS_ENV: test
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: rails_blog_test
         options: >-
           --health-cmd pg_isready
