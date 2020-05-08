@@ -7,8 +7,6 @@
 
 name: Blog
 
-on: push
-
 jobs:
   test:
 
