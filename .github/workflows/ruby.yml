@@ -17,6 +17,13 @@ jobs:
     services:
       postgres:
         image: postgres:11
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
     - uses: actions/checkout@v2
@@ -27,11 +34,7 @@ jobs:
       uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
         ruby-version: 2.6
-    - name: Install Ruby dependencies
-      run: |
-       gem install bundler -v 2.0.2
-       bundle install --jobs 4 --retry 3
-    
+
     - name: Ruby Gem cache
       uses: actions/cache@v1
       with:
@@ -40,11 +43,13 @@ jobs:
        restore-keys: |
          ${{ runner.os }}-gems-
 
+    - name: Install Ruby dependencies
+      run: |
+       gem install bundler -v 2.0.2
+       bundle install --jobs 4 --retry 3
+       bundle exec rake db:create
+       bundle exec rake db:schema:load
+
     - name: Install libvips
       run: |
         sudo apt-get update && sudo apt-get install -y libvips-dev
-    - name: Run tests
-      run: |
-        bundle exec rails db:create
-        bundle exec rails db:migrate
-        bundle exec rspec spec
