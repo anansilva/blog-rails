@@ -1,8 +1,7 @@
 module EventSourcing
   module Subscribers
     class PostInteractions
-      def call(event)
-      end
+      def call(event);end
     end
   end
 end
