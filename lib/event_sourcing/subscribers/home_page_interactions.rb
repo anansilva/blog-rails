@@ -1,7 +1,7 @@
 module EventSourcing
   module Subscribers
     class HomePageInteractions
-      def call(event);end
+      def call(event); end
     end
   end
 end
