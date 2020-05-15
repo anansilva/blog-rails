@@ -1,6 +1,6 @@
 RSpec.describe Post, type: :model do
   describe 'associations' do
-    let(:post) { create(:post) }
+    let(:post) { build(:post) }
 
     it 'has many tag posts' do
       expect(post.tag_posts).to eq([])

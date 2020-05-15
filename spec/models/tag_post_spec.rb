@@ -1,6 +1,6 @@
 RSpec.describe TagPost, type: :model do
   describe 'associations' do
-    let(:tagpost) { create(:tag_post) }
+    let(:tagpost) { build(:tag_post) }
 
     it 'belongs to tags' do
       expect(tagpost.tag).to be_present
