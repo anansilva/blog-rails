@@ -1,17 +1,10 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
-# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
-
-name: Blog
+name: Blog CI
 
 on: push 
 
 jobs:
-  test:
-
+  build:
+    
     runs-on: ubuntu-latest
     
     services:
@@ -37,20 +30,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    
-    
-    - name: Copy config files
-      run: |
-        cp .github/config/database.yml config/database.yml
         
-    - name: Install libvips
+    - name: Install dependent libraries
       run: |
         sudo apt-get update && sudo apt-get install -y libvips-dev
           
-    - name: Set up Ruby
-    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-    # change this to (see https://github.com/ruby/setup-ruby#versioning):
-    # uses: ruby/setup-ruby@v1
+    - name: Setup Ruby
       uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
         ruby-version: 2.6
@@ -63,14 +48,17 @@ jobs:
        restore-keys: |
          ${{ runner.os }}-gems-
 
-    - name: Install Ruby dependencies
+    - name: Install ruby dependencies
       run: |
        gem install bundler -v 2.0.2
        bundle config set deployment 'true'
        bundle install --jobs 4 --retry 3
-       bundle exec rake db:create
-       bundle exec rake db:schema:load
-
+  
+    - name: Setup Database
+      run: |
+        cp .github/config/database.yml config/database.yml
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
 
     - name: Run Tests
       run: |
