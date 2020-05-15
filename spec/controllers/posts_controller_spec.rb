@@ -1,6 +1,6 @@
 describe PostsController do
   describe '#index' do
-    let(:publisher_klass) { ::EventSourcing::Publishers::PageViewed }
+    let(:publisher_klass) { ::EventSourcing::Publishers::HomePageViewed }
 
     before do
       create(:post)
@@ -24,7 +24,7 @@ describe PostsController do
       end
 
       it 'calls the publish service' do
-        expect(publisher_klass).to have_received(:execute!).with(request, 'posts')
+        expect(publisher_klass).to have_received(:execute!).with(request, nil)
       end
     end
 
@@ -38,7 +38,7 @@ describe PostsController do
   end
 
   describe '#show' do
-    let(:publisher_klass) { ::EventSourcing::Publishers::PageViewed }
+    let(:publisher_klass) { ::EventSourcing::Publishers::PostViewed }
 
     context 'when the post is published' do
       let(:post) { create(:post, status: 'published') }
@@ -55,7 +55,7 @@ describe PostsController do
 
           get :show, params: { id: post.id }
 
-          expect(publisher_klass).to have_received(:execute!).with(request, 'post')
+          expect(publisher_klass).to have_received(:execute!).with(request, post)
         end
       end
 
