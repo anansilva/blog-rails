@@ -1,6 +1,6 @@
 module EventSourcing
   module Publishers
-    class ViewedPage
+    class PageViewed
       def initialize(request, stream_name)
         @request = request
         @stream_name = stream_name
@@ -12,7 +12,7 @@ module EventSourcing
 
       def result
         ::EventSourcing::PublishService
-          .execute!('viewed_page', payload, stream_name: @stream_name)
+          .execute!('page_viewed', payload, stream_name: @stream_name)
       end
 
       private

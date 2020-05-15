@@ -1,6 +1,6 @@
 describe PostsController do
   describe '#index' do
-    let(:publisher_klass) { ::EventSourcing::Publishers::ViewedPage }
+    let(:publisher_klass) { ::EventSourcing::Publishers::PageViewed }
 
     before do
       create(:post)
@@ -38,7 +38,7 @@ describe PostsController do
   end
 
   describe '#show' do
-    let(:publisher_klass) { ::EventSourcing::Publishers::ViewedPage }
+    let(:publisher_klass) { ::EventSourcing::Publishers::PageViewed }
 
     context 'when the post is published' do
       let(:post) { create(:post, status: 'published') }

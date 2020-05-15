@@ -1,4 +1,4 @@
-describe EventSourcing::Publishers::ViewedPage do
+describe EventSourcing::Publishers::PageViewed do
   it 'calls PublishService with the right payload' do
     Request = Struct.new(:original_url, :remote_ip, :user_agent, :referer)
 
@@ -15,11 +15,11 @@ describe EventSourcing::Publishers::ViewedPage do
     }
 
     allow(::EventSourcing::PublishService).to receive(:execute!)
-      .with('viewed_page', expected_payload, stream_name: 'posts')
+      .with('page_viewed', expected_payload, stream_name: 'posts')
 
     described_class.execute!(request, 'posts')
 
     expect(::EventSourcing::PublishService).to have_received(:execute!)
-      .with('viewed_page', expected_payload, stream_name: 'posts')
+      .with('page_viewed', expected_payload, stream_name: 'posts')
   end
 end

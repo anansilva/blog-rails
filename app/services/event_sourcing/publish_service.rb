@@ -1,7 +1,7 @@
 module EventSourcing
   class PublishService
     ALLOWED_EVENTS = {
-      viewed_page: 'ViewedPage'
+      page_viewed: 'PageViewed'
     }.freeze
 
     def initialize(type, data, options = {})

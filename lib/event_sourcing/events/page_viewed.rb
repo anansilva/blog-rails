@@ -1,6 +1,6 @@
 module EventSourcing
   module Events
-    class ViewedPage < RailsEventStore::Event
+    class PageViewed < RailsEventStore::Event
     end
   end
 end
