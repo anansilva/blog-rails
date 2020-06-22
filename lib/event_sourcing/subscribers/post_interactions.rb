@@ -2,9 +2,20 @@ module EventSourcing
   module Subscribers
     class PostInteractions
       def call(event)
-        ::Analytics::PostViewCounter.find_or_initialize_by(post_id: event[:post_id]).tap do |post_view_counter|
-          post_view_counter.update(count: post_view_counter.count + 1)
+        find_or_initialize_counter(event).tap do |visitor_post_counter|
+          visitor_post_counter.update(views_count: visitor_post_counter.views_count + 1)
         end
+      end
+
+      private
+
+      def find_or_initialize_counter(event)
+        ::Analytics::VisitorPostDailyCounter
+          .find_or_initialize_by(
+            post_id: event.data[:post_id],
+            day: Date.today,
+            visitor_ip: event.metadata[:request_ip]
+          )
       end
     end
   end

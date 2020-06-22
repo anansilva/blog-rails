@@ -1,68 +1,51 @@
 describe EventSourcing::Subscribers::PostInteractions do
-  context 'when post is viewed for the first time' do
-    it 'creates a new post view counter and increments it by one' do
-      post = create(:post, title: 'my first post')
-
-      event = {
+  context 'post views' do
+    let(:post) { create(:post, title: 'rspec tips') }
+    let(:event_data) do
+      {
         page: '',
-        ip_adress: '',
         user_agent: '',
         referer: '',
         post_id: post.id,
         post_title: post.title
       }
+    end
+
+    let(:event_metadata) { { request_ip: '123.123.123.123' } }
+
+    it 'it starts a new counter on the first view of the post that day by a visitor' do
+      event = EventSourcing::Events::PostViewed.new(data: event_data,
+                                                    metadata: event_metadata)
 
       described_class.new.call(event)
-      post_counter = ::Analytics::PostViewCounter.find_by(post_id: post.id)
 
-      expect(::Analytics::PostViewCounter.count).to eq(1)
-      expect(post_counter.reload.count).to eq(1)
-    end
-  end
-
-  context 'when post has been viewed at least once already' do
-    it 'increases post views counter by one' do
-      post = create(:post, title: 'my first post')
-      post_counter = ::Analytics::PostViewCounter.create(post_id: post.id, count: 1)
-
-      event = {
-        page: '',
-        ip_adress: '',
-        user_agent: '',
-        referer: '',
+      post_counter = ::Analytics::VisitorPostDailyCounter.find_by(
         post_id: post.id,
-        post_title: post.title
-      }
+        visitor_ip: '123.123.123.123',
+        day: Date.today
+      )
 
-      described_class.new.call(event)
-
-      expect(::Analytics::PostViewCounter.count).to eq(1)
-      expect(post_counter.reload.count).to eq(2)
+      expect(post_counter.reload.views_count).to eq(1)
     end
-  end
 
-  context 'when other posts have also been viewed' do
-    it 'does not update the other posts counters' do
-      rails_post = create(:post, title: 'my first post')
-      rails_post_counter = ::Analytics::PostViewCounter.create(post_id: rails_post.id, count: 1)
+    it 'increments the counter every time the visitor views the post on a given day' do
+      post_viewed = EventSourcing::Events::PostViewed.new(data: event_data,
+                                                              metadata: event_metadata)
 
-      vim_post = create(:post, title: 'my second post')
+      described_class.new.call(post_viewed)
+      described_class.new.call(post_viewed)
 
-      event = {
-        page: '',
-        ip_adress: '',
-        user_agent: '',
-        referer: '',
-        post_id: vim_post.id,
-        post_title: vim_post.title
-      }
+      post_counter = ::Analytics::VisitorPostDailyCounter.find_by(
+        post_id: post.id,
+        visitor_ip: '123.123.123.123',
+        day: Date.today
+      )
 
-      described_class.new.call(event)
+      expect(post_counter.reload.views_count).to eq(2)
+    end
 
-      vim_post_counter = ::Analytics::PostViewCounter.find_by(post_id: vim_post.id)
-
-      expect(rails_post_counter.reload.count).to eq(1)
-      expect(vim_post_counter.reload.count).to eq(1)
+    xit 'starts a new counter on the next day' do
     end
   end
 end
+
