@@ -1,3 +1,5 @@
-class Analytics::VisitorPostDailyCounter < ApplicationRecord
-  belongs_to :post
+module Analytics
+  class VisitorPostDailyCounter < ApplicationRecord
+    belongs_to :post
+  end
 end

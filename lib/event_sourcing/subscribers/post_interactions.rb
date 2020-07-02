@@ -3,7 +3,8 @@ module EventSourcing
     class PostInteractions
       def call(event)
         find_or_initialize_counter(event).tap do |visitor_post_counter|
-          visitor_post_counter.update(views_count: visitor_post_counter.views_count + 1)
+          visitor_post_counter
+            .update(views_count: visitor_post_counter.views_count + 1)
         end
       end
 
