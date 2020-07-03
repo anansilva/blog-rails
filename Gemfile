@@ -23,6 +23,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem "rubyzip", ">= 1.3.0"
 
+gem 'browser'
+
 gem 'friendly_id', '~> 5.2.4'
 
 gem "aws-sdk-s3", require: false

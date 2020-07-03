@@ -40,6 +40,10 @@ describe PostsController do
   describe '#show' do
     let(:publisher_klass) { ::EventSourcing::Publishers::PostViewed }
 
+    before do
+      allow(publisher_klass).to receive(:execute!).and_return({})
+    end
+
     context 'when the post is published' do
       let(:post) { create(:post, status: 'published') }
 
@@ -51,8 +55,6 @@ describe PostsController do
         end
 
         it 'calls the publish service' do
-          allow(publisher_klass).to receive(:execute!)
-
           get :show, params: { id: post.id }
 
           expect(publisher_klass).to have_received(:execute!).with(request, post)

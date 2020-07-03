@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_175634) do
+ActiveRecord::Schema.define(version: 2020_07_02_173245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 2020_06_22_175634) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "analytics_unique_daily_visits", force: :cascade do |t|
+    t.string "visitor_ip", null: false
+    t.string "country"
+    t.string "browser"
+    t.string "device"
+    t.date "day", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "referer"
+    t.index ["visitor_ip", "country", "browser", "device", "day"], name: "unique_index_analytics_unique_daily_visits", unique: true
   end
 
   create_table "analytics_visitor_post_daily_counters", force: :cascade do |t|

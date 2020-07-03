@@ -137,6 +137,7 @@ GEM
       msgpack (~> 1.0)
     bounded_context (0.43.0)
     brakeman (4.8.1)
+    browser (4.2.0)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.32.1)
@@ -379,6 +380,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   brakeman
+  browser
   capybara (>= 2.15)
   factory_bot_rails
   friendly_id (~> 5.2.4)
