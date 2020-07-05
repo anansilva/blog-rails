@@ -14,8 +14,9 @@ module Analytics
 
     def result
       find_or_initialize_counter.tap do |visitor_post_daily_counter|
-        visitor_post_daily_counter
-          .update(views_count: visitor_post_daily_counter.send(interaction_counter) + 1)
+        visitor_post_daily_counter.update(
+          views_count: visitor_post_daily_counter.send(interaction_counter) + 1
+        )
       end
     end
 
@@ -35,7 +36,7 @@ module Analytics
           post_id: @event.data[:post_id],
           day: Date.today,
           visitor_ip: @event.metadata[:request_ip]
-      )
+        )
     end
   end
 end

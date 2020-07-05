@@ -22,7 +22,7 @@ describe Tags::UpdatePostTags do
     end
 
     context 'when adding tags' do
-      it 'adds the new tags to the existing ones' do
+      it 'adds the new tags to the existing post tags' do
         tags = %w[ruby rails rspec]
 
         described_class.execute!(post, tags)
@@ -34,12 +34,26 @@ describe Tags::UpdatePostTags do
     end
 
     context 'when removing tags' do
-      it 'adds the new tags to the existing ones' do
+      it 'removes the tag(s) form the list of post tags' do
         described_class.execute!(post, [])
 
         tags_after_update = post.tags.pluck(:name)
 
         expect(tags_after_update).to match_array([])
+        expect(Tag.count).to eq(0)
+      end
+
+      it 'does not delete the tags if they are used by other posts' do
+        rails_post = create(:post)
+        create(:tag_post, post: rails_post, tag: tag_rails)
+
+        described_class.execute!(post, [])
+
+        tags_after_update = post.tags.pluck(:name)
+
+        expect(tags_after_update).to match_array([])
+        expect(Tag.count).to eq(1)
+
       end
     end
 
