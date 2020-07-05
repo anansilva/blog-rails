@@ -18,6 +18,7 @@ describe EventSourcing::Subscribers::PostInteractions do
 
       new_visit = ::Analytics::UniqueDailyVisit.find_by(
         visitor_ip: '148.63.78.99',
+        user_agent: event_data[:user_agent],
         country: 'Portugal',
         browser: 'Chrome',
         device: 'desktop',

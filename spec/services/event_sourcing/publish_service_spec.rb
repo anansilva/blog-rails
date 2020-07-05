@@ -1,6 +1,10 @@
 describe EventSourcing::PublishService do
   let(:event_store) { Rails.configuration.event_store }
-  let(:data) { { page: 'all posts' } }
+  let(:data) do
+    { page: 'all posts',
+      user_agent: ''
+    }
+  end
 
   describe '#execute' do
     it 'increments the number of events by 1' do

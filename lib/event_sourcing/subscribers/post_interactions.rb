@@ -24,15 +24,24 @@ module EventSourcing
       end
 
       def initialize_daily_visit(event)
-        ::Analytics::UniqueDailyVisit.find_or_create_by(
+        visit = ::Analytics::UniqueDailyVisit.find_or_initialize_by(
           visitor_ip: event.metadata[:request_ip],
-          country: country(event.metadata[:request_ip])['country'],
-          browser: browser(event.data[:user_agent]).name,
-          device:  device(event.data[:user_agent]),
+          user_agent: event.data[:user_agent],
           referer: event.data[:referer],
           day: Date.today
         )
 
+        add_visit_data(event, visit)
+      end
+
+      def add_visit_data(event, visit)
+        return if visit.persisted?
+
+        visit.update(
+          country: country(event.metadata[:request_ip])['country'],
+          browser: browser(event.data[:user_agent]).name,
+          device:  device(event.data[:user_agent]),
+        )
       end
 
       def browser(user_agent)

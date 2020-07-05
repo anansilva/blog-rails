@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_173245) do
+ActiveRecord::Schema.define(version: 2020_07_05_124510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_173245) do
   end
 
   create_table "analytics_unique_daily_visits", force: :cascade do |t|
-    t.string "visitor_ip", null: false
+    t.string "visitor_ip"
     t.string "country"
     t.string "browser"
     t.string "device"
@@ -56,12 +56,13 @@ ActiveRecord::Schema.define(version: 2020_07_02_173245) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "referer"
+    t.string "user_agent", null: false
     t.index ["visitor_ip", "country", "browser", "device", "day"], name: "unique_index_analytics_unique_daily_visits", unique: true
   end
 
   create_table "analytics_visitor_post_daily_counters", force: :cascade do |t|
     t.bigint "post_id", null: false
-    t.string "visitor_ip", null: false
+    t.string "visitor_ip"
     t.date "day", null: false
     t.integer "views_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false

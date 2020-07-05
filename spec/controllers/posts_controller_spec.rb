@@ -5,6 +5,7 @@ describe PostsController do
     before do
       create(:post)
       create(:post)
+      allow(publisher_klass).to receive(:execute!).and_return({})
     end
 
     context 'when requesting in html format' do
