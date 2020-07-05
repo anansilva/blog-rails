@@ -7,7 +7,10 @@ module Services
 
       def receive(*arguments)
         define_method(:initialize) do |*parameters|
-          validate_arguments(arguments, parameters)
+          unless arguments.size == parameters.size
+            raise ArgumentError, 'wrong number of arguments' \
+              " given #{parameters.size}, expected #{arguments.size}"
+          end
 
           arguments.zip(parameters).each do |argument, parameter|
             if argument.to_s == 'params'
@@ -17,15 +20,6 @@ module Services
             end
           end
         end
-      end
-
-      private
-
-      def validate_arguments(arguments, parameters)
-        return if arguments.size == parameters.size
-
-        raise ArgumentError, 'wrong number of arguments' \
-          " given #{parameters.size}, expected #{arguments.size}"
       end
     end
 

@@ -32,3 +32,7 @@ Layout/EmptyLinesAroundBlockBody:
 
 Layout/EmptyLinesAroundClassBody:
   Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/services/callable.rb'
