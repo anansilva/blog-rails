@@ -1,4 +1,4 @@
-module TagPosts
+module Tags
   class UpdatePostTags
     def initialize(post, tags)
       @post = post

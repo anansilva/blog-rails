@@ -1,4 +1,4 @@
-describe TagPosts::UpdatePostTags do
+describe Tags::UpdatePostTags do
   describe '.execute!' do
     let(:post) { create(:post) }
     let(:tag_ruby) { create(:tag, name: 'ruby') }

@@ -112,11 +112,11 @@ describe Admin::PostsController do
       it 'calls the UpdatePostTags service' do
         new_body = 'this is a new body'
 
-        allow(TagPosts::UpdatePostTags).to receive(:execute!)
+        allow(::Tags::UpdatePostTags).to receive(:execute!)
 
         put :update, params: { id: post.id, post: { body: new_body, tags: 'ruby' } }
 
-        expect(TagPosts::UpdatePostTags).to have_received(:execute!).with(post, ['ruby'])
+        expect(::Tags::UpdatePostTags).to have_received(:execute!).with(post, ['ruby'])
       end
     end
   end

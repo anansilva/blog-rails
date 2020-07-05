@@ -10,7 +10,7 @@ module Admin
       @post = Post.new(post_params)
 
       if @post.save
-        TagPosts::UpdatePostTags.execute!(@post, tag_names)
+        ::Tags::UpdatePostTags.execute!(@post, tag_names)
         redirect_to admin_post_path(@post),
                     notice: 'Post was successfully created.'
       else
@@ -28,7 +28,7 @@ module Admin
       @post = Post.find(params[:id])
 
       if @post.update(post_params)
-        TagPosts::UpdatePostTags.execute!(@post, tag_names)
+        ::Tags::UpdatePostTags.execute!(@post, tag_names)
         redirect_to @post,
                     notice: 'Post was successfully updated.'
       else
