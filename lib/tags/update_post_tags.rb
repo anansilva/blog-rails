@@ -1,15 +1,10 @@
 module Tags
   class UpdatePostTags
-    def initialize(post, tags)
-      @post = post
-      @tags = tags
-    end
+    include ::Services::Callable
 
-    def self.execute!(post, tags)
-      new(post, tags).update_tags
-    end
+    receive :post, :tags
 
-    def update_tags
+    def result
       add_tags
       remove_tags
     end

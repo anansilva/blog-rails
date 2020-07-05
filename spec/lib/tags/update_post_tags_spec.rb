@@ -1,5 +1,5 @@
 describe Tags::UpdatePostTags do
-  describe '.execute!' do
+  describe '.call' do
     let(:post) { create(:post) }
     let(:tag_ruby) { create(:tag, name: 'ruby') }
     let(:tag_rails) { create(:tag, name: 'rails') }
@@ -13,7 +13,7 @@ describe Tags::UpdatePostTags do
       it 'does not add those tags to the post' do
         tags = %w[ruby rails]
 
-        described_class.execute!(post, tags)
+        described_class.call(post, tags)
 
         tags_after_update = post.tags.pluck(:name)
 
@@ -25,7 +25,7 @@ describe Tags::UpdatePostTags do
       it 'adds the new tags to the existing post tags' do
         tags = %w[ruby rails rspec]
 
-        described_class.execute!(post, tags)
+        described_class.call(post, tags)
 
         tags_after_update = post.tags.pluck(:name)
 
@@ -35,7 +35,7 @@ describe Tags::UpdatePostTags do
 
     context 'when removing tags' do
       it 'removes the tag(s) form the list of post tags' do
-        described_class.execute!(post, [])
+        described_class.call(post, [])
 
         tags_after_update = post.tags.pluck(:name)
 
@@ -47,7 +47,7 @@ describe Tags::UpdatePostTags do
         rails_post = create(:post)
         create(:tag_post, post: rails_post, tag: tag_rails)
 
-        described_class.execute!(post, [])
+        described_class.call(post, [])
 
         tags_after_update = post.tags.pluck(:name)
 
@@ -60,7 +60,7 @@ describe Tags::UpdatePostTags do
     context 'when adding and removing tags at the same time' do
       let(:tags) { %w[rails rspec] }
 
-      before { described_class.execute!(post, tags) }
+      before { described_class.call(post, tags) }
 
       it 'removes the tags not included in the new array' do
         tags_after_update = post.tags.pluck(:name)
