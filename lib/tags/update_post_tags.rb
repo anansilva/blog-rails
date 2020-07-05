@@ -20,8 +20,10 @@ module Tags
       return unless tags_to_add?
 
       tags_to_add.each do |tag|
-        tag = Tag.find_or_create_by(name: tag)
-        TagPost.find_or_create_by(post: @post, tag: tag)
+        ActiveRecord::Base.transaction do
+          tag = Tag.find_or_create_by(name: tag)
+          TagPost.find_or_create_by(post: @post, tag: tag)
+        end
       end
     end
 
