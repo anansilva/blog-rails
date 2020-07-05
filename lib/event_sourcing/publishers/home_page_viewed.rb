@@ -1,18 +1,13 @@
 module EventSourcing
   module Publishers
     class HomePageViewed
-      def initialize(request, tag_filter)
-        @request = request
-        @tag_filter = tag_filter
-      end
+      include ::Services::Callable
 
-      def self.execute!(request, tag_filter)
-        new(request, tag_filter).result
-      end
+      receive :request, :tag_filter
 
       def result
         ::EventSourcing::PublishService
-          .execute!('home_page_viewed', payload, stream_name: stream_name)
+          .call('home_page_viewed', payload, stream_name: stream_name)
       end
 
       private

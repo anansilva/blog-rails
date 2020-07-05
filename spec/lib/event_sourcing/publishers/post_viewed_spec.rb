@@ -17,12 +17,12 @@ describe EventSourcing::Publishers::PostViewed do
       post_title: 'post-title'
     }
 
-    allow(::EventSourcing::PublishService).to receive(:execute!)
+    allow(::EventSourcing::PublishService).to receive(:call)
       .with('post_viewed', expected_payload, stream_name: "#{post.id}-post-title")
 
-    described_class.execute!(request, post)
+    described_class.call(request, post)
 
-    expect(::EventSourcing::PublishService).to have_received(:execute!)
+    expect(::EventSourcing::PublishService).to have_received(:call)
       .with('post_viewed', expected_payload, stream_name: "#{post.id}-post-title")
   end
 end

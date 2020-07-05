@@ -13,12 +13,12 @@ describe EventSourcing::Publishers::HomePageViewed do
       tag_filter: 'performance'
     }
 
-    allow(::EventSourcing::PublishService).to receive(:execute!)
+    allow(::EventSourcing::PublishService).to receive(:call)
       .with('home_page_viewed', expected_payload, stream_name: 'performance')
 
-    described_class.execute!(request, 'performance')
+    described_class.call(request, 'performance')
 
-    expect(::EventSourcing::PublishService).to have_received(:execute!)
+    expect(::EventSourcing::PublishService).to have_received(:call)
       .with('home_page_viewed', expected_payload, stream_name: 'performance')
   end
 end

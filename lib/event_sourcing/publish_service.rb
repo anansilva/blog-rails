@@ -1,5 +1,7 @@
 module EventSourcing
   class PublishService
+    include ::Services::Callable
+
     ALLOWED_EVENTS = {
       home_page_viewed: 'HomePageViewed',
       post_viewed: 'PostViewed'
@@ -11,11 +13,7 @@ module EventSourcing
       @stream_name = options.fetch(:stream_name, 'all')
     end
 
-    def self.execute!(type, data, stream_name)
-      new(type, data, stream_name).publish
-    end
-
-    def publish
+    def result
       event = event_klass.new(data: @data)
       event_store.publish(event, stream_name: @stream_name)
     end

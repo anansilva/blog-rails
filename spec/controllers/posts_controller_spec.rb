@@ -5,13 +5,13 @@ describe PostsController do
     before do
       create(:post)
       create(:post)
-      allow(publisher_klass).to receive(:execute!).and_return({})
+      allow(publisher_klass).to receive(:call).and_return({})
     end
 
     context 'when requesting in html format' do
       before do
         allow(Query::Posts).to receive(:call).and_call_original
-        allow(publisher_klass).to receive(:execute!)
+        allow(publisher_klass).to receive(:call)
 
         get :index
       end
@@ -25,7 +25,7 @@ describe PostsController do
       end
 
       it 'calls the publish service' do
-        expect(publisher_klass).to have_received(:execute!).with(request, nil)
+        expect(publisher_klass).to have_received(:call).with(request, nil)
       end
     end
 
@@ -42,7 +42,7 @@ describe PostsController do
     let(:publisher_klass) { ::EventSourcing::Publishers::PostViewed }
 
     before do
-      allow(publisher_klass).to receive(:execute!).and_return({})
+      allow(publisher_klass).to receive(:call).and_return({})
     end
 
     context 'when the post is published' do
@@ -58,7 +58,7 @@ describe PostsController do
         it 'calls the publish service' do
           get :show, params: { id: post.id }
 
-          expect(publisher_klass).to have_received(:execute!).with(request, post)
+          expect(publisher_klass).to have_received(:call).with(request, post)
         end
       end
 

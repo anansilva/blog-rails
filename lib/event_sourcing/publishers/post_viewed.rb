@@ -1,18 +1,13 @@
 module EventSourcing
   module Publishers
     class PostViewed
-      def initialize(request, post)
-        @request = request
-        @post = post
-      end
+      include ::Services::Callable
 
-      def self.execute!(request, post)
-        new(request, post).result
-      end
+      receive :request, :post
 
       def result
         ::EventSourcing::PublishService
-          .execute!('post_viewed', payload, stream_name: stream_name)
+          .call('post_viewed', payload, stream_name: stream_name)
       end
 
       private
