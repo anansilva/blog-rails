@@ -5,10 +5,10 @@
 %>
 <article>
   <% if @post.cover_image.attached? %>
-    <%= image_tag @post.cover_image, class: 'w-full cursor-pointer h-auto' %>
+    <%= image_tag @post.cover_image, class: 'w-full cursor-pointer' %>
   <% end %>
   <div class="container mx-auto">
-    <header class="relative bg-white lg:pt-8 md:pt-4 lg:pb-40 lg:px-16 lg:mx-56 lg:-mt-40">
+    <header class="relative bg-white lg:pt-8 md:pt-4 lg:pb-40 lg:px-16 lg:mx-56 lg:-mt-64">
       <% if @post.draft? && current_page?(admin_post_path(@post)) %>
         <%= button_to "Publish", admin_publish_post_path(id: @post.id), method: :put,
           class: "float-right bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mx-2"  %>

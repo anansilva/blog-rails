@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/build/tailwind.css">
   </head>
 
-  <body class="bg-white font-sans min-h-screen flex flex-col">
+  <body class="bg-white font-sans min-h-screen flex flex-col mb-20">
     <div class="flex-grow">
       <header class="text-gray-900">
         <%= render partial: 'shared/navbar' %>
@@ -24,7 +24,5 @@
         <%= yield %>
       </section>
     </div>
-
-    <%= render partial: 'shared/footer' %>
   </body>
 </html>
