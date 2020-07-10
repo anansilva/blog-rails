@@ -27,7 +27,7 @@ module Analytics
     end
 
     def event_type
-      @event.type.split('::').last.underscore
+      @event.event_type.split('::').last.underscore
     end
 
     def find_or_initialize_counter

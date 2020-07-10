@@ -2,9 +2,9 @@
 
 ![](https://github.com/anansilva/blog-rails/workflows/Blog/badge.svg)
 
-My personal blog. Built from scratch with rails and tailwindcss. 
+My personal blog. Built from scratch with rails and tailwindcss.
 
-To run locally, `rails s`, then open https://localhost:3000.
+To run locally, `rails s`, then open https://localhost:3001.
 
 ## Features
 As an admin you can:

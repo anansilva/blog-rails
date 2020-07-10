@@ -19,7 +19,7 @@ describe EventSourcing::PublishService do
 
       published_event = event_store.read.first
 
-      expect(published_event.type).to eq('EventSourcing::Events::HomePageViewed')
+      expect(published_event.event_type).to eq('EventSourcing::Events::HomePageViewed')
       expect(published_event.data[:page]).to eq('all posts')
     end
   end
