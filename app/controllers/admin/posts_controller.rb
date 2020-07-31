@@ -19,13 +19,13 @@ module Admin
     end
 
     def edit
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
 
       render :new
     end
 
     def update
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
 
       if @post.update(post_params)
         ::Tags::UpdatePostTags.call(@post, tag_names)

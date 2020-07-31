@@ -78,7 +78,7 @@ describe Admin::PostsController do
       before { session[:user_id] = user.id }
 
       it 'redirects to the edit page' do
-        get :edit, params: { id: post.id }
+        get :edit, params: { id: post.slug }
 
         expect(response.status).to eq(200)
       end
@@ -96,7 +96,7 @@ describe Admin::PostsController do
       it 'updates the post when updating title' do
         new_title = 'this is a new title'
 
-        put :update, params: { id: post.id, post: { title: new_title } }
+        put :update, params: { id: post.slug, post: { title: new_title } }
 
         expect(post.reload.title).to eq('this is a new title')
       end
