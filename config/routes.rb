@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   namespace :admin do
     mount RailsEventStore::Browser => '/res'
 
-    resources :posts, except: :destroy
+    resources :posts, except: %i[new destroy edit]
+    post 'posts/new', to: 'posts#new', as: :new_post
     put 'posts/:id/publish', to: 'posts#publish', as: :publish_post
     patch 'posts/:id/edit', to: 'posts#edit', as: :edit_post
     put 'posts/:id/unpublish', to: 'posts#unpublish', as: :unpublish_post
