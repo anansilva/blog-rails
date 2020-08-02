@@ -23,4 +23,16 @@ module PostsHelper
 
     post_path(post) if post.published?
   end
+
+  def all_posts
+    return admin_posts_path if current_user
+
+    posts_path
+  end
+
+  def filter_posts(tag_name)
+    return admin_posts_path(tag: tag_name) if current_user
+
+    posts_path(tag: tag_name)
+  end
 end
