@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     resources :posts, except: :destroy
     put 'posts/:id/publish', to: 'posts#publish', as: :publish_post
+    patch 'posts/:id/edit', to: 'posts#edit', as: :edit_post
     put 'posts/:id/unpublish', to: 'posts#unpublish', as: :unpublish_post
     delete 'posts/:id', to: 'posts#destroy', as: :destroy_post
   end
