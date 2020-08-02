@@ -15,17 +15,17 @@ module Query
     end
 
     def result
-      return published_posts if @tag.blank?
+      return posts if @tag.blank?
 
-      published_posts_filtered_by_tag
+      posts_filtered_by_tag
     end
 
-    def published_posts
+    def posts
       Post.where(status: ALLOWED_STATUS[@status] || ALLOWED_STATUS.values)
     end
 
-    def published_posts_filtered_by_tag
-      published_posts
+    def posts_filtered_by_tag
+      posts
         .joins('left outer join tag_posts on tag_posts.post_id = posts.id')
         .joins('left outer join tags on tags.id = tag_posts.tag_id')
         .where('tags.name' => @tag)
