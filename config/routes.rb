@@ -17,11 +17,11 @@ Rails.application.routes.draw do
     patch 'posts/:id/edit', to: 'posts#edit', as: :edit_post
     put 'posts/:id/unpublish', to: 'posts#unpublish', as: :unpublish_post
     delete 'posts/:id', to: 'posts#destroy', as: :destroy_post
+
+    get '/login', to: 'sessions#new'
+    post '/sessions', to: 'sessions#create'
+    delete '/logout', to: 'sessions#destroy'
   end
 
   get "/about/", to: "about#show"
-
-  get '/login', to: 'sessions#new'
-  post '/sessions', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
 end

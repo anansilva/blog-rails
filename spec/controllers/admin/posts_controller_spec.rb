@@ -16,7 +16,7 @@ describe Admin::PostsController do
       it 'should redirect to the login page' do
         get :new
 
-        expect(response).to redirect_to(login_path)
+        expect(response).to redirect_to(admin_login_path)
       end
     end
   end

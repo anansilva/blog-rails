@@ -1,4 +1,4 @@
-describe SessionsController do
+describe Admin::SessionsController do
   describe '#new' do
     it 'redirects to the login page' do
       get :new
@@ -20,7 +20,7 @@ describe SessionsController do
       end
 
       it 'redirects to the new post page' do
-        expect(response).to redirect_to(new_admin_post_path)
+        expect(response).to redirect_to(admin_new_post_path)
       end
     end
 
@@ -36,7 +36,7 @@ describe SessionsController do
       end
 
       it 'redirects to the sessions page' do
-        expect(response).to redirect_to(login_path)
+        expect(response).to redirect_to(admin_login_path)
       end
     end
   end

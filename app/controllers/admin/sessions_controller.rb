@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Admin::SessionsController < ApplicationController
   def new; end
 
   def create
@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(user_params[:password])
       session[:user_id] = user.id
-      redirect_to new_admin_post_path
+      redirect_to admin_new_post_path
     else
-      redirect_to login_path
+      redirect_to admin_login_path
     end
   end
 
