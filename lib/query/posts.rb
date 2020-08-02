@@ -21,7 +21,9 @@ module Query
     end
 
     def posts
-      Post.where(status: ALLOWED_STATUS[@status] || ALLOWED_STATUS.values)
+      Post
+        .where(status: ALLOWED_STATUS[@status] || ALLOWED_STATUS.values)
+        .order('created_at DESC')
     end
 
     def posts_filtered_by_tag
