@@ -7,7 +7,7 @@
     <%# <%= link_to 'About', about_path, method: :get, class: 'block py-3 md:py-0 px-4 uppercase tracking-wide text-sm' %1> %>
     <% if current_user %>
       <%= link_to 'New Post', admin_new_post_path, method: :post, class: 'block py-3 md:py-0 px-4 uppercase tracking-wide text-sm' %>
-      <%= link_to 'Logout', logout_path, method: :delete, class: 'block py-3 md:py-0 px-4 uppercase tracking-wide text-sm' %>
+      <%= link_to 'Logout', admin_logout_path, method: :delete, class: 'block py-3 md:py-0 px-4 uppercase tracking-wide text-sm' %>
     <% end %>
   </div>
 </nav>
