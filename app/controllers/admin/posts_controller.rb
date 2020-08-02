@@ -9,7 +9,7 @@ module Admin
     def create
       @post = Post.new(post_params)
 
-      if @post.save
+      if @post.save!
         ::Tags::UpdatePostTags.call(@post, tag_names)
         redirect_to admin_post_path(@post),
                     notice: 'Post was successfully created.'

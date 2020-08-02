@@ -9,8 +9,8 @@ class Post < ApplicationRecord
   has_one_attached :cover_image
 
   validates :title, presence: true
+  validates :intro, presence: true
   validates :body, presence: true
-  validates_length_of :intro, maximum: 255
 
   enum status: { draft: 0, published: 1 }
 end
