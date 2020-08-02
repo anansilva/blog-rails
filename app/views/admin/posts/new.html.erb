@@ -7,12 +7,6 @@
         required: true,
         class: "block w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
     </div>
-      <div class="form-group pb-4">
-      <%= form.label :intro, class: "pr-2" %>
-      <%= form.text_area :intro,
-        required: true,
-        class: "block w-1/2 resize border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
-    </div>
     <div class="form-group pb-4">
       <%= form.label :cover, class: "pr-2" %>
       <%= form.file_field :cover_image,
@@ -20,13 +14,18 @@
     </div>
     <div class="form-group pb-4">
       <%= form.label :tags, class: "pr-2" %>
-      <%= form.text_field :tags, value: Tag.all.pluck(:name).join(', '), placeholder: 'Tags separated with comma',
+      <%= form.text_field :tags, value: @post.tags.pluck(:name).join(', '), placeholder: 'Tags separated with comma',
         class: "block w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
     </div>
     <div class="form-group pb-4">
+      <%= form.label :intro, class: "pr-2" %>
+      <%= form.text_area :intro,
+        required: true,
+        class: "block w-full border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="form-group pb-4">
       <%= form.label :body %>
-      <%= form.rich_text_area :body,
-       class: "h-screen" %>
+      <%= form.rich_text_area :body, class: "h-auto" %>
       <%= form.submit :save,
         class: "border border-gray-500 rounded p-2 cursor-pointer mt-2" %>
     </div>
