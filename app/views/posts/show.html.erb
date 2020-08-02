@@ -8,7 +8,7 @@
     <%= image_tag @post.cover_image, class: 'w-full cursor-pointer' %>
   <% end %>
   <div class="container mx-auto">
-    <header class="relative bg-white lg:pt-8 md:pt-4 lg:pb-40 lg:px-16 lg:mx-56 lg:-mt-64">
+    <header class="relative bg-white lg:pt-8 md:pt-4 lg:pb-40 lg:px-16 lg:mx-56 post-intro">
       <% if @post.draft? && current_page?(admin_post_path(@post)) %>
         <%= button_to "Publish", admin_publish_post_path(id: @post.id), method: :put,
           class: "float-right bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mx-2"  %>
@@ -47,7 +47,7 @@
       <div class="text-lg font-light leading-loose lg:px-16 lg:mx-64 lg:-mt-40">
         <%= @post.body %>
       </div>
-      <div class="absolute text-3xl pl-32 top-0 left-0 text-indigo-700 sm:hidden lg:block">
+      <div class="absolute text-3xl pt-12 pl-32 top-0 left-0 text-indigo-700 sm:hidden lg:block">
         <ul class="sticky top-0">
           <li class="block"><i class="fab fa-twitter-square"></i></li>
           <li class="block"><i class="fab fa-linkedin"></i></li>

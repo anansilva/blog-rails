@@ -29,7 +29,7 @@ module Admin
 
       if @post.update(post_params)
         ::Tags::UpdatePostTags.call(@post, tag_names)
-        redirect_to @post,
+        redirect_to admin_post_path(@post),
                     notice: 'Post was successfully updated.'
       else
         render :edit
