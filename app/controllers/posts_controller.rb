@@ -10,8 +10,4 @@ class PostsController < ApplicationController
 
     ::EventSourcing::Publishers::PostViewed.call(request, @post)
   end
-
-  def new
-    @post = Post.new
-  end
 end
