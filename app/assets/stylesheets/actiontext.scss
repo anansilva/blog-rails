@@ -33,4 +33,27 @@
       max-width: 100% !important;
     }
   }
+
+  a {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style-type: circle;
+  }
+}
+
+#post_body{
+  a {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style-type: circle;
+    padding-left: 30px;
+  }
 }

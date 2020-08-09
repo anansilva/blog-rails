@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :posts, except: %i[new destroy edit]
     get 'cms/write', to: 'posts#new', as: :new_post
     put 'posts/:id/publish', to: 'posts#publish', as: :publish_post
-    patch 'posts/:id/edit', to: 'posts#edit', as: :edit_post
+    get 'posts/:id/edit', to: 'posts#edit', as: :edit_post
     put 'posts/:id/unpublish', to: 'posts#unpublish', as: :unpublish_post
     delete 'posts/:id', to: 'posts#destroy', as: :destroy_post
 
