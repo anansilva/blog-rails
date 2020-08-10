@@ -1,9 +1,9 @@
-<div class="container sticky top-0 bg-white flex flex-wrap pb-4 pt-16 justify-center w-full mx-auto font-normal sm:text-2xl lg:text-lg lg:text-normal text-gray-500 tracking-wide">
-  <%= link_to all_posts, class: "block sm:px-2 lg:px-4 uppercase #{all_tag}" do %>
+<div class="container sticky top-0 bg-white flex flex-wrap pb-4 pt-16 justify-center w-full mx-auto font-normal sm:text-3xl lg:text-lg text-gray-500 tracking-wide">
+  <%= link_to all_posts, class: "block sm:px-6 lg:px-4 uppercase #{all_tag}" do %>
     <%= 'All' =%>
   <% end %>
   <% Tag.all.each do |tag| %>
-    <%= link_to filter_posts(tag.name), class: "block sm:px-2 lg:px-4 uppercase #{active_tag(tag.name)} #{hover_tag(tag.name)}" do %>
+    <%= link_to filter_posts(tag.name), class: "block sm:px-6 lg:px-4 uppercase #{active_tag(tag.name)} #{hover_tag(tag.name)}" do %>
       <%= tag.name =%>
     <% end %>
   <% end %>
