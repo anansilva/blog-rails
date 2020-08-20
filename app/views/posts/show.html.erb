@@ -48,14 +48,25 @@
     </header>
 
     <div class="relative block">
-      <div class="sm:text-2xl lg:text-lg font-light leading-loose lg:px-16 sm:px-8 lg:mx-56 lg:-mt-40">
+      <div class="sm:text-2xl lg:text-lg font-normal lg:px-16 sm:px-8 lg:mx-56 lg:-mt-40">
         <%= @post.body %>
       </div>
       <div class="absolute text-3xl pt-12 pl-32 top-0 left-0 text-indigo-700 lg:block sm:hidden">
         <ul class="sticky top-0">
-          <li class="block"><i class="fab fa-twitter-square"></i></li>
-          <li class="block"><i class="fab fa-linkedin"></i></li>
-          <li class="block"><i class="fab fa-facebook-square"></i></li>
+          <li class="block">
+            <a href="<%= twitter_share_url(@post) %>" target="_blank">
+              <i class="fab fa-twitter-square"></i>
+            </a>
+          </li>
+          <li class="block">
+            <a href="<%= linkedin_share_url(@post) %>" target="_blank">
+              <i class="fab fa-linkedin"></i></li>
+            </a>
+            <li class="block">
+              <a href="<%= facebook_share_url(@post) %>" target="_blank">
+                <i class="fab fa-facebook-square"></i>
+            </a>
+            </li>
         </ul>
       </div>
       </div>
