@@ -11,6 +11,7 @@ describe EventSourcing::Publishers::PostViewed do
 
     expected_payload = {
       page: "http://test.host/",
+      visitor_ip: "0.0.0.0",
       user_agent: 'Rails Testing',
       referer: 'www.twitter.com',
       post_id: post.id,

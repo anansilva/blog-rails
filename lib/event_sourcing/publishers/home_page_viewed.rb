@@ -22,6 +22,7 @@ module EventSourcing
         @payload ||=
           {
             page: @request.original_url,
+            visitor_ip: @request.remote_ip,
             user_agent: @request.user_agent,
             referer: @request.referer,
             tag_filter: stream_name

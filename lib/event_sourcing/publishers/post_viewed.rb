@@ -21,6 +21,7 @@ module EventSourcing
           {
             page: @request.original_url,
             user_agent: @request.user_agent,
+            visitor_ip: @request.remote_ip,
             referer: @request.referer,
             post_id: @post.id,
             post_title: @post.title.parameterize

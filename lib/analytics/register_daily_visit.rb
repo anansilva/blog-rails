@@ -17,7 +17,7 @@ module Analytics
     def new_visit
       @new_visit ||=
         ::Analytics::UniqueDailyVisit.find_or_initialize_by(
-          visitor_ip: @event.metadata[:request_ip],
+          visitor_ip: @event.data[:visitor_ip],
           user_agent: @event.data[:user_agent],
           referer: @event.data[:referer],
           day: Date.today
@@ -26,7 +26,7 @@ module Analytics
 
     def register_visit!
       new_visit.update(
-        country: country(@event.metadata[:request_ip])['country'],
+        country: country(@event.data[:visitor_ip])['country'],
         browser: browser(@event.data[:user_agent]).name,
         device: device(@event.data[:user_agent])
       )

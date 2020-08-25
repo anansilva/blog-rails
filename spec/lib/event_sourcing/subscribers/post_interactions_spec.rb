@@ -3,16 +3,15 @@ describe EventSourcing::Subscribers::PostInteractions do
     let(:event_data) do
       {
         page: '',
+        visitor_ip: '148.63.78.99',
         user_agent: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36.',
         referer: 'twitter.com',
       }
     end
 
-    let(:event_metadata) { { request_ip: '148.63.78.99' } }
 
     it 'creates a new daily visit' do
-      event = EventSourcing::Events::PostViewed.new(data: event_data,
-                                                    metadata: event_metadata)
+      event = EventSourcing::Events::PostViewed.new(data: event_data)
 
       described_class.new.call(event)
 
@@ -35,6 +34,7 @@ describe EventSourcing::Subscribers::PostInteractions do
     let(:event_data) do
       {
         page: '',
+        visitor_ip: '123.123.123.123',
         user_agent: '',
         referer: '',
         post_id: post.id,
@@ -42,11 +42,9 @@ describe EventSourcing::Subscribers::PostInteractions do
       }
     end
 
-    let(:event_metadata) { { request_ip: '123.123.123.123' } }
 
     it 'it starts a new counter on the first view of the post that day by a visitor' do
-      event = EventSourcing::Events::PostViewed.new(data: event_data,
-                                                    metadata: event_metadata)
+      event = EventSourcing::Events::PostViewed.new(data: event_data)
 
       described_class.new.call(event)
 
@@ -60,8 +58,7 @@ describe EventSourcing::Subscribers::PostInteractions do
     end
 
     it 'increments the counter every time the visitor views the post on a given day' do
-      post_viewed = EventSourcing::Events::PostViewed.new(data: event_data,
-                                                              metadata: event_metadata)
+      post_viewed = EventSourcing::Events::PostViewed.new(data: event_data)
 
       described_class.new.call(post_viewed)
       described_class.new.call(post_viewed)

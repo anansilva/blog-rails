@@ -35,7 +35,7 @@ module Analytics
         .find_or_initialize_by(
           post_id: @event.data[:post_id],
           day: Date.today,
-          visitor_ip: @event.metadata[:request_ip]
+          visitor_ip: @event.data[:visitor_ip]
         )
     end
   end

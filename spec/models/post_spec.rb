@@ -31,12 +31,5 @@ RSpec.describe Post, type: :model do
 
       expect(subject.valid?).to eq(false)
     end
-
-    it 'is not valid with an intro bigger than 255 chars' do
-      invalid_intro = Array.new(256){ [*'A'..'Z', *'0'..'9'].sample }.join
-      subject.intro = invalid_intro
-
-      expect(subject.valid?).to eq(false)
-    end
   end
 end
