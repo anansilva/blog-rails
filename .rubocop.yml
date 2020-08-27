@@ -36,3 +36,6 @@ Layout/EmptyLinesAroundClassBody:
 Metrics/MethodLength:
   Exclude:
     - 'lib/services/callable.rb'
+
+Metric/AbcSize:
+  Enabled: false
