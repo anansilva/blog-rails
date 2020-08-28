@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to admin_login_path unless current_user
   end
+
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
 end
