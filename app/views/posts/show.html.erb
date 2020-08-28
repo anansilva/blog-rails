@@ -1,7 +1,7 @@
 <% content_for :meta_title, "#{@post.title} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @post.intro %>
 <% content_for :meta_keywords, "#{@post.tags.pluck(:name).join(", ")}" %>
-<% content_for :meta_image, url_for(@post.cover_image) %>
+<% content_for :meta_image, url_for(@post.cover_image.variant(resize_to_fill: [1200, 600])) %>
 
 <article>
   <% if @post.cover_image.attached? %>
