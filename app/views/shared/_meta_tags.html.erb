@@ -16,3 +16,10 @@
 <meta name="twitter:description" content="<%= meta_description %>">
 <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
 <meta name="twitter:image:src" content="<%= meta_image %>">
+
+<!-- Linked Card data -->
+<meta prefix="og: http://ogp.me/ns#" property="og:type" content="website" />
+<meta prefix="og: http://ogp.me/ns#" property="og:title" content="<% meta_title %>" />
+<meta prefix="og: http://ogp.me/ns#" property="og:description" content="<% meta_description %>" />
+<meta prefix="og: http://ogp.me/ns#" property="og:image" content="<% meta_image %>" />
+<meta prefix="og: http://ogp.me/ns#" property="og:url" content="<% request.original_url %>" />
