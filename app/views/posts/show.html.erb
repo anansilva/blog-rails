@@ -40,7 +40,7 @@
         <%= @post.intro %>
         </br>
         <div class="text-right text-indigo-700">
-          <a class="sm:text-lg lg:text-sm font-normal underline"
+          <a class="sm:text-lg lg:text-sm font-normal underline hover:text-indigo-800"
              href="<%= twitter_share_url(@post) %>">Share</a>
           <i class="fab fa-twitter sm:text-lg lg:text-sm"></i>
         </div>
@@ -55,16 +55,16 @@
         <ul class="sticky top-0">
           <li class="block">
             <a href="<%= twitter_share_url(@post) %>" target="_blank">
-              <i class="fab fa-twitter-square"></i>
+              <i class="fab fa-twitter-square hover:text-indigo-800"></i>
             </a>
           </li>
           <li class="block">
             <a href="<%= linkedin_share_url(@post) %>" target="_blank">
-              <i class="fab fa-linkedin"></i></li>
+              <i class="fab fa-linkedin hover:text-indigo-800"></i></li>
             </a>
             <li class="block">
               <a href="<%= facebook_share_url(@post) %>" target="_blank">
-                <i class="fab fa-facebook-square"></i>
+                <i class="fab fa-facebook-square hover:text-indigo-800"></i>
             </a>
             </li>
         </ul>
