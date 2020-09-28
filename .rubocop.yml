@@ -37,5 +37,5 @@ Metrics/MethodLength:
   Exclude:
     - 'lib/services/callable.rb'
 
-Metric/AbcSize:
+Metrics/AbcSize:
   Enabled: false
