@@ -8,7 +8,7 @@
         <%= link_to post.title, post %>&nbsp<%= '[PREVIEW]' if post.draft? %>
       </h1>
       <p class="text-gray-600 sm:text-lg lg:text-sm mb-2">
-        <%= post.created_at.strftime('%b, %Y') %>
+        <%= post.published_at.strftime('%b, %Y') %>
       <p>
       <p class="text-gray-800 sm:text-2xl lg:text-base mb-4">
         <%= post.intro %><br>
