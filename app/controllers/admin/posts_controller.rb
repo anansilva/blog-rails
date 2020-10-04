@@ -39,7 +39,7 @@ module Admin
     def publish
       @post = Post.find(params[:id])
 
-      if @post.published!
+      if ::Posts::PublishPost.call(@post)
         redirect_to admin_post_path(@post),
                     notice: 'Post was published'
       else

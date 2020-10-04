@@ -166,6 +166,14 @@ describe Admin::PostsController do
 
       expect(post.reload.status).to eq('published')
     end
+
+    it 'updates the published_at date' do
+      expect(post.reload.published_at).to be_nil
+
+      put :publish, params: { id: post.id }
+
+      expect(post.reload.published_at >= Date.today).to be_truthy
+    end
   end
 
   describe '#unpublish' do
