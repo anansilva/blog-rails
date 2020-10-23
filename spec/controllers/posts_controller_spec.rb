@@ -59,13 +59,7 @@ describe PostsController do
 
           expect(publisher_klass).to have_received(:call).with(request, post)
         end
-
-        it 'calls the CountUniquePostViews service' do
-          expect(::Analytics::CountPostViews).to receive(:call).with(post)
-
-          get :show, params: { id: post.id }
-        end
-      end
+     end
 
       context 'when requesting in json format' do
         before { get :show, params: { id: post.id }, format: :json }
