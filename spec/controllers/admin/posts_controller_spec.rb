@@ -147,12 +147,19 @@ describe Admin::PostsController do
   end
 
   describe '#show' do
+    before { session[:user_id] = user.id }
     let(:post) { create(:post) }
 
     it 'responds successfully' do
       get :show, params: { id: post.id }
 
-      expect(response.status).to eq(302)
+      expect(response.status).to eq(200)
+    end
+
+    it 'calls the CountUniquePostViews service' do
+      expect(::Analytics::CountPostViews).to receive(:call).with(post)
+
+      get :show, params: { id: post.id }
     end
   end
 

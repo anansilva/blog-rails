@@ -7,7 +7,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.published.friendly.find(params[:id])
-    @post_views = ::Analytics::CountPostViews.call(@post)
 
     ::EventSourcing::Publishers::PostViewed.call(request, @post)
   end

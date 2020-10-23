@@ -72,6 +72,7 @@ module Admin
 
     def show
       @post = Post.friendly.find(params[:id])
+      @post_views = ::Analytics::CountPostViews.call(@post)
 
       render 'posts/show', post: @post
     end
