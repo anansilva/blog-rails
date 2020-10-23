@@ -5,7 +5,6 @@ describe PostsController do
     before do
       create(:post)
       create(:post)
-      allow(publisher_klass).to receive(:call).and_return({})
     end
 
     context 'when requesting in html format' do
@@ -59,6 +58,12 @@ describe PostsController do
           get :show, params: { id: post.id }
 
           expect(publisher_klass).to have_received(:call).with(request, post)
+        end
+
+        it 'calls the CountUniquePostViews service' do
+          expect(::Analytics::CountPostViews).to receive(:call).with(post)
+
+          get :show, params: { id: post.id }
         end
       end
 
