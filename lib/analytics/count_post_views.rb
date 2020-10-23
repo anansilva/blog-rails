@@ -14,11 +14,14 @@ module Analytics
     private
 
     def count_total_views
-      ::Analytics::VisitorPostDailyCounter.sum(:views_count)
+      ::Analytics::VisitorPostDailyCounter
+        .where(post: @post)
+        .sum(:views_count)
     end
 
     def count_unique_total_views
       ::Analytics::VisitorPostDailyCounter
+        .where(post: @post)
         .select(:visitor_ip)
         .distinct
         .count
