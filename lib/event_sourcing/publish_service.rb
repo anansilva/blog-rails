@@ -2,7 +2,7 @@ module EventSourcing
   class PublishService
     include ::Services::Callable
 
-    receive :event_type, :payload, :stream_name
+    receive :event_name, :payload, :stream_name
 
     ALLOWED_EVENTS = {
       home_page_viewed: 'HomePageViewed',
@@ -10,15 +10,15 @@ module EventSourcing
     }.freeze
 
     def result
-      event = event_klass.new(data: @payload)
+      event = event_model.new(data: @payload)
       event_store.publish(event, stream_name: @stream_name || 'all')
     end
 
     private
 
-    def event_klass
+    def event_model
       prefix = 'EventSourcing::Events'
-      suffix = ALLOWED_EVENTS[@event_type.to_sym]
+      suffix = ALLOWED_EVENTS[@event_name.to_sym]
 
       "::#{prefix}::#{suffix}".constantize
     end
