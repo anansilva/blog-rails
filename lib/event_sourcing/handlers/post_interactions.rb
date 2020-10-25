@@ -1,5 +1,5 @@
 module EventSourcing
-  module Subscribers
+  module Handlers
     class PostInteractions
       def call(event)
         ::Analytics::RegisterDailyVisit.call(event)

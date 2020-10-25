@@ -8,14 +8,14 @@ describe EventSourcing::PublishService do
 
   describe '#execute' do
     it 'increments the number of events by 1' do
-      described_class.call('home_page_viewed', data, stream_name: 'all-posts')
+      described_class.call('home_page_viewed', data, 'all-posts')
 
       expect(event_store.read.count).to eq(1)
       expect(event_store.read.stream('all-posts').count).to eq(1)
     end
 
     it 'publishes the event with the right data' do
-      described_class.call('home_page_viewed', data, stream_name: 'all-posts')
+      described_class.call('home_page_viewed', data, 'all-posts')
 
       published_event = event_store.read.first
 

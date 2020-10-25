@@ -7,7 +7,7 @@ module EventSourcing
 
       def result
         ::EventSourcing::PublishService
-          .call('post_viewed', payload, stream_name: stream_name)
+          .call('post_viewed', payload, stream_name)
       end
 
       private

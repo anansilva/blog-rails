@@ -1,4 +1,4 @@
-describe EventSourcing::Subscribers::HomePageInteractions do
+describe EventSourcing::Handlers::HomePageInteractions do
   context 'new visit' do
     let(:event_data) do
       {
