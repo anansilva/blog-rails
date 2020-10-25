@@ -1,13 +1,13 @@
 module EventSourcing
   module Publishers
-    class PostViewed
+    class PostShared
       include ::Services::Callable
 
       receive :request, :post
 
       def result
         ::EventSourcing::PublishProxy
-          .call('post_viewed', payload, stream_name)
+          .call('post_shared', payload, stream_name)
       end
 
       private
@@ -22,7 +22,6 @@ module EventSourcing
             page: @request.original_url,
             user_agent: @request.user_agent,
             visitor_ip: @request.remote_ip,
-            referer: @request.referer,
             post_id: @post.id,
             post_title: @post.title.parameterize
           }

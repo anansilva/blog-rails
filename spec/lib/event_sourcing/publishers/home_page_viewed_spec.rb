@@ -15,7 +15,7 @@ describe EventSourcing::Publishers::HomePageViewed do
       tag_filter: 'performance'
     }
 
-    expect(::EventSourcing::PublishService).to receive(:call)
+    expect(::EventSourcing::PublishProxy).to receive(:call)
       .with('home_page_viewed', expected_payload, 'performance')
 
     described_class.call(request, 'performance')

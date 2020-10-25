@@ -6,7 +6,7 @@ module EventSourcing
       receive :request, :tag_filter
 
       def result
-        ::EventSourcing::PublishService
+        ::EventSourcing::PublishProxy
           .call('home_page_viewed', payload, stream_name)
       end
 

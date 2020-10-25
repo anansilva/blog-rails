@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   match "/500", to: "errors#internal_server_error", via: :all
 
   resources :posts, only: [:index, :show]
+  get 'posts/:id/share/:social_media', to: 'posts#share', as: :share_post
 
   namespace :admin do
     mount RailsEventStore::Browser => '/res'

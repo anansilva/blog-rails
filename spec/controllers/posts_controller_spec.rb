@@ -78,4 +78,34 @@ describe PostsController do
       end
     end
   end
+
+  describe '#share' do
+    let(:publisher_klass) { ::EventSourcing::Publishers::PostShared }
+
+    before do
+      allow(publisher_klass).to receive(:call).and_return({})
+    end
+
+    let(:post) { create(:post, status: 'published') }
+
+    it 'redirects to the social media page' do
+      get :share, params: { id: post.id, social_media: 'twitter' }
+
+      expect(response.status).to eq(302)
+    end
+
+    it 'calls the publish service' do
+      get :share, params: { id: post.id, social_media: 'twitter' }
+
+      expect(publisher_klass).to have_received(:call).with(request, post)
+    end
+
+    it 'calls the mount share url service' do
+      post_url = "http://localhost/posts/sample-post-title"
+
+      expect(::Services::MountShareUrl).to receive(:call).with(post, post_url, 'twitter').and_call_original
+
+      get :share, params: { id: post.id, social_media: 'twitter' }
+    end
+  end
 end

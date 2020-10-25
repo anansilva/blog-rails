@@ -1,5 +1,5 @@
 module EventSourcing
-  class PublishService
+  class PublishProxy
     include ::Services::Callable
 
     receive :event_name, :payload, :stream_name

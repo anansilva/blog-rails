@@ -18,7 +18,7 @@ describe EventSourcing::Publishers::PostViewed do
       post_title: 'post-title'
     }
 
-    expect(::EventSourcing::PublishService).to receive(:call)
+    expect(::EventSourcing::PublishProxy).to receive(:call)
       .with('post_viewed', expected_payload, "#{post.id}-post-title")
 
     described_class.call(request, post)

@@ -1,4 +1,4 @@
-describe EventSourcing::PublishService do
+describe EventSourcing::PublishProxy do
   let(:event_store) { Rails.configuration.event_store }
   let(:data) do
     { page: 'all posts',
