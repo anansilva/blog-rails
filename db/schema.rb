@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_154318) do
+ActiveRecord::Schema.define(version: 2020_10_26_190008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_10_04_154318) do
     t.integer "views_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "shares_count", default: 0
     t.index ["post_id", "visitor_ip", "day"], name: "unique_index_analytics_visitor_post_daily_counters", unique: true
     t.index ["post_id"], name: "index_analytics_visitor_post_daily_counters_on_post_id"
   end

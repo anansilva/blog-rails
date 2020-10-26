@@ -8,6 +8,7 @@ Rails.configuration.to_prepare do
 
   event_store.subscribe(
     ::EventSourcing::Handlers::PostInteractions.new,
-      to: [::EventSourcing::Events::PostViewed]
+      to: [::EventSourcing::Events::PostViewed,
+           ::EventSourcing::Events::PostShared]
   )
 end

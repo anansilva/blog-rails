@@ -9,7 +9,6 @@ describe EventSourcing::Handlers::PostInteractions do
       }
     end
 
-
     it 'creates a new daily visit' do
       event = EventSourcing::Events::PostViewed.new(data: event_data)
 
@@ -70,6 +69,36 @@ describe EventSourcing::Handlers::PostInteractions do
       )
 
       expect(post_counter.reload.views_count).to eq(2)
+    end
+  end
+
+  context 'post shared' do
+    let(:post) { create(:post, title: 'rspec tips') }
+    let(:event_data) do
+      {
+        page: '',
+        visitor_ip: '123.123.123.123',
+        user_agent: '',
+        referer: '',
+        post_id: post.id,
+        post_title: post.title,
+        social_media: 'twitter'
+      }
+    end
+
+
+    it 'it starts a new counter on the first share of the post that day by a visitor' do
+      event = EventSourcing::Events::PostShared.new(data: event_data)
+
+      described_class.new.call(event)
+
+      post_counter = ::Analytics::VisitorPostDailyCounter.find_by(
+        post_id: post.id,
+        visitor_ip: '123.123.123.123',
+        day: Date.today
+      )
+
+      expect(post_counter.reload.shares_count).to eq(1)
     end
   end
 end

@@ -6,7 +6,8 @@ module EventSourcing
 
     ALLOWED_EVENTS = {
       home_page_viewed: 'HomePageViewed',
-      post_viewed: 'PostViewed'
+      post_viewed: 'PostViewed',
+      post_shared: 'PostShared'
     }.freeze
 
     def result

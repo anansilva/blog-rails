@@ -1,7 +1,8 @@
 module Analytics
   class RegisterPostInteraction
     ALLOWED_COUNTERS = {
-      post_viewed: 'views_count'
+      post_viewed: 'views_count',
+      post_shared: 'shares_count'
     }.freeze
 
     def initialize(event)
@@ -15,7 +16,7 @@ module Analytics
     def result
       find_or_initialize_counter.tap do |visitor_post_daily_counter|
         visitor_post_daily_counter.update(
-          views_count: visitor_post_daily_counter.send(interaction_counter) + 1
+          interaction_counter => visitor_post_daily_counter.send(interaction_counter) + 1
         )
       end
     end

@@ -3,7 +3,7 @@ module EventSourcing
     class PostShared
       include ::Services::Callable
 
-      receive :request, :post
+      receive :request, :post, :social_media
 
       def result
         ::EventSourcing::PublishProxy
@@ -13,7 +13,7 @@ module EventSourcing
       private
 
       def stream_name
-        "#{@post.id}-#{@post.title.parameterize}"
+        "#{@social_media}-#{@post.id}-#{@post.title.parameterize}"
       end
 
       def payload
@@ -22,8 +22,10 @@ module EventSourcing
             page: @request.original_url,
             user_agent: @request.user_agent,
             visitor_ip: @request.remote_ip,
+            referer: @request.referer,
             post_id: @post.id,
-            post_title: @post.title.parameterize
+            post_title: @post.title.parameterize,
+            social_media: @social_media
           }
       end
     end
