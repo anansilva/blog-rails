@@ -14,6 +14,7 @@ module Analytics
     end
 
     def result
+      return if me?
       find_or_initialize_counter.tap do |visitor_post_daily_counter|
         visitor_post_daily_counter.update(
           interaction_counter => visitor_post_daily_counter.send(interaction_counter) + 1
@@ -38,6 +39,11 @@ module Analytics
           day: Date.today,
           visitor_ip: @event.data[:visitor_ip]
         )
+    end
+
+    def me?
+      binding.pry
+      @event.data[:visitor_ip] == Rails.application.credentials[:ip]
     end
   end
 end
