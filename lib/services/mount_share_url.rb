@@ -8,13 +8,13 @@ module Services
       twitter: "https://twitter.com/intent/tweet?url=",
       facebook: "http://www.facebook.com/sharer.php?u=",
       linkedin: "https://www.linkedin.com/shareArticle?mini=true&url="
-    }
+    }.freeze
 
     TEXT_PARAM = {
       twitter: "&text=",
       facebook: "&p[title]=",
       linkedin: "&text="
-    }
+    }.freeze
 
     def result
       BASE_URL[@social_media.to_sym] +
