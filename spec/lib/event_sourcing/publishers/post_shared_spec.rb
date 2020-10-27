@@ -20,7 +20,7 @@ describe EventSourcing::Publishers::PostShared do
     }
 
     expect(::EventSourcing::PublishProxy).to receive(:call)
-      .with('post_shared', expected_payload, "twitter-#{post.id}-post-title")
+      .with('post_shared', expected_payload, "twitter")
 
     described_class.call(request, post, 'twitter')
   end

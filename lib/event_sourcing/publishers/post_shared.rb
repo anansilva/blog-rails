@@ -13,7 +13,7 @@ module EventSourcing
       private
 
       def stream_name
-        "#{@social_media}-#{@post.id}-#{@post.title.parameterize}"
+        "#{@social_media}"
       end
 
       def payload

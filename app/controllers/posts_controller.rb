@@ -14,10 +14,10 @@ class PostsController < ApplicationController
   def share
     @post = Post.published.friendly.find(params[:id])
 
+    ::EventSourcing::Publishers::PostShared.call(request, @post, params[:social_media])
+
     social_media_url =
       ::Services::MountShareUrl.call(@post, post_url(@post), params[:social_media])
-
-    ::EventSourcing::Publishers::PostShared.call(request, @post)
 
     redirect_to social_media_url
   end

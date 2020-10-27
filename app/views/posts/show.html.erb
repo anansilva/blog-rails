@@ -35,7 +35,7 @@
         </br>
         <div class="text-right text-indigo-700">
           <a class="sm:text-lg lg:text-sm font-normal underline hover:text-indigo-800"
-             href="<%= twitter_share_url(@post) %>">Share</a>
+             href="<%= share_post_url(@post, 'twitter') %>">Share</a>
           <i class="fab fa-twitter sm:text-lg lg:text-sm"></i>
         </div>
       </div>
@@ -48,16 +48,16 @@
       <div class="absolute text-3xl pt-12 pl-32 top-0 left-0 text-indigo-700 lg:block sm:hidden">
         <ul class="sticky top-0">
           <li class="block">
-            <a href="<%= twitter_share_url(@post) %>" target="_blank">
+            <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
               <i class="fab fa-twitter-square hover:text-indigo-800"></i>
             </a>
           </li>
           <li class="block">
-            <a href="<%= linkedin_share_url(@post) %>" target="_blank">
+            <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
               <i class="fab fa-linkedin hover:text-indigo-800"></i></li>
             </a>
             <li class="block">
-              <a href="<%= facebook_share_url(@post) %>" target="_blank">
+              <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
                 <i class="fab fa-facebook-square hover:text-indigo-800"></i>
             </a>
             </li>

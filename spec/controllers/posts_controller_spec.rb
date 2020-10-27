@@ -97,15 +97,17 @@ describe PostsController do
     it 'calls the publish service' do
       get :share, params: { id: post.id, social_media: 'twitter' }
 
-      expect(publisher_klass).to have_received(:call).with(request, post)
+      expect(publisher_klass).to have_received(:call).with(request, post, 'twitter')
     end
 
     it 'calls the mount share url service' do
       post_url = "http://localhost/posts/sample-post-title"
 
-      expect(::Services::MountShareUrl).to receive(:call).with(post, post_url, 'twitter').and_call_original
+      allow(::Services::MountShareUrl).to receive(:call).and_return({})
 
       get :share, params: { id: post.id, social_media: 'twitter' }
+
+      expect(::Services::MountShareUrl).to have_received(:call).with(post, post_url, 'twitter')
     end
   end
 end
