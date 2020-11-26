@@ -13,6 +13,7 @@ module RailsBlogBackoffice
     config.active_storage.variant_processor = :vips
     config.autoload_paths << Rails.root.join('lib')
     config.exceptions_app = self.routes
+    config.middleware.insert_after ActionDispatch::RemoteIp, IpAnonymizer::HashIp, key: Rails.application.credentials.dig(:ip_anonymizer_key)
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
