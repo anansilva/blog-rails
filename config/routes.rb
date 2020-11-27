@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     mount RailsEventStore::Browser => '/res'
 
     resources :posts, except: %i[new destroy edit]
+    resources :analytics, only: :index
     get 'cms/write', to: 'posts#new', as: :new_post
     put 'posts/:id/publish', to: 'posts#publish', as: :publish_post
     get 'posts/:id/edit', to: 'posts#edit', as: :edit_post
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
     get '/login', to: 'sessions#new'
     post '/sessions', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
+
   end
 
   get "/about/", to: "about#show"
