@@ -19,9 +19,20 @@ describe Services::Analytics::VisitsStats do
 
     expect(result).to match({
       total_unique_visits: 4,
-      visits_per_country: { 'Portugal' => 1, 'Spain' => 1, 'USA' => 2 },
-      visits_per_device: { 'desktop' => 3, 'mobile' => 1 },
-      visits_per_referer: { 'facebook' => 2, 'twitter.com' => 1, 'google.com' => 1 }
+      visits_per_country: [
+        { 'country' => 'Portugal', 'views' => 1 },
+        { 'country' => 'Spain', 'views' => 1 },
+        { 'country' => 'USA', 'views' => 2 }
+      ],
+      visits_per_device: [
+        { 'device' => 'desktop', 'views' => 3 },
+        { 'device' => 'mobile', 'views' => 1 }
+      ],
+      visits_per_referer: [
+        { 'referer' => 'facebook', 'views' => 2 },
+        { 'referer' => 'google.com', 'views' => 1 },
+        { 'referer' => 'twitter.com', 'views' => 1 }
+      ],
     })
   end
 end

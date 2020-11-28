@@ -1,0 +1,70 @@
+<div class="container justify-start w-full px-4 mx-auto">
+  <h1 class="mb-1 tracking-wide font-bol sm:text-4xl lg:text-2xl hover:underline">
+    Dashboard
+  </h1>
+  <section>
+    <h2 class="mb-1 tracking-wide font-bol sm:text-4xl lg:text-2xl hover:underline">
+      Visits
+    </h2>
+    <table class="mb-10 table-fixed">
+      <tr class="text-left">
+        <th class="w-1/2">Country</th>
+        <th class="w-1/2">Unique Visits</th>
+      </tr>
+      <% @visits_stats[:visits_per_country].each do |country_stats| %>
+        <tr class="text-left">
+          <td><%= country_stats["country"] || 'Other' %></td>
+          <td><%= country_stats["views"] %></td>
+        </tr>
+       <% end %>
+    </table>
+
+    <table class="mb-10 table-fixed">
+      <tr class="text-left">
+        <th class="w-1/2">Top 10 Referers</th>
+        <th class="w-1/2">Unique Visits</th>
+      </tr>
+      <% @visits_stats[:visits_per_referer].first(10).each do |referer_stats| %>
+        <tr class="text-left">
+          <td><%= referer_stats["referer"] || 'Other' %></td>
+          <td><%= referer_stats["views"] %></td>
+        </tr>
+       <% end %>
+    </table>
+
+    <table class="mb-10 table-fixed">
+      <tr class="text-left">
+        <th class="w-1/2">Device</th>
+        <th class="w-1/2">Unique Visits</th>
+      </tr>
+      <% @visits_stats[:visits_per_device].each do |device_stats| %>
+        <tr class="text-left">
+          <td><%= device_stats["device"] || 'Other' %></td>
+          <td><%= device_stats["views"] %></td>
+        </tr>
+       <% end %>
+    </table>
+  </section>
+
+  <section>
+    <h2 class="mb-1 tracking-wide font-bol sm:text-4xl lg:text-2xl hover:underline">
+      Posts
+    </h2>
+    <table class="mb-10 table-fixed">
+      <tr class="text-left">
+        <th class="w-2/5">Post title</th>
+        <th class="w-1/5">Total Views</th>
+        <th class="w-1/5">Unique Views</th>
+        <th class="w-1/5">Total Shares</th>
+      </tr>
+      <% @posts_stats.each do |post_stats| %>
+        <tr class="text-left">
+          <td><%= post_stats["slug"] %></td>
+          <td><%= post_stats["total_views"] %></td>
+          <td><%= post_stats["unique_views"] %></td>
+          <td><%= post_stats["total_shares"] %></td>
+        </tr>
+       <% end %>
+    </table>
+  </section>
+</div>
