@@ -43,7 +43,7 @@ module Services
             SELECT #{column}, COUNT(id) AS views
             FROM analytics_unique_daily_visits
             GROUP BY #{column}
-            ORDER BY #{column} ASC NULLS LAST, COUNT(id) DESC
+            ORDER BY COUNT(id) DESC, #{column} ASC NULLS LAST
         SQL
       end
     end

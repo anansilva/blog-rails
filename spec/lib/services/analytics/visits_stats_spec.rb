@@ -20,9 +20,9 @@ describe Services::Analytics::VisitsStats do
     expect(result).to match({
       total_unique_visits: 4,
       visits_per_country: [
+        { 'country' => 'USA', 'views' => 2 },
         { 'country' => 'Portugal', 'views' => 1 },
         { 'country' => 'Spain', 'views' => 1 },
-        { 'country' => 'USA', 'views' => 2 }
       ],
       visits_per_device: [
         { 'device' => 'desktop', 'views' => 3 },

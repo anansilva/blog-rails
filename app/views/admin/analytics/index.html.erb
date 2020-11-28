@@ -8,12 +8,21 @@
     </h2>
     <table class="mb-10 table-fixed">
       <tr class="text-left">
+        <th>Total Unique Visits</th>
+      </tr>
+      <tr class="text-left">
+        <td><%= @visits_stats[:total_unique_visits] %></td>
+      </tr>
+    </table>
+
+    <table class="mb-10 table-fixed">
+      <tr class="text-left">
         <th class="w-1/2">Country</th>
         <th class="w-1/2">Unique Visits</th>
       </tr>
       <% @visits_stats[:visits_per_country].each do |country_stats| %>
         <tr class="text-left">
-          <td><%= country_stats["country"] || 'Other' %></td>
+          <td><%= country_stats["country"] || 'Not identified' %></td>
           <td><%= country_stats["views"] %></td>
         </tr>
        <% end %>
@@ -26,7 +35,7 @@
       </tr>
       <% @visits_stats[:visits_per_referer].first(10).each do |referer_stats| %>
         <tr class="text-left">
-          <td><%= referer_stats["referer"] || 'Other' %></td>
+          <td><%= referer_stats["referer"] || 'Not identified' %></td>
           <td><%= referer_stats["views"] %></td>
         </tr>
        <% end %>
@@ -39,7 +48,7 @@
       </tr>
       <% @visits_stats[:visits_per_device].each do |device_stats| %>
         <tr class="text-left">
-          <td><%= device_stats["device"] || 'Other' %></td>
+          <td><%= device_stats["device"] || 'Not identified' %></td>
           <td><%= device_stats["views"] %></td>
         </tr>
        <% end %>
