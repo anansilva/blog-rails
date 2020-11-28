@@ -33,7 +33,9 @@ module Services
       def run_sql(column)
         sql = build_sql(column)
 
-        ActiveRecord::Base.connection.execute(Arel.sql(sql))
+        ActiveRecord::Base
+          .connection
+          .execute(Arel.sql(sql))
           .values
           .to_h
       end
