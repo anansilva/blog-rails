@@ -8,22 +8,22 @@
     <%= render 'shared/meta_tags' %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:700|Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
     <link rel="stylesheet" href="/build/tailwind.css">
   </head>
 
-  <body class="bg-white font-sans min-h-screen flex flex-col">
+  <body class="flex flex-col min-h-screen font-sans bg-white">
     <div class="flex-grow">
       <header class="text-gray-900">
-        <%= render partial: 'shared/navbar' %>
+        <%= render partial: 'shared/navbar' unless @skip_navbar %>
       <header>
 
       <section>
         <%= yield %>
       </section>
     </div>
-    <%= render partial: 'shared/footer' %>
+    <%= render partial: 'shared/footer' unless @skip_footer%>
   </body>
 </html>

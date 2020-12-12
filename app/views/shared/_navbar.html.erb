@@ -1,15 +1,30 @@
-<nav class="container flex flex-wrap justify-between pt-4 pb-8 mx-auto">
-  <div>
-    <%= link_to 'ana nunes da silva', all_posts, method: :get, class: 'block sm:text-5xl lg:text-4xl sm:px-2 lg:px-4 font-semibold'%>
-    <p class="text-gray-700 lg:px-4 sm:px-2 lg:text-normal lg:text-lg sm:text-3xl">thoughts and learnings on software development</p>
+<header class="items-center p-4 pb-10 lg:flex">
+  <div class="text-3xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-blue-500 lg:flex-grow">
+    <a href="/">Ana Nunes da Silva</a>
   </div>
-  <div class="flex-col flex-1 hidden md:flex md:flex-row md:items-center md:justify-end">
-    <%# <%= link_to 'About', about_path, method: :get, class: 'block py-3 md:py-0 px-4 uppercase tracking-wide text-sm' %1> %>
-    <% if current_user %>
-      <%= link_to 'Preview', admin_posts_path, method: :get, class: 'block py-3 md:py-0 sm:px-2 g:px-4 uppercase tracking-wide' %>
-      <%= link_to 'New Post', admin_new_post_path, method: :get, class: 'block py-3 md:py-0 sm:px-2 g:px-4 uppercase tracking-wide' %>
-      <%= link_to 'Dashboard', admin_analytics_path, method: :get, class: 'block py-3 md:py-0 sm:px-2 g:px-4 uppercase tracking-wide' %>
-      <%= link_to 'Logout', admin_logout_path, method: :delete, class: 'block py-3 md:py-0 sm:px-2 lg:px-4 uppercase tracking-wide' %>
-    <% end %>
+
+  <div class="lg:flex-grow lg:text-right text-md lg:text-xl">
+    <ul class="tracking-tight">
+      <li class="inline">
+        <%= link_to 'About', about_path, method: :get, class: "py-4 pr-4 lg:px-6" %>
+      </li>
+      <li class="inline">
+        <%= link_to 'Posts', posts_path, method: :get, class: "py-4 pr-4 lg:px-6" %>
+      </li>
+      <% if current_user %>
+        <li class="inline">
+          <%= link_to 'Preview', admin_posts_path, method: :get, class: "py-4 pr-4 lg:px-6" %>
+        </li>
+        <li class="inline">
+          <%= link_to 'New Post', admin_new_post_path, method: :get, class: "py-4 pr-4 lg:px-6" %>
+        </li>
+        <li class="inline">
+          <%= link_to 'Dashboard', admin_analytics_path, method: :get, class: "py-4 pr-4 lg:px-6" %>
+        </li>
+        <li class="inline">
+          <%= link_to 'Logout', admin_logout_path, method: :get, class: "py-4 pr-4 lg:px-6" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-</nav>
+</header>
