@@ -1,15 +1,15 @@
-<header class="px-10 pb-5 lg:px-5 lg:items-center lg:flex">
-  <div class="pt-10 text-6xl font-extrabold tracking-tighter text-transparent lg:pt-5 lg:text-2xl bg-clip-text bg-gradient-to-r from-red-500 to-blue-500 lg:flex-grow">
+<header class="flex items-center px-10 pb-5 lg:px-5">
+  <div class="flex-grow pt-10 text-6xl font-extrabold tracking-tighter text-transparent lg:pt-5 lg:text-2xl bg-clip-text bg-gradient-to-r from-red-500 to-blue-500">
     <a href="/">Ana Nunes da Silva</a>
   </div>
 
-  <div class="pt-10 text-5xl font-bold lg:pt-5 lg:flex-grow lg:text-right text-md lg:text-xl">
+  <div class="pt-10 text-4xl font-bold lg:block lg:pt-5 lg:flex-grow lg:text-right text-md lg:text-xl">
     <ul class="tracking-tight">
       <li class="inline">
-        <%= link_to 'About', about_path, method: :get, class: "py-4 pr-4 lg:px-6 hover:underline" %>
+        <%= link_to 'About', about_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
       </li>
       <li class="inline">
-        <%= link_to 'Posts', posts_path, method: :get, class: "py-4 pr-4 lg:px-6 hover:underline" %>
+        <%= link_to 'Posts', posts_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
       </li>
       <% if current_user %>
         <li class="inline">

@@ -1,8 +1,10 @@
 <div class="lg:m-auto lg:w-2/3">
-  <h1 class="px-10 my-8 font-bold leading-tight tracking-tighter text-black lg:px-0 text-8xl lg:text-4xl">Posts</h1>
-<div class="container flex flex-wrap justify-start w-full mx-auto mt-10">
-  <% @posts.each do |post| %>
-    <%= render partial: 'shared/post_card', locals: { post: post } %>
-  <% end %>
-</div>
+  <h1 class="px-10 my-8 font-bold leading-tight tracking-tighter text-black lg:px-0 text-8xl lg:text-4xl">
+    Posts <%= "tagged: #{@tag}" if @tag %>
+  </h1>
+  <div class="flex flex-wrap justify-start w-full mx-auto mt-10 lg:container">
+    <% @posts.each do |post| %>
+      <%= render partial: 'shared/post_card', locals: { post: post } %>
+    <% end %>
+  </div>
 </div>

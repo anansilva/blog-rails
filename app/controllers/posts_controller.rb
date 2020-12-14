@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = ::Query::Posts.call(params[:tag], 'published')
+    @tag = params[:tag]
 
     ::EventSourcing::Publishers::HomePageViewed.call(request, params[:tag])
   end
