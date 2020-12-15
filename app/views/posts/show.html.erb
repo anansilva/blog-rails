@@ -63,7 +63,24 @@
             </li>
         </ul>
       </div>
-      </div>
+
+      <div class="pt-12 text-6xl text-indigo-700 m20 lg:hidden">
+        <ul class="">
+          <li class="inline mr-8">
+            <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
+              <i class="fab fa-twitter-square hover:text-indigo-800"></i>
+            </a>
+          </li>
+          <li class="inline mr-8">
+            <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
+              <i class="fab fa-linkedin hover:text-indigo-800"></i></li>
+            </a>
+            <li class="inline mr-8">
+              <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
+                <i class="fab fa-facebook-square hover:text-indigo-800"></i>
+            </a>
+            </li>
+        </ul>
       </div>
     </div>
   </div>
