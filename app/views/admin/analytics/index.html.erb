@@ -1,12 +1,12 @@
-<div class="container w-full mx-auto">
-  <h1 class="px-10 my-8 font-bold tracking-tighter text-8xl lg:text-4xl">
+<div class="lg:m-auto lg:w-2/3">
+  <h1 class="px-10 my-8 font-bold tracking-tighter lg:px-0 text-8xl lg:text-4xl">
     Dashboard
   </h1>
   <section>
-    <h2 class="mb-1 tracking-wide font-bol sm:text-4xl lg:text-2xl hover:underline">
+    <h2 class="mb-1 font-bold tracking-wide sm:text-4xl lg:text-2xl">
       Visits
     </h2>
-    <table class="mb-10 table-fixed">
+    <table class="mb-10 border-2 border-gray-100 table-fixed">
       <tr class="text-left">
         <th>Total Unique Visits</th>
       </tr>
@@ -15,39 +15,39 @@
       </tr>
     </table>
 
-    <table class="mb-10 table-fixed">
-      <tr class="text-left">
+    <table class="mb-10 border-2 border-gray-200 table-fixed">
+      <tr class="text-left border-2 border-gray-100">
         <th class="w-1/2">Country</th>
-        <th class="w-1/2">Unique Visits</th>
+        <th class="w-1/2 pl-20">Unique Visits</th>
       </tr>
       <% @visits_stats[:visits_per_country].each do |country_stats| %>
-        <tr class="text-left">
+        <tr class="text-left border-2 border-gray-100">
           <td><%= country_stats["country"] || 'Not identified' %></td>
-          <td><%= country_stats["views"] %></td>
+          <td class="pl-20"><%= country_stats["views"] %></td>
         </tr>
        <% end %>
     </table>
 
     <table class="mb-10 table-fixed">
-      <tr class="text-left">
+      <tr class="text-left border-2 border-gray-100">
         <th class="w-1/2">Top 10 Referers</th>
-        <th class="w-1/2">Unique Visits</th>
+        <th class="w-1/2 pl-20">Unique Visits</th>
       </tr>
       <% @visits_stats[:visits_per_referer].first(10).each do |referer_stats| %>
-        <tr class="text-left">
+        <tr class="text-left border-2 border-gray-100">
           <td><%= referer_stats["referer"] || 'Not identified' %></td>
-          <td><%= referer_stats["views"] %></td>
+          <td class="pl-20"><%= referer_stats["views"] %></td>
         </tr>
        <% end %>
     </table>
 
-    <table class="mb-10 table-fixed">
+    <table class="mb-10 border-2 border-gray-100 table-fixed">
       <tr class="text-left">
         <th class="w-1/2">Device</th>
         <th class="w-1/2">Unique Visits</th>
       </tr>
       <% @visits_stats[:visits_per_device].each do |device_stats| %>
-        <tr class="text-left">
+        <tr class="text-left border-2 border-gray-100">
           <td><%= device_stats["device"] || 'Not identified' %></td>
           <td><%= device_stats["views"] %></td>
         </tr>
@@ -56,10 +56,10 @@
   </section>
 
   <section>
-    <h2 class="mb-1 tracking-wide font-bol sm:text-4xl lg:text-2xl hover:underline">
+    <h2 class="mb-1 font-bold tracking-wide sm:text-4xl lg:text-2xl">
       Posts
     </h2>
-    <table class="mb-10 table-fixed">
+    <table class="mb-10 border-2 border-gray-100 table-fixed">
       <tr class="text-left">
         <th class="w-2/5">Post title</th>
         <th class="w-1/5">Total Views</th>
@@ -67,7 +67,7 @@
         <th class="w-1/5">Total Shares</th>
       </tr>
       <% @posts_stats.each do |post_stats| %>
-        <tr class="text-left">
+        <tr class="text-left border-2 border-gray-100">
           <td><%= post_stats["slug"] %></td>
           <td><%= post_stats["total_views"] %></td>
           <td><%= post_stats["unique_views"] %></td>

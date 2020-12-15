@@ -13,16 +13,16 @@
       </li>
       <% if current_user %>
         <li class="inline">
-          <%= link_to 'Preview', admin_posts_path, method: :get, class: "py-4 pr-4 lg:px-6 hover:underline" %>
+          <%= link_to 'Preview', admin_posts_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
         </li>
         <li class="inline">
-          <%= link_to 'New Post', admin_new_post_path, method: :get, class: "py-4 pr-4 lg:px-6 hover:underline" %>
+          <%= link_to 'New Post', admin_new_post_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
         </li>
         <li class="inline">
-          <%= link_to 'Dashboard', admin_analytics_path, method: :get, class: "py-4 pr-4 lg:px-6 hover:underline" %>
+          <%= link_to 'Dashboard', admin_analytics_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
         </li>
         <li class="inline">
-          <%= link_to 'Logout', admin_logout_path, method: :delete, class: "py-4 pr-4 lg:px-6 hover:underline" %>
+          <%= link_to 'Logout', admin_logout_path, method: :delete, class: "py-4 pr-4 px-6 hover:underline" %>
         </li>
       <% end %>
     </ul>
