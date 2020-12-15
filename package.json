@@ -20,8 +20,5 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
-  },
-  "scripts": {
-    "build": "postcss app/assets/stylesheets/tailwind.css -o public/build/tailwind.css"
   }
 }
