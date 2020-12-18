@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/build/tailwind.css">
   </head>
 
-  <body class="flex flex-col min-h-screen font-sans bg-white">
+  <body class="flex flex-col min-h-screen font-sans bg-white" data-controller="application">
     <div class="flex-grow">
       <header class="text-gray-900">
         <%= render partial: 'shared/navbar' unless @skip_navbar %>

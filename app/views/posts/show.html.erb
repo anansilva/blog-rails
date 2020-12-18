@@ -19,7 +19,7 @@
       <% end %>
 
       <p class="inline-block mb-2 text-2xl text-left text-gray-600 lg:tracking-wide lg:text-sm">
-        <%= @post.published_at.strftime('%b, %Y')%>
+        <%= @post.published_at&.strftime('%b, %Y')%>
       </p>
 
       <h1 class="mb-8 text-6xl font-black tracking-wide lg:text-4xl">
