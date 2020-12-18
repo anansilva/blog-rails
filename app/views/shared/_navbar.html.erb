@@ -3,7 +3,7 @@
     <a href="/">Ana Nunes da Silva</a>
   </div>
 
-  <div class="pt-10 text-4xl font-semibold lg:block lg:pt-5 lg:flex-grow lg:text-right text-md lg:text-xl">
+  <div class="pt-10 text-4xl font-semibold sm:hidden lg:block lg:pt-5 lg:flex-grow lg:text-right text-md lg:text-xl">
     <ul class="tracking-tight">
       <li class="inline">
         <%= link_to 'About', about_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
@@ -27,4 +27,28 @@
       <% end %>
     </ul>
   </div>
+
+  <%# data-controller with the name of the controller that will listen to the events on this element %>
+  <div class="relative inline-block pt-10 text-center lg:hidden" data-controller="menu">
+  <%# data-action with the event type that will trigger a toggle function on the menu controller %>
+    <div data-action="click->menu#toggle">
+      <button type="button" class="inline-flex justify-center w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+        id="options-menu" aria-haspopup="true" aria-expanded="true">
+        <svg viewBox="0 0 100 80" width="60" height="60">
+            <rect width="100" height="20" rx="8"></rect>
+            <rect y="30" width="100" height="20" rx="8"></rect>
+            <rect y="60" width="100" height="20" rx="8"></rect>
+        </svg>
+      </button>
+    </div>
+
+  <%# data-target what the target of our function will be %>
+    <div class="absolute right-0 hidden mt-2 bg-white shadow-lg w-96 origin-top-right rounded-md ring-1 ring-black ring-opacity-5" data-menu-target="toggleable">
+      <div class="py-6" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+        <a href="/about" class="block px-4 py-5 text-5xl text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">About</a>
+        <a href="/posts" class="block px-4 py-5 text-5xl text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Posts</a>
+      </div>
+    </div>
+  </div>
+
 </header>
