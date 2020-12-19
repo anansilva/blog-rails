@@ -1,6 +1,6 @@
 <img src="https://anansilva.semaphoreci.com/badges/blog-rails.svg">
 
-My personal blog. Built from scratch with rails and tailwindcss.
+My personal blog. Built from scratch with rails, tailwindcss and stimulus.
 
 To run locally, `rails s`, then open https://localhost:3001.
 
@@ -13,6 +13,7 @@ As an admin you can:
 - Preview a post
 - Preview the list os posts
 - Delete posts
+- Have access to a dashboard with all the main visit and views stats
 
 As a visitor you can:
 
