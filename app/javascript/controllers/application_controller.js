@@ -1,6 +1,6 @@
 import { Controller } from "stimulus"
 import hljs from 'highlight.js'
-import 'highlight.js/styles/gruvbox-dark.css'
+import 'highlight.js/styles/railscasts.css'
 
 hljs.configure({ language: ['ruby', 'erb', 'bash', 'javascript', 'css', 'sql'] })
 
