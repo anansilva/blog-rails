@@ -1,7 +1,5 @@
 describe PostsController do
   describe '#index' do
-    let(:publisher_klass) { ::EventSourcing::Publishers::HomePageViewed }
-
     before do
       create(:post)
       create(:post)
@@ -10,7 +8,6 @@ describe PostsController do
     context 'when requesting in html format' do
       before do
         allow(Query::Posts).to receive(:call).and_call_original
-        allow(publisher_klass).to receive(:call)
 
         get :index
       end
@@ -21,10 +18,6 @@ describe PostsController do
 
       it 'calls Query::Post' do
         expect(Query::Posts).to have_received(:call)
-      end
-
-      it 'calls the publish service' do
-        expect(publisher_klass).to have_received(:call).with(request, nil)
       end
     end
 
@@ -38,12 +31,6 @@ describe PostsController do
   end
 
   describe '#show' do
-    let(:publisher_klass) { ::EventSourcing::Publishers::PostViewed }
-
-    before do
-      allow(publisher_klass).to receive(:call).and_return({})
-    end
-
     context 'when the post is published' do
       let(:post) { create(:post, status: 'published') }
 
@@ -52,12 +39,6 @@ describe PostsController do
           get :show, params: { id: post.id }
 
           expect(response.status).to eq(200)
-        end
-
-        it 'calls the publish service' do
-          get :show, params: { id: post.id }
-
-          expect(publisher_klass).to have_received(:call).with(request, post)
         end
      end
 
@@ -80,24 +61,12 @@ describe PostsController do
   end
 
   describe '#share' do
-    let(:publisher_klass) { ::EventSourcing::Publishers::PostShared }
-
-    before do
-      allow(publisher_klass).to receive(:call).and_return({})
-    end
-
     let(:post) { create(:post, status: 'published') }
 
     it 'redirects to the social media page' do
       get :share, params: { id: post.id, social_media: 'twitter' }
 
       expect(response.status).to eq(302)
-    end
-
-    it 'calls the publish service' do
-      get :share, params: { id: post.id, social_media: 'twitter' }
-
-      expect(publisher_klass).to have_received(:call).with(request, post, 'twitter')
     end
 
     it 'calls the mount share url service' do
