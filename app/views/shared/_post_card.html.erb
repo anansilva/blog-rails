@@ -3,16 +3,16 @@
     <% if post.cover_image.attached? %>
       <%= image_tag post.cover_image.variant(resize_to_limit: [300, 300]), class: 'h-full w-full cursor-pointer' %>
     <% end %>
-    <div class="container px-4 pt-8 mx-auto leading-relaxed bg-white lg:mx-0 lg:pt-4 lg:leading-normal">
+    <div class="container px-4 pt-8 mx-auto leading-relaxed lg:mx-0 lg:pt-4 lg:leading-normal">
       <h1 class="mb-2 text-5xl font-extrabold tracking-wide lg:mb-1 lg:text-2xl hover:underline">
         <%= link_to post.title, post %>&nbsp<%= '[DRAFT]' if post.draft? %>
       </h1>
       <p class="mb-4 text-3xl text-gray-600 lg:mb-2 lg:text-sm">
         <%= post.published_at&.strftime('%b, %Y') %>
       <p>
-      <p class="overflow-hidden text-4xl text-gray-800 overflow-ellipsis lg:text-base">
+      <p class="overflow-hidden text-4xl text-gray-800 dark:text-gray-50 overflow-ellipsis lg:text-base">
         <%= post.intro %><br>
-        <%= link_to 'Keep reading >>', link_to_post(post), class: "hover:underline sm:text-2xl lg:text-sm font-bold uppercase text-indigo-700"%>
+        <%= link_to 'Keep reading >>', link_to_post(post), class: "hover:underline sm:text-2xl lg:text-sm font-bold uppercase text-indigo-700 dark:text-indigo-500"%>
       </p>
     </div>
   </article>

@@ -8,12 +8,12 @@
     <%= image_tag @post.cover_image.variant(resize_to_fill: [1200, 600]).processed, class: 'w-full cursor-pointer' %>
   <% end %>
   <div class="container mx-auto">
-    <header class="pt-8 bg-white lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-56 post-intro">
+    <header class="pt-8 bg-white dark:bg-gray-900 lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-56 post-intro">
       <% if current_page?(admin_post_path(@post)) %>
         <%= render partial: 'shared/admin_edit_buttons', locals: { post: @post } %>
       <% end %>
       <% @post.tags.each do |tag| %>
-        <p class="inline-block mb-2 mr-1 text-3xl font-bold tracking-wide text-left text-indigo-800 rounded-sm lg:text-lg">
+        <p class="inline-block mb-2 mr-1 text-3xl font-bold tracking-wide text-left text-indigo-700 rounded-sm dark:hover-text-indigo-600 hover:text-indigo-800 dark:text-indigo-500 lg:text-lg">
           <%= link_to tag.name, posts_path(tag: tag.name)  %>
         </p>
       <% end %>
@@ -26,15 +26,11 @@
         <%= @post.title %> <%= '[PREVIEW]' if @post.draft? %>
       </h1>
 
-      <% if current_page?(admin_post_path(@post)) %>
-        <%= render partial: 'shared/post_analytics', locals: { post: @post_views } %>
-      <% end %>
-
-      <div class="pt-6 pb-2 mb-8 text-5xl font-bold border-t border-b border-indigo-700 lg:text-lg">
+      <div class="pt-6 pb-2 mb-8 text-5xl font-bold border-t border-b border-indigo-700 dark:border-indigo-500 lg:text-lg">
         <%= @post.intro %>
         </br>
-        <div class="text-right text-indigo-700">
-          <a class="font-normal underline sm:text-lg lg:text-sm hover:text-indigo-800"
+        <div class="text-right text-indigo-700 dark:text-indigo-500">
+          <a class="font-normal underline sm:text-lg lg:text-sm hover:text-indigo-800 dark:hover:text-indigo-600"
              href="<%= share_post_url(@post, 'twitter') %>", target="_blank" >Share</a>
           <i class="fab fa-twitter sm:text-lg lg:text-sm"></i>
         </div>
@@ -42,10 +38,10 @@
     </header>
 
     <div class="lg:block lg:relative">
-      <div class="text-5xl font-normal lg:text-lg lg:px-16 lg:mx-56 lg:-mt-40">
+      <div class="text-5xl font-normal lg:text-lg lg:px-16 lg:mx-56 lg:-mt-40 lg:mb-20">
         <%= @post.body %>
       </div>
-      <div class="absolute top-0 left-0 pt-12 pl-32 text-3xl text-indigo-700 lg:block sm:hidden">
+      <div class="absolute top-0 left-0 pt-12 pl-32 text-3xl text-indigo-700 dark:text-indigo-600 lg:block sm:hidden">
         <ul class="sticky top-0">
           <li class="block">
             <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
@@ -60,11 +56,11 @@
               <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
                 <i class="fab fa-facebook-square hover:text-indigo-800"></i>
             </a>
-            </li>
+          </li>
         </ul>
       </div>
 
-      <div class="pt-12 text-6xl text-indigo-700 m20 lg:hidden">
+      <div class="pt-12 mb-20 text-6xl text-indigo-700 lg:hidden">
         <ul class="">
           <li class="inline mr-8">
             <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">

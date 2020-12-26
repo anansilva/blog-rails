@@ -1,9 +1,10 @@
 <% if @post.draft? %>
+
   <%= button_to "Publish", admin_publish_post_path(id: @post.id), method: :put,
-    class: "float-right bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mx-2"  %>
+    class: "float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2"  %>
 <% elsif @post.published? %>
   <%= button_to "Unpublish", admin_unpublish_post_path(id: @post.id), method: :put,
-    class: "float-right bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mx-2"  %>
+    class: "float-right bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2"  %>
 <% end %>
 <%= button_to "Delete", admin_destroy_post_path(id: @post.id), method: :delete, class: "float-right bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2"  %>
 <%= button_to "Edit", admin_edit_post_path(id: @post.id), method: :get,
