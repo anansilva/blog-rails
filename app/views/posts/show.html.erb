@@ -8,6 +8,25 @@
     <%= image_tag @post.cover_image.variant(resize_to_fill: [1200, 600]).processed, class: 'w-full cursor-pointer' %>
   <% end %>
   <div class="container mx-auto">
+    <div class="sticky top-0 py-10 text-6xl text-right text-indigo-700 bg-white lg:hidden">
+      <ul class="">
+        <li class="inline mr-8">
+          <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
+            <i class="fab fa-twitter-square hover:text-indigo-800"></i>
+          </a>
+        </li>
+        <li class="inline mr-8">
+          <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
+            <i class="fab fa-linkedin hover:text-indigo-800"></i></li>
+          </a>
+          <li class="inline mr-8">
+            <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
+              <i class="fab fa-facebook-square hover:text-indigo-800"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
     <header class="pt-8 bg-white dark:bg-gray-900 lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-56 post-intro">
       <% if current_page?(admin_post_path(@post)) %>
         <%= render partial: 'shared/admin_edit_buttons', locals: { post: @post } %>
@@ -38,14 +57,14 @@
     </header>
 
     <div class="lg:block lg:relative">
-      <div class="text-5xl font-normal lg:text-lg lg:px-16 lg:mx-56 lg:-mt-40 lg:mb-20">
+      <div class="mb-20 text-5xl font-normal lg:text-lg lg:px-16 lg:mx-56 lg:-mt-40">
         <%= @post.body %>
       </div>
       <div class="absolute top-0 left-0 h-full pt-12 pl-32 text-3xl text-indigo-700 dark:text-indigo-600 lg:block sm:hidden">
         <ul class="sticky top-0">
           <li class="block">
             <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
-              <i class="fab fa-twitter-square hover:text-indigo-800"></i>
+              <i class="pt-10 fab fa-twitter-square hover:text-indigo-800"></i>
             </a>
           </li>
           <li class="block">
@@ -60,24 +79,6 @@
         </ul>
       </div>
 
-      <div class="pt-16 mb-20 text-indigo-700 text-8xl lg:hidden">
-        <ul class="">
-          <li class="inline mr-16">
-            <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
-              <i class="fab fa-twitter-square hover:text-indigo-800"></i>
-            </a>
-          </li>
-          <li class="inline mr-16">
-            <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
-              <i class="fab fa-linkedin hover:text-indigo-800"></i></li>
-            </a>
-            <li class="inline mr-16">
-              <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
-                <i class="fab fa-facebook-square hover:text-indigo-800"></i>
-            </a>
-            </li>
-        </ul>
-      </div>
     </div>
   </div>
 </article>
