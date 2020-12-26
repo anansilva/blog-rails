@@ -13,7 +13,7 @@
         <%= render partial: 'shared/admin_edit_buttons', locals: { post: @post } %>
       <% end %>
       <% @post.tags.each do |tag| %>
-        <p class="inline-block mb-2 mr-1 text-3xl font-bold tracking-wide text-left text-indigo-700 rounded-sm dark:hover-text-indigo-600 hover:text-indigo-800 dark:text-indigo-500 lg:text-lg">
+        <p class="inline-block mb-2 mr-6 text-3xl font-bold tracking-wide text-left text-indigo-700 rounded-sm lg:mr-2 sm:text-4xl dark:hover-text-indigo-600 hover:text-indigo-800 dark:text-indigo-500 lg:text-lg">
           <%= link_to tag.name, posts_path(tag: tag.name)  %>
         </p>
       <% end %>
@@ -30,9 +30,9 @@
         <%= @post.intro %>
         </br>
         <div class="text-right text-indigo-700 dark:text-indigo-500">
-          <a class="font-normal underline sm:text-lg lg:text-sm hover:text-indigo-800 dark:hover:text-indigo-600"
+          <a class="font-normal underline sm:text-4xl lg:text-sm hover:text-indigo-800 dark:hover:text-indigo-600"
              href="<%= share_post_url(@post, 'twitter') %>", target="_blank" >Share</a>
-          <i class="fab fa-twitter sm:text-lg lg:text-sm"></i>
+          <i class="fab fa-twitter sm:text-4xl lg:text-sm"></i>
         </div>
       </div>
     </header>
@@ -60,18 +60,18 @@
         </ul>
       </div>
 
-      <div class="pt-12 mb-20 text-6xl text-indigo-700 lg:hidden">
+      <div class="pt-16 mb-20 text-indigo-700 text-8xl lg:hidden">
         <ul class="">
-          <li class="inline mr-8">
+          <li class="inline mr-16">
             <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
               <i class="fab fa-twitter-square hover:text-indigo-800"></i>
             </a>
           </li>
-          <li class="inline mr-8">
+          <li class="inline mr-16">
             <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
               <i class="fab fa-linkedin hover:text-indigo-800"></i></li>
             </a>
-            <li class="inline mr-8">
+            <li class="inline mr-16">
               <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
                 <i class="fab fa-facebook-square hover:text-indigo-800"></i>
             </a>
