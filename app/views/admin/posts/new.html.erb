@@ -1,11 +1,11 @@
-<div class="container p-4 mx-auto bg-white lg:m-auto lg:w-2/3">
+<div class="container p-4 mx-auto bg-white dark:bg-gray-900 lg:m-auto lg:w-2/3">
   <h1 class="pb-4 my-8 text-4xl font-bold">New Post</h1>
   <%= form_with(model: [:admin, @post]) do |form| %>
     <div class="pb-4 mb-2 form-group">
       <%= form.label :title, class: "pr-2" %>
       <%= form.text_field :title,
         required: true,
-        class: "block w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
+        class: "text-black block w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
     </div>
     <div class="pb-4 form-group">
       <%= form.label :cover, class: "pr-2" %>
@@ -14,8 +14,13 @@
     </div>
     <div class="pb-4 form-group">
       <%= form.label :tags, class: "pr-2" %>
-      <%= form.text_field :tags, value: @post.tags.pluck(:name).join(', '), placeholder: 'Tags separated with comma',
-        class: "block w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
+      <%= form.text_field :tags, value: @post.tags.pluck(:name).join(', '), placeholder: 'Tags separated by commas',
+        class: "text-black block w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="pb-4 form-group">
+      <%= form.label :keywords, class: "pr-2" %>
+      <%= form.text_field :keywords, value: @post.keywords, placeholder: 'words or expressions separated by commas',
+        class: "text-black block w-1/2 border border-gray-500 rounded focus:outline-none focus:shadow-outline" %>
     </div>
     <div class="pb-4 form-group">
       <%= form.label :intro, class: "pr-2" %>
@@ -25,7 +30,7 @@
     </div>
     <div class="pb-4 form-group">
       <%= form.label :body %>
-      <%= form.rich_text_area :body, class: "content h-auto" %>
+      <%= form.rich_text_area :body, class: "bg-white text-black content h-auto" %>
       <%= form.submit :save,
         class: "border border-gray-500 rounded p-2 cursor-pointer mt-2" %>
     </div>
