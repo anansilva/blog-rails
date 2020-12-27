@@ -1,3 +1,6 @@
+<% content_for :meta_title, 'Posts' + " #{@tag}" %>
+<% content_for :meta_description, 'thoughts and learnings on software development' %>
+
 <div class="pb-4 lg:m-auto lg:w-2/3">
   <h1 class="px-10 my-8 font-bold leading-tight tracking-tighter text-black dark:text-gray-50 lg:px-0 text-8xl lg:text-4xl">
     Posts <%= "tagged: #{@tag}" if @tag %>
