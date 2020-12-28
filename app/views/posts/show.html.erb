@@ -3,11 +3,11 @@
 <% content_for :meta_keywords, @post.keywords %>
 <% content_for :meta_image, url_for(@post.cover_image.variant(resize_to_fill: [1200, 600])) %>
 
-<article class="my-8 lg:my-0">
+<article class="container mx-auto my-8 lg:my-0">
   <% if @post.cover_image.attached? %>
-    <%= image_tag @post.cover_image.variant(resize_to_fill: [1200, 600]).processed, alt: "#{@post.title} cover image", class: 'w-full cursor-pointer' %>
+    <%= image_tag @post.cover_image, alt: "#{@post.title} cover image", class: 'w-full cursor-pointer' %>
   <% end %>
-  <div class="container mx-auto">
+  <div class="mx-auto">
     <div class="sticky top-0 py-10 text-6xl text-right text-blue-700 bg-white lg:hidden">
       <ul class="">
         <li class="inline mr-8">
