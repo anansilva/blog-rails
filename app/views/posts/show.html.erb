@@ -27,7 +27,7 @@
       </ul>
     </div>
 
-    <header class="pt-8 bg-white dark:bg-gray-900 lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-56 post-intro">
+    <header class="pt-8 bg-white dark:bg-gray-900 lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-36 post-intro">
       <% if current_page?(admin_post_path(@post)) %>
         <%= render partial: 'shared/admin_edit_buttons', locals: { post: @post } %>
       <% end %>
@@ -57,7 +57,7 @@
     </header>
 
     <div class="lg:block lg:relative">
-      <div class="mb-20 text-5xl font-normal lg:text-lg lg:px-16 lg:mx-56 lg:-mt-40">
+      <div class="mb-20 text-5xl font-normal lg:text-lg lg:px-16 lg:mx-36 lg:-mt-40">
         <%= @post.body %>
       </div>
       <div class="absolute top-0 left-0 h-full pt-12 pl-32 text-3xl text-blue-700 dark:text-indigo-600 lg:block sm:hidden">
