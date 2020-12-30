@@ -8,7 +8,7 @@
     <%= image_tag @post.cover_image, alt: "#{@post.title} cover image", class: 'w-full cursor-pointer' %>
   <% end %>
   <div class="mx-auto">
-    <div class="sticky top-0 py-10 text-6xl text-right text-blue-700 bg-white lg:hidden">
+    <div class="sticky top-0 py-10 text-6xl text-right text-blue-700 bg-white dark:bg-gray-900 lg:hidden">
       <ul class="">
         <li class="inline mr-8">
           <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
