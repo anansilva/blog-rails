@@ -14,6 +14,10 @@ import 'highlight.js/styles/gruvbox-dark.css'
  import javascript from 'highlight.js/lib/languages/javascript'
  hljs.registerLanguage('javascript', javascript);
 
+hljs.configure({
+  languages: ['ruby', 'erb', 'bash', 'javascript']
+});
+
 export default class extends Controller {
   static targets = []
 
