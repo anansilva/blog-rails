@@ -28,4 +28,6 @@ Rails.application.routes.draw do
   end
 
   get "/about/", to: "about#show"
+
+  get '/sitemap.xml.gz', to: redirect("https://#{Rails.application.credentials.dig(:aws, :prod, :sitemap_bucket)}.s3.#{Rails.application.credentials.dig(:aws, :region)}.amazonaws.com/sitemap.xml.gz")
 end
