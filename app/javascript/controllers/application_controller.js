@@ -1,6 +1,4 @@
 import { Controller } from "stimulus"
-
-
 import hljs from 'highlight.js/lib/core'
 import 'highlight.js/styles/gruvbox-dark.css'
 
@@ -17,7 +15,7 @@ export default class extends Controller {
   static targets = []
 
   connect() {
-    document.querySelectorAll('pre code').forEach((block) => {
+    document.querySelectorAll('pre').forEach((block) => {
       hljs.highlightBlock(block)
     })
   }
