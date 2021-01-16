@@ -15,6 +15,7 @@ module RailsBlogBackoffice
     config.exceptions_app = self.routes
     config.middleware.insert_after ActionDispatch::RemoteIp, IpAnonymizer::MaskIp
 
+    config.middleware.use Rack::Deflater
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
