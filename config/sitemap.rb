@@ -15,7 +15,7 @@ SitemapGenerator::Sitemap.create do
   add '/posts'
 
   Post.find_each do |post|
-    add "https://www.ananunesdasilva.com/posts/#{post.slug}", :lastmod => post.updated_at
+    add post_path(post), :lastmod => post.updated_at
   end
   #
   # Usage: add(path, options={})
