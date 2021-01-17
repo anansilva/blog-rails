@@ -7,9 +7,6 @@
   <% if @post.cover_image.attached? %>
     <%= image_tag @post.cover_image, alt: "#{@post.title}", class: 'w-full cursor-pointer' %>
   <% end %>
-  <% if @post.slugs.size > 0 %>
-    <link rel="canonical" href="ananunesdasilva.com/posts/#{post.slugs.first.slug}">
-  <% end %>
   <div class="mx-auto">
     <div class="sticky top-0 py-10 text-5xl text-right text-blue-700 bg-white dark:bg-gray-900 lg:hidden">
       <ul>

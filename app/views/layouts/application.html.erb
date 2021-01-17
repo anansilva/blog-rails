@@ -15,6 +15,10 @@
 
     <link rel="stylesheet" href="/build/tailwind.css">
 
+    <% if @post.present? && @post.slugs.size > 0 %>
+      <link rel="canonical" href=<%= "ananunesdasilva.com/posts/#{@post.slugs.first.slug}" %>>
+    <% end %>
+
     <%= favicon_link_tag asset_path('ana_nunes_da_silva_web_developer_ruby_rails.jpg') %>
   </head>
 
