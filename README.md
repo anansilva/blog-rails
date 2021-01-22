@@ -2,21 +2,19 @@
 
 My personal blog. Built from scratch with rails, tailwindcss and stimulus.
 
-To run locally, `rails s`, then open https://localhost:3001.
-
 ## Features
 As an admin you can:
 
 - Login and access a Content Management Area
 - Create posts with text, images and tags
 - Update posts
-- Preview a post
-- Preview the list os posts
+- Preview posts
 - Delete posts
-- Have access to a dashboard with all the main visit and views stats
+- See the blog's analytics through plausible.io
 
 As a visitor you can:
 
 - See a list of posts that can be filtered by tags
-- Read a post
-- Share a post on social media
+- Read posts
+- Comment posts
+- Share posts on social media
