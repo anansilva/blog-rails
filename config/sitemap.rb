@@ -11,11 +11,11 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(Rails.ap
 SitemapGenerator::Sitemap.sitemaps_host = "https://#{Rails.application.credentials.dig(:aws, :prod, :sitemap_bucket)}.s3.#{Rails.application.credentials.dig(:aws, :region)}.amazonaws.com"
 
 SitemapGenerator::Sitemap.create do
-  add '/about'
-  add '/posts'
+  "https://www.ananunesdasilva.com/about"
+  "https://www.ananunesdasilva.com/posts"
 
   Post.find_each do |post|
-    add post_path(post), :lastmod => post.updated_at
+    add "https://www.ananunesdasilva.com/posts/#{post.slug}", :lastmod => post.updated_at
   end
   #
   # Usage: add(path, options={})
