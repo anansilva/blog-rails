@@ -12,7 +12,7 @@ SitemapGenerator::Sitemap.sitemaps_host = "https://#{Rails.application.credentia
 
 SitemapGenerator::Sitemap.create do
   add '/about', priority: 1, changefreq: 'monthly'
-  add '/posts', priority: 1, changefreq: 'monthly'
+  add '/posts', priority: 1, changefreq: 'monthly', lastmod: Post.order('updated_at DESC').first
 
   Post.find_each do |post|
     add post_path(post), priority: 0.5, lastmod: post.updated_at, changefreq: 'monthly'
