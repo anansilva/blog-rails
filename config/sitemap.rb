@@ -11,16 +11,10 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(Rails.ap
 SitemapGenerator::Sitemap.sitemaps_host = "https://#{Rails.application.credentials.dig(:aws, :prod, :sitemap_bucket)}.s3.#{Rails.application.credentials.dig(:aws, :region)}.amazonaws.com"
 
 SitemapGenerator::Sitemap.create do
-  add '/about'
-  add '/posts'
+  add '/about', priority: 1, changefreq: 'monthly'
+  add '/posts', priority: 1, changefreq: 'monthly'
 
   Post.find_each do |post|
-    add post_path(post), :lastmod => post.updated_at
+    add post_path(post), priority: 0.5, lastmod: post.updated_at, changefreq: 'monthly'
   end
-  #
-  # Usage: add(path, options={})
-  #        (default options are used if you don't specify)
-  #
-  # Defaults: :priority => 0.5, :changefreq => 'weekly',
-  #           :lastmod => Time.now, :host => default_host
 end
