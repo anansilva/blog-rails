@@ -17,10 +17,10 @@ module Services
     def payload
       {
         "article" => {
-          "title"         => @post.title,
-          "published"     => false,
+          "title" => @post.title,
+          "published" => false,
           "body_markdown" => body_markdown,
-          "tags"          => @post.tags.map(&:name),
+          "tags" => @post.tags.map(&:name),
           "canonical_url" => DEFAULT_HOST + "/posts/#{@post.friendly_id}"
         }
       }
