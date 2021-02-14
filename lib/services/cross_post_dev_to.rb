@@ -5,7 +5,7 @@ module Services
 
     receive :post
 
-    DEFAULT_HOST = "https://ananunesdasilva.com".freeze
+    DEFAULT_HOST = "https://www.ananunesdasilva.com".freeze
     BASE_URI = "https://dev.to/api/articles".freeze
 
     def result
