@@ -36,6 +36,11 @@ gem "rails_event_store"
 # SEO
 gem "sitemap_generator"
 
+# markdown to html
+gem "reverse_markdown"
+
+gem "httparty"
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'rubocop', require: false
