@@ -9,11 +9,12 @@ module Services
 
     def result
       uri = URI.parse(BASE_URI)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri, headers)
-      request.body = payload.to_json
-      http.request(request)
+
+      Net::HTTP.new(uri.host, uri.port) do |http|
+        http.use_ssl = true
+        http.request(request, payload.to_json)
+      end
     end
 
     private
@@ -31,7 +32,7 @@ module Services
     end
 
     def body_markdown
-      ReverseMarkdown.convert(@post.body.body.to_html)
+      ReverseMarkdown.convert(@post.body.body.to_html).gsub("\\_n", "_")
     end
 
     def headers

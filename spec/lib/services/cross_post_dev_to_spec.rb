@@ -1,7 +1,7 @@
 describe Services::CrossPostDevTo do
   let(:post) { create(:post, title: 'bananas', body: "<strong>hi</strong>") }
   let(:default_host) { 'https://www.mockhost.com'}
-  let(:base_uri) { 'https://www.mockapi.com'}
+  let(:base_uri) { 'https://dev.to/api/articles' }
   let(:headers) do
     {
       'Content-Type' => 'application/json',
@@ -22,17 +22,14 @@ describe Services::CrossPostDevTo do
   end
 
   describe '.call' do
-    it 'posts with HTTParty' do
-      stub_const("Services::CrossPostDevTo::BASE_URI", base_uri)
-      stub_const("Services::CrossPostDevTo::DEFAULT_HOST", default_host)
+    it 'posts with Net::HTTP' do
+      request_uri = "/api/articles"
+      uri_host = "dev.to"
+      uri_port = 443
 
-      allow(Rails.application.credentials).to receive(:dig).and_return('ABC123')
+      expect(Net::HTTP).to receive(:new).with(uri_host, uri_port).and_return(payload)
 
-      expect(HTTParty).to receive(:post).with(
-        base_uri, { body: payload.to_json, headers: headers }
-      )
-
-       described_class.call(post)
+      described_class.call(post)
     end
   end
 end
