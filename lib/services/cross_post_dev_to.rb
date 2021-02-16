@@ -1,7 +1,6 @@
 module Services
   class CrossPostDevTo
     include ::Services::Callable
-    include HTTParty
 
     receive :post
 
@@ -9,7 +8,12 @@ module Services
     BASE_URI = "https://dev.to/api/articles".freeze
 
     def result
-      HTTParty.post(BASE_URI, { body: payload.to_json, headers: headers })
+      uri = URI.parse(BASE_URI)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Post.new(uri.request_uri, headers)
+      request.body = payload.to_json
+      http.request(request)
     end
 
     private
