@@ -6,23 +6,20 @@
   <div class="pt-10 text-4xl font-semibold sm:hidden lg:block lg:pt-5 lg:flex-grow lg:text-right text-md lg:text-xl">
     <ul class="tracking-tight">
       <li class="inline">
-        <%= link_to 'About', about_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
+        <%= link_to t('.about'), about_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
       </li>
       <li class="inline">
-        <%= link_to 'Posts', posts_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
+        <%= link_to t('.posts'), posts_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
       </li>
       <% if current_user %>
         <li class="inline">
-          <%= link_to 'Preview', admin_posts_path, method: :get, class: "py-3 pr-4 px-6 hover:underline" %>
+          <%= link_to t('.preview'), admin_posts_path, method: :get, class: "py-3 pr-4 px-6 hover:underline" %>
         </li>
         <li class="inline">
-          <%= link_to 'New Post', admin_new_post_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
+          <%= link_to t('.new_post'), admin_new_post_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
         </li>
         <li class="inline">
-          <%= link_to 'Dashboard', admin_analytics_path, method: :get, class: "py-4 pr-4 px-6 hover:underline" %>
-        </li>
-        <li class="inline">
-          <%= link_to 'Logout', admin_logout_path, method: :delete, class: "py-4 pr-4 px-6 hover:underline" %>
+          <%= link_to t('.logout'), admin_logout_path, method: :delete, class: "py-4 pr-4 px-6 hover:underline" %>
         </li>
       <% end %>
     </ul>

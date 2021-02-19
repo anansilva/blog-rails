@@ -16,6 +16,10 @@ module RailsBlogBackoffice
     config.middleware.insert_after ActionDispatch::RemoteIp, IpAnonymizer::MaskIp
 
     config.middleware.use Rack::Deflater
+
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en, :pt]
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
