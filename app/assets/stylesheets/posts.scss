@@ -10,5 +10,53 @@
 
 .utterances {
   max-width: none;
+  font-size: 16px !important;
 }
 
+pre.hljs {
+  background-color: #282828;
+  font-size: 16px;
+  border-radius: 0.25rem;
+}
+
+#post-body p {
+  margin-top: 1.5rem;;
+}
+
+#post-body h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+#post-body h2 {
+  font-size: 1.5;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+#post-body h3 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+#post-body blockquote {
+  --tw-bg-opacity: 1;
+  border-left: 4px solid rgba(243, 244, 246, var(--tw-bg-opacity));
+  padding-right: 0.125rem;
+}
+
+#post-body blockquote p {
+  padding-left: 1.125rem;
+}
+
+#post-body p code {
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
+  border-radius: 0.125rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(190, 24, 93, var(--tw-text-opacity));
+}

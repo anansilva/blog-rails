@@ -290,6 +290,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redcarpet (3.5.1)
     regexp_parser (1.8.2)
     reverse_markdown (2.0.0)
       nokogiri
@@ -412,6 +413,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.1.0)
   rails_event_store
+  redcarpet
   reverse_markdown
   rspec-core!
   rspec-expectations!

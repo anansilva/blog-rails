@@ -37,6 +37,9 @@ gem "rails_event_store"
 gem "sitemap_generator"
 
 # markdown to html
+gem "redcarpet"
+
+# markdown to html
 gem "reverse_markdown"
 
 group :development, :test do

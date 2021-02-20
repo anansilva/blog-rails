@@ -94,7 +94,7 @@ module Admin
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :intro, :cover_image, :keywords)
+      params.require(:post).permit(:title, :markdown_body, :intro, :cover_image, :keywords)
     end
   end
 end
