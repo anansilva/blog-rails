@@ -64,7 +64,7 @@
 
     <div class="lg:block lg:relative">
       <div id="post-body" class="mb-20 text-5xl font-normal lg:text-lg lg:px-16 lg:mx-36 lg:-mt-40">
-        <%= @post.body %>
+        <%= markdown_to_html(@post.markdown_body) %>
         <div class="mt-10 border-t border-gray-300 dark:border-indigo-500" %>
           <h2 class="pt-6 text-5xl tracking-wide lg:text-4xl">Comments</h2>
           <script src="https://utteranc.es/client.js"
