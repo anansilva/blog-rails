@@ -17,33 +17,42 @@ pre.hljs {
   background-color: #282828;
   font-size: 16px;
   border-radius: 0.25rem;
+  margin-bottom: 1.5rem;;
+  code.plaintext {
+    .hljs-keyword {
+      color: #abb2bf;
+    }
+  }
 }
 
 #post-body p {
-  margin-top: 1.5rem;;
+  margin-bottom: 1.5rem;;
 }
 
 #post-body h1 {
   font-size: 1.75rem;
   line-height: 1.2;
   font-weight: bold;
+  margin-bottom: 1.5rem;;
 }
 
 #post-body h2 {
-  font-size: 1.5;
+  font-size: 1.5rem;
   line-height: 1.2;
   font-weight: bold;
+  margin-bottom: 1.5rem;;
 }
 
 #post-body h3 {
   font-size: 1.25rem;
   line-height: 1.2;
   font-weight: bold;
+  margin-bottom: 1.5rem;;
 }
 
 #post-body blockquote {
   --tw-bg-opacity: 1;
-  border-left: 4px solid rgba(243, 244, 246, var(--tw-bg-opacity));
+  border-left: 4px solid rgba(156, 163, 175, var(--tw-bg-opacity));
   padding-right: 0.125rem;
 }
 
@@ -52,11 +61,25 @@ pre.hljs {
 }
 
 #post-body p code {
-  padding-left: 0.125rem;
-  padding-right: 0.125rem;
+  padding-left: 0.175rem;
+  padding-right: 0.175rem;
   border-radius: 0.125rem;
   --tw-bg-opacity: 1;
   background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
   --tw-text-opacity: 1;
-  color: rgba(190, 24, 93, var(--tw-text-opacity));
+  color: rgba(153, 27, 27, var(--tw-text-opacity));
+}
+
+#post-body ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+#post-body a {
+  text-decoration: underline;
 }
