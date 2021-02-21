@@ -13,7 +13,7 @@ RSpec.describe Post, type: :model do
 
   describe 'validations' do
     subject do
-      described_class.new(title: 'My title', markdown_body: 'My body', intro: 'My intro')
+      described_class.new(title: 'My title', body: 'My body', intro: 'My intro')
     end
 
     it 'is valid with valid attributes' do
@@ -27,7 +27,7 @@ RSpec.describe Post, type: :model do
     end
 
     it 'is not valid without a body' do
-      subject.markdown_body = nil
+      subject.body = nil
 
       expect(subject.valid?).to eq(false)
     end

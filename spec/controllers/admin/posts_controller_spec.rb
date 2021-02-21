@@ -31,7 +31,7 @@ describe Admin::PostsController do
 
       let(:post_params) do
         { title: 'Rspec',
-          markdown_body: '# This post is about rspec',
+          body: '# This post is about rspec',
           intro: 'Improve your test suite',
           cover_image: image_file,
           tags: 'ruby, rails' }
@@ -51,7 +51,7 @@ describe Admin::PostsController do
         expect(created_post.title).to eq('Rspec')
         expect(created_post.status).to eq('draft')
         expect(created_post.intro).to eq('Improve your test suite')
-        expect(created_post.markdown_body).to eq('# This post is about rspec')
+        expect(created_post.body).to eq('# This post is about rspec')
         expect(created_post.cover_image).to be_present
       end
 
@@ -89,7 +89,7 @@ describe Admin::PostsController do
 
   describe '#update' do
     let(:post) do
-      create(:post, title: 'Rspec tips', markdown_body: 'Here are some tips')
+      create(:post, title: 'Rspec tips', body: 'Here are some tips')
     end
 
     context 'when the user is logged in' do
@@ -106,9 +106,9 @@ describe Admin::PostsController do
       it 'updates the post when updating body' do
         new_body = '**this is a new body**'
 
-        put :update, params: { id: post.id, post: { markdown_body: new_body } }
+        put :update, params: { id: post.id, post: { body: new_body } }
 
-        expect(post.reload.markdown_body).to eq('**this is a new body**')
+        expect(post.reload.body).to eq('**this is a new body**')
       end
 
       it 'calls the UpdatePostTags service' do
@@ -116,7 +116,7 @@ describe Admin::PostsController do
 
         allow(::Tags::UpdatePostTags).to receive(:call)
 
-        put :update, params: { id: post.id, post: { markdown_body: new_body, tags: 'ruby' } }
+        put :update, params: { id: post.id, post: { body: new_body, tags: 'ruby' } }
 
         expect(::Tags::UpdatePostTags).to have_received(:call).with(post, ['ruby'])
       end
