@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_175851) do
+ActiveRecord::Schema.define(version: 2021_02_21_174824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 2021_02_19_175851) do
     t.datetime "published_at"
     t.text "keywords"
     t.text "markdown_body"
+    t.text "body"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
