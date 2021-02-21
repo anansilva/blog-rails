@@ -24,15 +24,11 @@ module Services
         "article" => {
           "title" => @post.title,
           "published" => false,
-          "body_markdown" => body_markdown,
+          "body_markdown" => @post.body,
           "tags" => @post.tags.map(&:name),
           "canonical_url" => DEFAULT_HOST + "/posts/#{@post.friendly_id}"
         }
       }
-    end
-
-    def body_markdown
-      ReverseMarkdown.convert(@post.body.body.to_html).gsub("\\_n", "_")
     end
 
     def headers

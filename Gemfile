@@ -39,9 +39,6 @@ gem "sitemap_generator"
 # markdown to html
 gem "redcarpet"
 
-# markdown to html
-gem "reverse_markdown"
-
 group :development, :test do
   gem 'pry-byebug'
   gem 'rubocop', require: false

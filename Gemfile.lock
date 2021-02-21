@@ -292,8 +292,6 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.1)
     regexp_parser (1.8.2)
-    reverse_markdown (2.0.0)
-      nokogiri
     rexml (3.2.4)
     rubocop (1.6.1)
       parallel (~> 1.10)
@@ -414,7 +412,6 @@ DEPENDENCIES
   rails (~> 6.1.0)
   rails_event_store
   redcarpet
-  reverse_markdown
   rspec-core!
   rspec-expectations!
   rspec-mocks!
