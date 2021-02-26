@@ -37,7 +37,7 @@ gem "rails_event_store"
 gem "sitemap_generator"
 
 # markdown to html
-gem "reverse_markdown"
+gem "redcarpet"
 
 group :development, :test do
   gem 'pry-byebug'
