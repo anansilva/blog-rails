@@ -13,6 +13,22 @@
   font-size: 16px !important;
 }
 
+h2 code {
+  padding-left: 0.175rem;
+  padding-right: 0.175rem;
+  border-radius: 0.125rem;
+  --tw-text-opacity: 1;
+  color: rgba(219, 39, 119, var(--tw-text-opacity));
+}
+
+h3 code {
+  padding-left: 0.175rem;
+  padding-right: 0.175rem;
+  border-radius: 0.125rem;
+  --tw-text-opacity: 1;
+  color: rgba(219, 39, 119, var(--tw-text-opacity));
+}
+
 pre.hljs {
   background-color: #282828;
   font-size: 16px;
