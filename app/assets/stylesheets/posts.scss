@@ -81,3 +81,31 @@ pre.hljs {
 #post-body a {
   text-decoration: underline;
 }
+
+#post-body {
+  table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    margin-bottom: 1.5rem;;
+    border-radius: 0.125rem;
+  }
+
+  th {
+    text-align: left;
+    border: 1px solid #abb2bf;
+    padding: 0.75rem;
+  }
+
+  tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+  }
+
+  td {
+    display: table-cell;;
+    border: 1px solid #abb2bf;
+    padding: 0.75rem;
+  }
+}

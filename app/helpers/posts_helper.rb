@@ -32,7 +32,7 @@ module PostsHelper
   end
 
   def markdown_to_html(text)
-    options = %i[hard_wrap autolink no_intra_emphasis fenced_code_blocks]
+    options = %i[hard_wrap autolink no_intra_emphasis fenced_code_blocks tables]
     Markdown.new(text, *options).to_html.html_safe
   end
 end
