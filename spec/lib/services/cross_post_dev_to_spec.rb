@@ -22,7 +22,7 @@ describe Services::CrossPostDevTo do
   end
 
   describe '.call' do
-    it 'posts with Net::HTTP' do
+    xit 'posts with Net::HTTP' do
       request_uri = "/api/articles"
       uri_host = "dev.to"
       uri_port = 443

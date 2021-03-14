@@ -11,7 +11,6 @@ module Services
       uri = URI.parse(BASE_URI)
       request = Net::HTTP::Post.new(uri.request_uri, headers)
 
-
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.request(request, payload.to_json)
