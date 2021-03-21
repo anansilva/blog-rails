@@ -1,5 +1,5 @@
-xml.instruct! :xml, :version => "1.0"
-xml.rss :version => "2.0" do
+xml.instruct! :xml, version: "1.0"
+xml.rss version: "2.0" do
   xml.channel do
     xml.title "Ana Nunes da Silva"
     xml.description "A personal blog on web development mainly focused on ruby and rails"
