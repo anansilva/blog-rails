@@ -8,6 +8,10 @@ class PostsController < ApplicationController
     @post = Post.published.friendly.find(params[:id])
   end
 
+  def rss_feed
+    @posts = Post.published.last(10)
+  end
+
   def share
     @post = Post.published.friendly.find(params[:id])
 

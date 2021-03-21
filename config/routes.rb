@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get "/about/", to: "about#show"
 
   get '/sitemap.xml.gz', to: redirect("https://#{Rails.application.credentials.dig(:aws, :prod, :sitemap_bucket)}.s3.#{Rails.application.credentials.dig(:aws, :region)}.amazonaws.com/sitemap.xml.gz")
+
+  get '/feed.xml', to: "posts#rss_feed", as: :rss_feed, constraints: { format: 'rss' }
 end
