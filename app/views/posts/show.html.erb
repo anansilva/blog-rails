@@ -3,97 +3,96 @@
 <% content_for :meta_keywords, @post.keywords %>
 <% content_for :meta_image, url_for(@post.cover_image.variant(resize_to_fill: [1200, 600])) %>
 
-<article class="container mx-auto my-8 lg:my-0">
+<article class="px-12 my-8 lg:px-0 lg:mx-auto lg:container lg:my-0">
+
   <% if @post.cover_image.attached? %>
     <%= image_tag @post.cover_image, alt: "#{@post.title}", class: 'w-full cursor-pointer' %>
   <% end %>
-  <div class="mx-auto">
-    <div class="sticky top-0 py-10 text-5xl text-right text-blue-700 bg-white dark:bg-gray-900 lg:hidden">
-      <ul>
-        <li class="inline-block mr-8">
+
+  <div class="sticky top-0 py-10 text-5xl text-right text-blue-700 bg-white dark:bg-gray-900 lg:hidden">
+    <ul>
+      <li class="inline-block mr-8">
+        <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="share-links-twitter-icon"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+        </a>
+      </li>
+      <li class="inline-block mr-8">
+        <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="share-links-facebook-icon">
+            <path d="M19,19H16V13.7A1.5,1.5 0 0,0 14.5,12.2A1.5,1.5 0 0,0 13,13.7V19H10V10H13V11.2C13.5,10.36 14.59,9.8 15.5,9.8A3.5,3.5 0 0,1 19,13.3M6.5,8.31C5.5,8.31 4.69,7.5 4.69,6.5A1.81,1.81 0 0,1 6.5,4.69C7.5,4.69 8.31,5.5 8.31,6.5A1.81,1.81 0 0,1 6.5,8.31M8,19H5V10H8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" />
+          </svg>
+        </a>
+      </li>
+      <li class="inline-block mr-8">
+        <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="share-links-facebook-icon"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="pt-8 bg-white dark:bg-gray-900 lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-36 post-intro">
+    <% if current_page?(admin_post_path(@post)) %>
+      <%= render partial: 'shared/admin_edit_buttons', locals: { post: @post } %>
+    <% end %>
+    <% @post.tags.each do |tag| %>
+      <p class="inline-block mb-2 mr-6 text-3xl font-bold tracking-wide text-left text-indigo-700 rounded-sm lg:mr-2 sm:text-4xl dark:hover-text-indigo-600 hover:text-indigo-800 dark:text-indigo-500 lg:text-lg">
+        <%= link_to tag.name, posts_path(tag: tag.name)  %>
+      </p>
+    <% end %>
+
+    <p class="inline-block mb-2 text-2xl text-left text-gray-600 lg:tracking-wide lg:text-sm">
+      <%= @post.published_at&.strftime('%b, %Y')%>
+    </p>
+
+    <h1 class="mb-8 text-6xl font-black tracking-wide lg:text-4xl">
+      <%= @post.title %> <%= '[PREVIEW]' if @post.draft? %>
+    </h1>
+
+    <div class="pt-6 pb-2 mb-8 text-5xl font-bold border-t border-b border-gray-300 dark:border-indigo-500 lg:text-lg">
+      <%= @post.intro %>
+      </br>
+      <div class="text-right text-indigo-700 dark:text-indigo-500">
+        <p class="inline-block font-normal underline cursor-pointer sm:text-4xl lg:text-sm hover:text-indigo-800 dark:hover:text-indigo-600">Share</p>
+        <a href="<%= share_post_url(@post, 'twitter') %>" class="inline-block align-middle" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:block lg:relative">
+    <div id="post-body" class="mb-20 text-5xl font-normal lg:text-lg lg:px-16 lg:mx-36 lg:-mt-40">
+      <%= markdown_to_html(@post.body) %>
+      <div class="pt-8 pb-10 mt-20 text-center border border-gray-300 dark:border-indigo-500" %>
+        <h2 class="text-5xl tracking-wide lg:text-4xl">Like what you read?</h2>
+        <p class="pb-2">Get a once-per-month email with my latest blog posts, code tips, current readings and projects.</p>
+        <a href="https://buttondown.email/anans" id="newsletter-btn" class="p-3 no-underline border border-gray-500 rounded" target="_blank">
+          Subscribe to my newsletter
+        </a>
+      </div>
+    </div>
+    <div class="absolute top-0 left-0 h-full pt-12 pl-32 text-3xl text-indigo-700 dark:text-indigo-500 lg:block sm:hidden">
+      <ul class="sticky top-0">
+        <li class="block pt-5 mt-5">
           <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="share-links-twitter-icon"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
           </a>
         </li>
-        <li class="inline-block mr-8">
+        <li class="block mt-5">
           <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="share-links-facebook-icon">
-              <path d="M19,19H16V13.7A1.5,1.5 0 0,0 14.5,12.2A1.5,1.5 0 0,0 13,13.7V19H10V10H13V11.2C13.5,10.36 14.59,9.8 15.5,9.8A3.5,3.5 0 0,1 19,13.3M6.5,8.31C5.5,8.31 4.69,7.5 4.69,6.5A1.81,1.81 0 0,1 6.5,4.69C7.5,4.69 8.31,5.5 8.31,6.5A1.81,1.81 0 0,1 6.5,8.31M8,19H5V10H8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.47 2H3.53a1.45 1.45 0 0 0-1.47 1.43v17.14A1.45 1.45 0 0 0 3.53 22h16.94a1.45 1.45 0 0 0 1.47-1.43V3.43A1.45 1.45 0 0 0 20.47 2zM8.09 18.74h-3v-9h3zM6.59 8.48a1.56 1.56 0 1 1 0-3.12a1.57 1.57 0 1 1 0 3.12zm12.32 10.26h-3v-4.83c0-1.21-.43-2-1.52-2A1.65 1.65 0 0 0 12.85 13a2 2 0 0 0-.1.73v5h-3v-9h3V11a3 3 0 0 1 2.71-1.5c2 0 3.45 1.29 3.45 4.06z"/>
             </svg>
           </a>
-        </li>
-        <li class="inline-block mr-8">
-          <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="share-links-facebook-icon"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <li class="block mt-5">
+            <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
           </a>
         </li>
       </ul>
-    </div>
-
-    <div class="pt-8 bg-white dark:bg-gray-900 lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-36 post-intro">
-      <% if current_page?(admin_post_path(@post)) %>
-        <%= render partial: 'shared/admin_edit_buttons', locals: { post: @post } %>
-      <% end %>
-      <% @post.tags.each do |tag| %>
-        <p class="inline-block mb-2 mr-6 text-3xl font-bold tracking-wide text-left text-indigo-700 rounded-sm lg:mr-2 sm:text-4xl dark:hover-text-indigo-600 hover:text-indigo-800 dark:text-indigo-500 lg:text-lg">
-          <%= link_to tag.name, posts_path(tag: tag.name)  %>
-        </p>
-      <% end %>
-
-      <p class="inline-block mb-2 text-2xl text-left text-gray-600 lg:tracking-wide lg:text-sm">
-        <%= @post.published_at&.strftime('%b, %Y')%>
-      </p>
-
-      <h1 class="mb-8 text-6xl font-black tracking-wide lg:text-4xl">
-        <%= @post.title %> <%= '[PREVIEW]' if @post.draft? %>
-      </h1>
-
-      <div class="pt-6 pb-2 mb-8 text-5xl font-bold border-t border-b border-gray-300 dark:border-indigo-500 lg:text-lg">
-        <%= @post.intro %>
-        </br>
-        <div class="text-right text-indigo-700 dark:text-indigo-500">
-          <p class="inline-block font-normal underline cursor-pointer sm:text-4xl lg:text-sm hover:text-indigo-800 dark:hover:text-indigo-600">Share</p>
-          <a href="<%= share_post_url(@post, 'twitter') %>" class="inline-block align-middle" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="lg:block lg:relative">
-      <div id="post-body" class="mb-20 text-5xl font-normal lg:text-lg lg:px-16 lg:mx-36 lg:-mt-40">
-        <%= markdown_to_html(@post.body) %>
-        <div class="pt-8 pb-10 mt-20 text-center border border-gray-300 dark:border-indigo-500" %>
-          <h2 class="text-5xl tracking-wide lg:text-4xl">Like what you read?</h2>
-          <p class="py-2">Get a once-per-month email with my latest blog posts, code tips, current readings and projects.</p>
-          <a href="https://buttondown.email/anans" id="newsletter-btn" class="p-3 no-underline border border-gray-500 rounded" target="_blank">
-            Subscribe to my newsletter
-          </a>
-        </div>
-      </div>
-      <div class="absolute top-0 left-0 h-full pt-12 pl-32 text-3xl text-indigo-700 dark:text-indigo-500 lg:block sm:hidden">
-        <ul class="sticky top-0">
-          <li class="block pt-5 mt-5">
-            <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-            </a>
-          </li>
-          <li class="block mt-5">
-            <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20.47 2H3.53a1.45 1.45 0 0 0-1.47 1.43v17.14A1.45 1.45 0 0 0 3.53 22h16.94a1.45 1.45 0 0 0 1.47-1.43V3.43A1.45 1.45 0 0 0 20.47 2zM8.09 18.74h-3v-9h3zM6.59 8.48a1.56 1.56 0 1 1 0-3.12a1.57 1.57 0 1 1 0 3.12zm12.32 10.26h-3v-4.83c0-1.21-.43-2-1.52-2A1.65 1.65 0 0 0 12.85 13a2 2 0 0 0-.1.73v5h-3v-9h3V11a3 3 0 0 1 2.71-1.5c2 0 3.45 1.29 3.45 4.06z"/>
-              </svg>
-            </a>
-            <li class="block mt-5">
-              <a href="<%= share_post_url(@post, 'facebook') %>" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-            </a>
-          </li>
-        </ul>
-      </div>
-
     </div>
   </div>
 </article>
