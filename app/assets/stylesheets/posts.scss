@@ -1,16 +1,23 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @media screen and (min-width: 1024px) {
   .post-intro {
     margin-top: -8rem;
   }
-}
 
-.utterances {
-  max-width: none;
-  font-size: 16px !important;
+  pre.hljs {
+    font-size: 16px;
+  }
+
+  #post-body h1 {
+    font-size: 28px;
+  }
+
+  #post-body h2 {
+    font-size: 1.5rem;
+  }
+
+  #post-body h3 {
+    font-size: 1.25rem;
+  }
 }
 
 h2 code {
@@ -31,7 +38,6 @@ h3 code {
 
 pre.hljs {
   background-color: #282828;
-  font-size: 16px;
   border-radius: 0.25rem;
   margin-bottom: 1.5rem;;
   code.plaintext {
@@ -46,22 +52,22 @@ pre.hljs {
 }
 
 #post-body h1 {
-  font-size: 1.75rem;
   line-height: 1.2;
   font-weight: bold;
+  font-size: 54px; ;
   margin-bottom: 1.5rem;;
 }
 
 #post-body h2 {
-  font-size: 1.5rem;
   line-height: 1.2;
   font-weight: bold;
+  font-size: 52px; ;
   margin-bottom: 1.5rem;;
 }
 
 #post-body h3 {
-  font-size: 1.25rem;
   line-height: 1.2;
+  font-size: 48px; ;
   font-weight: bold;
   margin-bottom: 1.5rem;;
 }
