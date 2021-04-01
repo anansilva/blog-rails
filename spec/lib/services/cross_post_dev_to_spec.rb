@@ -9,7 +9,6 @@ describe Services::CrossPostDevTo do
       'Content-Type' => 'application/json',
       'Accept'=>'*/*',
       'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-      'Api-Key'=> Rails.application.credentials.dig(:dev_to, :api_key),
       'User-Agent'=>'Ruby'
     }
   end
