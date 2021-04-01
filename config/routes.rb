@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get 'posts/:id/share/:social_media', to: 'posts#share', as: :share_post
 
   namespace :admin do
-    mount RailsEventStore::Browser => '/res'
-
     resources :posts, except: %i[new destroy edit]
     resources :analytics, only: :index
     get 'cms/write', to: 'posts#new', as: :new_post

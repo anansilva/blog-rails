@@ -31,8 +31,6 @@ gem 'friendly_id', '~> 5.2.4'
 
 gem "aws-sdk-s3", require: false
 
-gem "rails_event_store"
-
 # SEO
 gem "sitemap_generator"
 
