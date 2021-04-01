@@ -1,11 +1,16 @@
+require 'webmock/rspec'
+
 describe Services::CrossPostDevTo do
-  let(:post) { create(:post, title: 'bananas', body: "<strong>hi</strong>") }
-  let(:default_host) { 'https://www.mockhost.com'}
+  let(:post) { create(:post, title: 'bananas', body: "**hi**") }
   let(:base_uri) { 'https://dev.to/api/articles' }
+  let(:default_host) { 'https://www.ananunesdasilva.com' }
   let(:headers) do
     {
       'Content-Type' => 'application/json',
-      'api-key' => 'ABC123'
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'Api-Key'=> Rails.application.credentials.dig(:dev_to, :api_key),
+      'User-Agent'=>'Ruby'
     }
   end
 
@@ -14,7 +19,7 @@ describe Services::CrossPostDevTo do
       "article" => {
         "title"         => post.title,
         "published"     => false,
-        "body_markdown" => " **hi** ",
+        "body_markdown" => post.body,
         "tags"          => post.tags.map(&:name),
         "canonical_url" => default_host + "/posts/#{post.friendly_id}"
       }
@@ -22,14 +27,12 @@ describe Services::CrossPostDevTo do
   end
 
   describe '.call' do
-    xit 'posts with Net::HTTP' do
-      request_uri = "/api/articles"
-      uri_host = "dev.to"
-      uri_port = 443
+    it 'calls the dev to api' do
+      stub_request(:post, base_uri)
+        .with(body: payload.to_json, headers: headers)
+        .to_return(body: File.open('./spec/fixtures/dev_to_response_body.json'), status: 201, headers: headers)
 
-      expect(Net::HTTP).to receive(:new).with(uri_host, uri_port).and_return(payload)
-
-      described_class.call(post)
+       described_class.call(post)
     end
   end
 end
