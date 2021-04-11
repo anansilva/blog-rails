@@ -70,7 +70,7 @@
         <h2 class="text-5xl tracking-wide lg:text-4xl">Subscribe below to get future blog posts</h2>
         <%= form_with url: new_subscription_url, method: :post do |form| %>
           <%= form.email_field :email, placeholder: "Type your email...", class: "py-1 px-2 m-2 border rounded focus:outline-none focus:border-indigo-500 text-gray-900 dark:text-gray-300 dark:bg-gray-900" %>
-          <%= form.submit 'subscribe', id: "newsletter-btn", class: "py-1 px-2 rounded focus:outline-none text-gray-200 border-gray-300 bg-indigo-700" %>
+          <%= form.submit 'subscribe', id: "newsletter-btn", class: "cursor-pointer py-1 px-2 rounded focus:outline-none text-gray-200 border-gray-300 bg-indigo-700" %>
         <% end %>
       </div>
     </div>
