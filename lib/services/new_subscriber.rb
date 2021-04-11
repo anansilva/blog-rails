@@ -35,7 +35,7 @@ module Services
     def headers
       {
         'Content-Type' => 'application/json',
-        'api-key' => Rails.application.credentials.dig(:buttondown, :api_key)
+        'Authorization' => "Token #{Rails.application.credentials.dig(:buttondown, :api_key)}"
       }
     end
   end

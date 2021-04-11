@@ -1,8 +1,8 @@
 class SubscriptionsController < ApplicationController
   def new
-    ::Services::NewSubscriber.new(
-      subscription_params[:email],
-      referrer_url)
+    ::Services::NewSubscriber
+      .new(subscription_params[:email], referrer_url)
+      .register!
   end
 
   private
