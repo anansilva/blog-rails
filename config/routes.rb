@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
   get 'posts/:id/share/:social_media', to: 'posts#share', as: :share_post
 
+  post 'subscriptions/new', to: 'subscriptions#new', as: :new_subscription
+
   namespace :admin do
     resources :posts, except: %i[new destroy edit]
     resources :analytics, only: :index
