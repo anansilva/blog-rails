@@ -26,12 +26,14 @@ describe Services::CrossPostDevTo do
   end
 
   describe '.call' do
-    it 'calls the dev to api' do
+    it 'sends a post request to the dev to api' do
       stub_request(:post, base_uri)
         .with(body: payload.to_json, headers: headers)
         .to_return(body: File.open('./spec/fixtures/dev_to_response_body.json'), status: 201, headers: headers)
 
-       described_class.call(post)
+       response = described_class.call(post)
+
+       expect(response.code).to eq('201')
     end
   end
 end
