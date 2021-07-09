@@ -1,14 +1,13 @@
 module Services
   class NewSubscriber
-
     BASE_URI = "https://api.buttondown.email/v1/subscribers".freeze
 
-    def initialize(email, referrer_url, **options)
+    def initialize(email:, referrer_url:, notes: '', tags: [], metadata: {})
       @email = email
       @referrer_url = referrer_url
-      @notes = options[:notes] || ''
-      @tags = options[:tags] || []
-      @metadata = options[:metadata] || {}
+      @notes = notes
+      @tags = tags
+      @metadata = metadata
     end
 
     def register!
