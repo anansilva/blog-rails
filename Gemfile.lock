@@ -133,7 +133,7 @@ GEM
       msgpack (~> 1.0)
     bootsnap (1.5.1-java)
       msgpack (~> 1.0)
-    brakeman (4.10.0)
+    brakeman (5.0.4)
     browser (5.1.0)
     builder (3.2.4)
     byebug (11.1.3)
