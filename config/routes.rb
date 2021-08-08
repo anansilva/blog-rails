@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
   get 'posts/:id/share/:social_media', to: 'posts#share', as: :share_post
 
-  post 'subscriptions/new', to: 'subscriptions#new', as: :new_subscription
 
   namespace :admin do
     resources :posts, except: %i[new destroy edit]
@@ -32,4 +31,8 @@ Rails.application.routes.draw do
   get '/sitemap.xml.gz', to: redirect("https://#{Rails.application.credentials.dig(:aws, :prod, :sitemap_bucket)}.s3.#{Rails.application.credentials.dig(:aws, :region)}.amazonaws.com/sitemap.xml.gz")
 
   get '/feed.xml', to: "posts#rss_feed", as: :rss_feed, constraints: { format: 'rss' }
+
+  namespace :api do
+    post 'subscriptions/register', to: 'subscriptions#register', as: :new_subscription
+  end
 end
