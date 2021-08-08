@@ -1,9 +1,5 @@
 class Api::SubscriptionsController < ApplicationController
   def register
-    new_subscription = ::Services::NewSubscriber
-      .new(email: subscription_params[:email], referrer_url: referrer_url)
-      .register!
-
     if successfull?(new_subscription)
       render json: { status: 201, message: success_message }, status: 200
     else
@@ -12,6 +8,12 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   private
+
+  def new_subscription
+    ::Services::NewSubscriber
+      .new(email: subscription_params[:email], referrer_url: referrer_url)
+      .register!
+  end
 
   def successfull?(subscription)
     subscription.code_type == Net::HTTPCreated
