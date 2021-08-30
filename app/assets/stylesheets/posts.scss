@@ -20,31 +20,53 @@
   }
 }
 
-// h2 code {
-//   padding-left: 0.175rem;
-//   padding-right: 0.175rem;
-//   border-radius: 0.125rem;
-//   --tw-text-opacity: 1;
-//   color: rgba(219, 39, 119, var(--tw-text-opacity));
-// }
+@media (prefers-color-scheme: dark) {
+  #post-body p code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  }
 
-// h3 code {
-//   padding-left: 0.175rem;
-//   padding-right: 0.175rem;
-//   border-radius: 0.125rem;
-//   --tw-text-opacity: 1;
-//   color: rgba(219, 39, 119, var(--tw-text-opacity));
-// }
+  #post-body h1 code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  }
+
+  #post-body h2 code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  }
+
+  #post-body h3 code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  #post-body p code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  }
+
+  #post-body h1 code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  }
+
+  #post-body h2 code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  }
+
+  #post-body h3 code {
+    --tw-bg-opacity: 1;
+    background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  }
+}
 
 #post-body code.hljs {
-  // background-color: #282828;
   border-radius: 0.25rem;
   margin-bottom: 1.5rem;;
-  code.plaintext {
-    .hljs-keyword {
-      color: #abb2bf;
-    }
-  }
 }
 
 #post-body p {
@@ -55,18 +77,33 @@
   line-height: 1.2;
   font-weight: bold;
   margin-bottom: 1.5rem;;
+  code {
+    padding-left: 0.200rem;
+    padding-right: 0.200rem;
+    border-radius: 0.200rem;
+  }
 }
 
 #post-body h2 {
   line-height: 1.2;
   font-weight: bold;
   margin-bottom: 1.5rem;;
+  code {
+    padding-left: 0.200rem;
+    padding-right: 0.200rem;
+    border-radius: 0.200rem;
+  }
 }
 
 #post-body h3 {
   line-height: 1.2;
   font-weight: bold;
   margin-bottom: 1.5rem;;
+  code {
+    padding-left: 0.200;
+    padding-right: 0.200;
+    border-radius: 0.200;
+  }
 }
 
 #post-body blockquote {
@@ -81,7 +118,9 @@
 
 #post-body p code {
   font-size: 1rem;
-  color: #DB2777;
+  padding-left: 0.200rem;
+  padding-right: 0.200rem;
+  border-radius: 0.200rem;
 }
 
 #post-body ul {
