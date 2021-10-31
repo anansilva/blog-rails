@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = ::Query::Posts.call(params[:tag], 'published')
+    @posts = ::Query::Posts.call(tag: params[:tag], status: 'published')
     @tag = params[:tag]
   end
 

@@ -78,7 +78,7 @@ module Admin
     end
 
     def index
-      @posts = Query::Posts.call(params[:tag])
+      @posts = Query::Posts.call(tag: params[:tag])
 
       render 'admin/posts/index', posts: @posts
     end

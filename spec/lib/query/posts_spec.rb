@@ -16,7 +16,7 @@ describe Query::Posts do
 
   context 'when filtering by published posts' do
     it 'returns all posts ordered by published_at date' do
-      filtered_posts = described_class.call(nil, 'published')
+      filtered_posts = described_class.call(tag: nil, status: 'published')
 
       expect(filtered_posts.first.title).to eq('rails 101')
       expect(filtered_posts.second.title).to eq('ruby 101')
@@ -24,7 +24,7 @@ describe Query::Posts do
 
     context 'when tag is empty' do
       it 'returns all published posts' do
-        filtered_posts = described_class.call(nil, 'published')
+        filtered_posts = described_class.call(tag: nil, status: 'published')
 
         expect(filtered_posts.count).to eq(2)
       end
@@ -32,7 +32,7 @@ describe Query::Posts do
 
     context 'when tag exists' do
       it 'returns only the published posts that are related to the tag' do
-        filtered_posts = described_class.call('ruby', 'published')
+        filtered_posts = described_class.call(tag: 'ruby', status: 'published')
 
         expect(filtered_posts.count).to eq(1)
       end
@@ -49,7 +49,7 @@ describe Query::Posts do
 
   context 'when only filtering by tag' do
     it 'returns all the posts (draft and published) with that tag' do
-      filtered_posts = described_class.call('ruby')
+      filtered_posts = described_class.call(tag: 'ruby')
 
       expect(filtered_posts.count).to eq(2)
     end
