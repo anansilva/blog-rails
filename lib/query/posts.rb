@@ -1,19 +1,20 @@
 module Query
   class Posts
-    def initialize(tag, status)
-      @tag = tag
+    def initialize(tag, status, page)
+      @tag    = tag
       @status = status
+      @page   = page
     end
 
-    def self.call(tag: nil, status: nil)
-      new(tag, status).result
+    def self.call(tag: nil, status: nil, page: 1)
+      new(tag, status, page || 1).result
     end
 
     def result
       Post
         .then(&method(:filter_by_tag))
         .then(&method(:filter_by_status))
-        .then(&method(:order))
+        .then(&method(:apply_order))
     end
 
     private
@@ -33,7 +34,7 @@ module Query
       posts.where(status: Post.statuses[@status])
     end
 
-    def order(posts)
+    def apply_order(posts)
       posts.order('published_at DESC')
     end
   end
