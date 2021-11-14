@@ -7,7 +7,7 @@ module Services
     def initialize(params)
       @page     = (params[:page] || DEFAULT[:page]).to_i
       @count    = params[:count]
-      @per_page = params[:per_page]  || DEFAULT[:per_page]
+      @per_page = params[:per_page] || DEFAULT[:per_page]
     end
 
     def offset
