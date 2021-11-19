@@ -2,46 +2,21 @@ module Services
   class Pagination
     DEFAULT = { page: 1, per_page: 6 }.freeze
 
-    attr_reader :page, :count, :per_page
+    attr_reader :collection, :params
 
-    def initialize(params)
-      @page     = (params[:page] || DEFAULT[:page]).to_i
-      @count    = params[:count]
-      @per_page = params[:per_page] || DEFAULT[:per_page]
+    def initialize(collection, params = {})
+      @collection = collection
+      @params = params.merge(count: collection.size)
     end
 
-    def offset
-      return 1 if page == 1
-
-      per_page * (page.to_i - 1)
+    def metadata
+      @metadata ||= ViewModel::Pagination.new(params)
     end
 
-    def next_page
-      page + 1 unless last_page?
-    end
-
-    def next_page?
-      page < total_pages
-    end
-
-    def previous_page
-      page - 1 unless first_page?
-    end
-
-    def previous_page?
-      page > 1
-    end
-
-    def last_page?
-      page == total_pages
-    end
-
-    def first_page?
-      page == 1
-    end
-
-    def total_pages
-      (count / per_page.to_f).ceil
+    def results
+      collection
+        .limit(metadata.per_page)
+        .offset(metadata.offset)
     end
   end
 end

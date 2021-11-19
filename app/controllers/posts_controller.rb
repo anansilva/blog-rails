@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
   include Pagination
-
   POSTS_PER_PAGE = 6
 
   def index
-    @pagination, @posts = paginate(collection: posts, params: pagination_params)
+    @pagination, @posts = paginate(collection: posts, params: page_params)
     @tag = params[:tag]
   end
 
@@ -27,8 +26,8 @@ class PostsController < ApplicationController
 
   private
 
-  def pagination_params
-    params.merge(per_page: POSTS_PER_PAGE)
+  def page_params
+    params.permit(:page).merge(per_page: POSTS_PER_PAGE)
   end
 
   def posts

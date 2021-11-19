@@ -1,15 +1,11 @@
 module Pagination
+
   def paginate(collection:, params: {})
-    pagination = Services::Pagination.new(params.merge(count: collection.size))
+    pagination = Services::Pagination.new(collection, params)
+
     [
-      pagination,
-      pagination_items(collection, pagination)
+      pagination.metadata,
+      pagination.results
     ]
-  end
-
-  private
-
-  def pagination_items(collection, pagination)
-    collection.limit(pagination.per_page).offset(pagination.offset)
   end
 end
