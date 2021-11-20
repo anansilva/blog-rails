@@ -1,7 +1,5 @@
 module Services
   class Pagination
-    DEFAULT = { page: 1, per_page: 6 }.freeze
-
     attr_reader :collection, :params
 
     def initialize(collection, params = {})
