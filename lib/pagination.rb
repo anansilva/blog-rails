@@ -1,5 +1,4 @@
 module Pagination
-
   def paginate(collection:, params: {})
     pagination = Services::Pagination.new(collection, params)
 
