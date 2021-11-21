@@ -1,14 +1,14 @@
 <div class="flex items-center justify-center my-10 text-4xl font-semibold tracking-wide text-indigo-700 lg:text-xl dark:text-indigo-500" %>
   <% if  pagination.previous_page? %>
     <%= link_to 'First', posts_path(page: 1) %>
-    <%= link_to '< Previous', posts_path(page: pagination.page - 1), class: "lg:ml-6 ml-12" %>
+    <%= link_to '< Previous', posts_path(page: pagination.previous_page), class: "lg:ml-6 ml-12" %>
   <% else %>
     <p class="text-gray-300 dark:text-gray-700">First</p>
     <p class="text-gray-300 lg:ml-6 dark:text-gray-700">&#60; Previous</p>
   <% end %>
   <p class="ml-12 font-normal text-gray-900 lg:ml-6 lg:text-base dark:text-gray-300"><%= "Page #{pagination.page} of #{pagination.total_pages}" %></p>
   <% if pagination.next_page? %>
-    <%= link_to 'Next >', posts_path(page: pagination.page + 1), class: "lg:ml-6 ml-12" %>
+    <%= link_to 'Next >', posts_path(page: pagination.next_page), class: "lg:ml-6 ml-12" %>
     <%= link_to 'Last', posts_path(page: pagination.total_pages), class: "lg:ml-6 ml-12" %>
   <% else %>
     <p class="ml-12 text-gray-300 lg:ml-6 dark:text-gray-700">Next &#62;</p>

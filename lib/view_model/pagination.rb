@@ -11,7 +11,7 @@ module ViewModel
     end
 
     def offset
-      return 1 if page == 1
+      return 0 if page == 1
 
       per_page * (page.to_i - 1)
     end
