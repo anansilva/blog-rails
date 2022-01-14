@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_190415) do
     t.index ["post_id"], name: "index_analytics_visitor_post_daily_counters_on_post_id"
   end
 
-  create_table "event_store_events", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "event_store_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "event_type", null: false
     t.binary "metadata"
     t.binary "data", null: false
