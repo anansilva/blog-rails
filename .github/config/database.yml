@@ -1,15 +1,15 @@
 default: &default
   adapter: postgresql
-  encoding: unicode
-  host: localhost
-  username: postgres
-  password: postgres
   pool: 5
+  username: bugledev
+  password: bugledev
 
 development:
   <<: *default
+  host: postgres
   database: blog_development
 
 test:
   <<: *default
+  host: db
   database: blog_test
