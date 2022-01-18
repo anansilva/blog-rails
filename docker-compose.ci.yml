@@ -5,7 +5,6 @@ services:
       - RAILS_ENV=test
       - COMPOSE_DOCKER_CLI_BUILD=1
       - IMAGE_CACHE_FROM
-      - BUNDLE_PATH=./vendor/bundle
     build:
       context: .
       cache_from:
