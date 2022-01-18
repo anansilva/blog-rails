@@ -2,9 +2,7 @@ version: '3.9'
 services:
   ci:
     environment:
-      - BUNDLE_GITHUB__COM
       - RAILS_ENV=test
-      - NODE_ENV=development
       - COMPOSE_DOCKER_CLI_BUILD=1
       - IMAGE_CACHE_FROM
       - BUNDLE_PATH=./vendor/bundle

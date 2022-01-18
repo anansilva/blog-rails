@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  RAILS_ENV: test
+  REGISTRY: ghcr.io
+  IMAGE_NAME: blog-rails_web
+
 jobs:
   build:
     name: build
