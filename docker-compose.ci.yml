@@ -8,7 +8,6 @@ services:
       - BUNDLE_PATH=./vendor/bundle
     build:
       context: .
-      target: ci
       cache_from:
         - "$IMAGE_CACHE_FROM"
       args:
