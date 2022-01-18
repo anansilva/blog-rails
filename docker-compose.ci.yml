@@ -17,8 +17,8 @@ services:
     container_name: blog-rails-ci
     working_dir: /app
     command: >
-      bash -c "bundle exec rake db:create && \
-               bundle exec rake db:schema:load && \
+      bash -c "bundle exec rails db:create && \
+               bundle exec rails db:schema:load && \
                bundle exec rubocop && \
                bundle exec brakeman -w3 && \
                bundle exec rspec spec"
