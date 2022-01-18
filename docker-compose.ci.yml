@@ -17,9 +17,7 @@ services:
     container_name: blog-rails-ci
     working_dir: /app
     command: >
-      bash -c "./docker/bundle_install && \
-               ./docker/yarn_install && \
-               bundle exec rake db:create && \
+      bash -c "bundle exec rake db:create && \
                bundle exec rake db:schema:load && \
                bundle exec rubocop && \
                bundle exec brakeman -w3 && \
