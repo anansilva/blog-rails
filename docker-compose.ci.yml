@@ -1,0 +1,52 @@
+version: '3.9'
+services:
+  ci:
+    environment:
+      - BUNDLE_GITHUB__COM
+      - RAILS_ENV=test
+      - NODE_ENV=development
+      - COMPOSE_DOCKER_CLI_BUILD=1
+      - IMAGE_CACHE_FROM
+      - BUNDLE_PATH=./vendor/bundle
+    build:
+      context: .
+      target: ci
+      cache_from:
+        - "$IMAGE_CACHE_FROM"
+      args:
+        - DOCKER_BUILDKIT=1
+        - BUILDKIT_INLINE_CACHE=1
+    image: "$IMAGE_CACHE_FROM"
+    container_name: blog-rails-ci
+    working_dir: /app
+    command: >
+      bash -c "./docker/bundle_install && \
+               ./docker/yarn_install && \
+               bundle exec rake db:create && \
+               bundle exec rake db:schema:load && \
+               bundle exec rubocop && \
+               bundle exec brakeman -w3 && \
+               bundle exec rspec spec"
+    volumes:
+      - ./:/app
+    networks:
+      - app
+    depends_on:
+      - db
+
+  #### POSTGRES ####
+  db:
+    image: postgres:12
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bugle_test
+      PGDATA: /var/lib/postgresql/data/pgdata
+    networks:
+      - app
+
+networks:
+  app:
