@@ -23,7 +23,9 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: blog_dev
+      POSTGRES_USER: blog_dev
+      POSTGRES_DB: blog_development
 
 volumes:
   postgres:

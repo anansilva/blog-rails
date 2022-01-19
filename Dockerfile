@@ -7,12 +7,12 @@ RUN apt-get update && \
     apt-get install -qq -y nodejs yarn \
     postgresql-client
 
-ENV BUNDLER_VERSION 2.1.4
+ENV BUNDLER_VERSION 2.2.0
 
 RUN mkdir /blog-rails
 WORKDIR /blog-rails
 
-RUN gem install bundler -v 2.1.4
+RUN gem install bundler -v 2.2.0
 
 ### DEV ###
 FROM base as dev

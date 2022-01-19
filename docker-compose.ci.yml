@@ -36,9 +36,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: postgres
-      POSTGRES_DB: bugle_test
+      POSTGRES_PASSWORD: blog_dev
+      POSTGRES_USER: blog_dev
+      POSTGRES_DB: blog_test
       PGDATA: /var/lib/postgresql/data/pgdata
     networks:
       - app
