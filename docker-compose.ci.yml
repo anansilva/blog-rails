@@ -7,14 +7,15 @@ services:
       - IMAGE_CACHE_FROM
     build:
       context: .
+      target: ci
       cache_from:
         - "$IMAGE_CACHE_FROM"
       args:
         - DOCKER_BUILDKIT=1
         - BUILDKIT_INLINE_CACHE=1
     image: "$IMAGE_CACHE_FROM"
-    container_name: blog-rails-ci
-    working_dir: /app
+    container_name: blog-ci
+    working_dir: /blog
     command: >
       bash -c "bundle exec rails db:create && \
                bundle exec rails db:schema:load && \

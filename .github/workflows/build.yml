@@ -9,7 +9,7 @@ on:
 env:
   RAILS_ENV: test
   REGISTRY: ghcr.io
-  IMAGE_NAME: anansilva/blog-rails_web
+  IMAGE_NAME: anansilva/blog
 
 jobs:
   build:

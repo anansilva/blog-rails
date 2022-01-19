@@ -1,3 +1,4 @@
+### BASE ###
 FROM ruby:2.7.4 as base
 RUN curl https://deb.nodesource.com/setup_16.x | bash
 RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -6,21 +7,24 @@ RUN apt-get update && \
     apt-get install -qq -y nodejs yarn \
     postgresql-client
 
-WORKDIR /app
+RUN mkdir /blog
+WORKDIR /blog
 
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+COPY Gemfile /blog/Gemfile
+COPY Gemfile.lock /blog/Gemfile.lock
 
 RUN bundle install
 RUN yarn install
 
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+### DEV ###
+FROM base as dev
+# COPY entrypoint.sh /usr/bin/
+# RUN chmod +x /usr/bin/entrypoint.sh
+# ENTRYPOINT ["entrypoint.sh"]
+# EXPOSE 3000
+# CMD ["rails", "server", "-b", "0.0.0.0"]
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
+### CI ###
 FROM base as ci
 COPY .github/config/database.yml config/database.yml
 

@@ -1,13 +1,12 @@
 version: "3.9"
 services:
-  db:
-    image: postgres
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: postgres
   web:
-    build: .
+    build:
+      context: .
+      target: dev
+    image: blog
+    container_name: blog
+    working_dir: /blog
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/app
@@ -17,6 +16,14 @@ services:
       - "3000:3000"
     depends_on:
       - db
+
+  db:
+    image: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+
 volumes:
   postgres:
   bundler_gems:
