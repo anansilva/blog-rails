@@ -7,11 +7,11 @@ RUN apt-get update && \
     apt-get install -qq -y nodejs yarn \
     postgresql-client
 
-RUN mkdir /blog
-WORKDIR /blog
+RUN mkdir /blog-rails
+WORKDIR /blog-rails
 
-COPY Gemfile /blog/Gemfile
-COPY Gemfile.lock /blog/Gemfile.lock
+COPY Gemfile /blog-rails/Gemfile
+COPY Gemfile.lock /blog-rails/Gemfile.lock
 
 RUN bundle install
 RUN yarn install

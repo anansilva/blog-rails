@@ -15,7 +15,7 @@ services:
         - BUILDKIT_INLINE_CACHE=1
     image: "$IMAGE_CACHE_FROM"
     container_name: blog-ci
-    working_dir: /blog
+    working_dir: /blog-rails
     command: >
       bash -c "bundle exec rails db:create && \
                bundle exec rails db:schema:load && \

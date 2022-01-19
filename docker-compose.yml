@@ -4,10 +4,11 @@ services:
     build:
       context: .
       target: dev
-    image: blog
+    image: anansilva/blog
     container_name: blog
-    working_dir: /blog
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    working_dir: /blog-rails
+    entrypoint: './docker/dev-entrypoint.sh'
+    command: bash -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/app
       - bundler_gems:/usr/local/bundle
