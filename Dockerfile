@@ -28,7 +28,7 @@ COPY Gemfile.lock /blog-rails/Gemfile.lock
 RUN bundle install
 RUN yarn install
 
-COPY .github/config/database.yml config/database.yml
+COPY .github/config/database.yml /blog-rails/config/database.yml
 
 # COPY entrypoint.sh /usr/bin/
 # RUN chmod +x /usr/bin/entrypoint.sh
