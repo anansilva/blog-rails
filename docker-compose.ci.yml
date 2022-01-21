@@ -23,7 +23,7 @@ services:
                bundle exec brakeman -w3 && \
                bundle exec rspec spec"
     volumes:
-      - ./:/app
+      - ./:/blog-rails
     networks:
       - app
     depends_on:
