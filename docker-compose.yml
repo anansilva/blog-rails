@@ -10,7 +10,7 @@ services:
     entrypoint: './docker/dev-entrypoint.sh'
     command: bash -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/app
+      - .:/blog-rails
       - bundler_gems:/usr/local/bundle
       - yarn_cache:/app/node_modules
     ports:
