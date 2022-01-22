@@ -32,7 +32,6 @@ yarn-debug.log*
 
 
 # Ignore all environment configuration files
-/config/database.yml
 /config/redis.yml
 .env
 config/locales
