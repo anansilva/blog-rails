@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   host: db
   username: blog_dev
-  password: blog_test
+  password: blog_dev
   pool: 5
 
 development:
