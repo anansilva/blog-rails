@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: db
-  username: postgres
-  password: postgres
+  username: blog_dev
+  password: blog_test
   pool: 5
 
 development:
