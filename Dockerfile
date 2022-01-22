@@ -20,15 +20,15 @@ FROM base as dev
 ### CI ###
 FROM base as ci
 
-ADD . /blog-rails
-
 COPY Gemfile /blog-rails/Gemfile
 COPY Gemfile.lock /blog-rails/Gemfile.lock
 
 RUN bundle install
 RUN yarn install
 
-COPY .github/config/database.yml /blog-rails/config/database.yml
+ADD . /blog-rails
+
+COPY docker/config/database.sample.yml /blog-rails/config/database.yml
 
 # COPY entrypoint.sh /usr/bin/
 # RUN chmod +x /usr/bin/entrypoint.sh
