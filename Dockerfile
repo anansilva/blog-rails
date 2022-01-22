@@ -28,7 +28,7 @@ RUN yarn install
 
 ADD . /blog-rails
 
-COPY docker/config/database.sample.yml /blog-rails/config/database.yml
+ADD docker/config/database.sample.yml /blog-rails/config/database.yml
 
 # COPY entrypoint.sh /usr/bin/
 # RUN chmod +x /usr/bin/entrypoint.sh

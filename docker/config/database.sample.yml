@@ -6,7 +6,7 @@ default: &default
 
 development:
   <<: *default
-  host: postgres
+  host: db
   database: blog_development
 
 test:
