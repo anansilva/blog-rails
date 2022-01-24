@@ -4,11 +4,16 @@ services:
     environment:
       - RAILS_ENV=test
       - COMPOSE_DOCKER_CLI_BUILD=1
+      - IMAGE_CACHE_FROM
     build:
       context: .
       target: ci
+      cache_from:
+        - "$IMAGE_CACHE_FROM"
       args:
         - DOCKER_BUILDKIT=1
+        - BUILDKIT_INLINE_CACHE=1
+    image: "$IMAGE_CACHE_FROM"
     container_name: blog-ci
     working_dir: /blog-rails
     command: >
