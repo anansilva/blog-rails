@@ -43,3 +43,11 @@ jobs:
           DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 \
             docker-compose -f docker-compose.ci.yml run ci
           docker push $CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
+
+      - name: deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
