@@ -17,7 +17,7 @@ services:
     container_name: blog-ci
     working_dir: /blog-rails
     command: >
-      bash -c "bundle exec bundle install \
+      bash -c "bundle exec bundle install set --local path 'vendor/cache' && \
                bundle exec rails db:create && \
                bundle exec rails db:schema:load && \
                bundle exec rubocop && \
