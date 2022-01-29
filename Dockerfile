@@ -23,7 +23,7 @@ FROM base as ci
 COPY Gemfile /blog-rails/Gemfile
 COPY Gemfile.lock /blog-rails/Gemfile.lock
 
-RUN bundle install --path vendor/cache
+RUN bundle install
 RUN yarn install
 
 ADD . /blog-rails
