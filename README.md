@@ -1,4 +1,4 @@
-<img src="https://anansilva.semaphoreci.com/badges/blog-rails.svg">
+![build passing](https://github.com/anansilva/blog-rails/actions/workflows/build.yml/badge.svg)
 
 My personal blog. Built from scratch with rails, tailwindcss and stimulus.
 
