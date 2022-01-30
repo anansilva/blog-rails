@@ -15,6 +15,7 @@
     <script async defer data-domain="ananunedasilva.com" src="https://plausible.io/js/plausible.js"></script>
 
     <link rel="stylesheet" href="/build/tailwind.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <% if @post.present? && @post.slugs.size > 1 %>
       <link rel="canonical" href=<%= "https://www.ananunesdasilva.com/posts/#{@post.slugs.first.slug}" %>>
