@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_190415) do
+ActiveRecord::Schema.define(version: 2022_02_01_192113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -42,31 +42,6 @@ ActiveRecord::Schema.define(version: 2021_02_21_190415) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "analytics_unique_daily_visits", force: :cascade do |t|
-    t.string "visitor_ip"
-    t.string "country"
-    t.string "browser"
-    t.string "device"
-    t.date "day", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "referer"
-    t.string "user_agent", null: false
-    t.index ["visitor_ip", "day"], name: "unique_index_analytics_unique_daily_visits", unique: true
-  end
-
-  create_table "analytics_visitor_post_daily_counters", force: :cascade do |t|
-    t.bigint "post_id", null: false
-    t.string "visitor_ip"
-    t.date "day", null: false
-    t.integer "views_count", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "shares_count", default: 0
-    t.index ["post_id", "visitor_ip", "day"], name: "unique_index_analytics_visitor_post_daily_counters", unique: true
-    t.index ["post_id"], name: "index_analytics_visitor_post_daily_counters_on_post_id"
   end
 
   create_table "event_store_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
