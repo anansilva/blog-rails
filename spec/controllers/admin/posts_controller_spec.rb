@@ -157,12 +157,6 @@ describe Admin::PostsController do
 
       expect(response.status).to eq(200)
     end
-
-    it 'calls the CountUniquePostViews service' do
-      expect(::Analytics::CountPostViews).to receive(:call).with(post)
-
-      get :show, params: { id: post.id }
-    end
   end
 
   describe '#publish' do
