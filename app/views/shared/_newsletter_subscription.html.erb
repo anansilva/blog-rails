@@ -1,5 +1,5 @@
-<div data-controller="subscription" class="pt-8 mt-20 text-center bg-gray-100 border border-gray-100 rounded shadow-md dark:border-gray-800 dark:bg-gray-800 dark:border-gray-300" %>
-  <h2 class="text-5xl tracking-wide lg:text-4xl">Subscribe below to get future blog posts</h2>
+<div data-controller="subscription" class="pb-10 text-center"  %>
+  <h2 class="mb-2 text-5xl tracking-wide lg:text-2xl">Subscribe below to get future blog posts</h2>
   <%= form_with url: api_new_subscription_url,
     data: { action: "ajax:success->subscription#onSuccess ajax:error->subscription#onError" },
     method: :post do |form| %>
@@ -7,9 +7,7 @@
       <%= form.email_field :email, placeholder: "Enter your email",
         class: "w-1/3 py-1 px-2 m-2 border rounded focus:outline-none focus:border-indigo-500 text-gray-900 dark:text-gray-300 dark:bg-gray-900" %>
       <%= form.submit 'subscribe', id: "newsletter-btn",
-        class: "cursor-pointer py-1 px-2 rounded focus:outline-none text-gray-200 border-gray-300 bg-indigo-700" %>
+        class: "cursor-pointer py-1 px-2 font-bold rounded focus:outline-none text-gray-100 border-gray-300 bg-teal-600" %>
     </div>
   <% end %>
-
-  <p class="pt-6 text-sm text-gray-600 dark:text-gray-300">No spam, no ads. Unsubscribe any time.</p>
 </div>
