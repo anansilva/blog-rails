@@ -1,0 +1,13 @@
+.svg-footer {
+  width: 40px;
+  fill: white;
+}
+
+.footer-icon {
+  display: inline-block;
+}
+
+.footer-icon:not(:last-child) {
+  padding-right: 20px;
+}
+
