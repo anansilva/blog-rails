@@ -76,7 +76,7 @@
 #post-body h1 {
   line-height: 1.2;
   font-weight: bold;
-  margin-bottom: 1.5rem;;
+  margin-bottom: 1.5rem;
   code {
     padding-left: 0.200rem;
     padding-right: 0.200rem;
@@ -95,10 +95,26 @@
   }
 }
 
+#post-body h2 ~ h2 {
+  margin-top: 3rem;
+}
+
 #post-body h3 {
   line-height: 1.2;
   font-weight: bold;
-  margin-bottom: 1.5rem;;
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  code {
+    padding-left: 0.200;
+    padding-right: 0.200;
+    border-radius: 0.200;
+  }
+}
+
+#post-body h4 {
+  line-height: 1.2;
+  font-weight: bold;
+  margin-bottom: 1rem;
   code {
     padding-left: 0.200;
     padding-right: 0.200;
