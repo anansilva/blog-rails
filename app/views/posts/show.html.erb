@@ -9,31 +9,12 @@
     <%= image_tag @post.cover_image, alt: "#{@post.title}", class: 'w-full cursor-pointer' %>
   <% end %>
 
-  <div class="sticky top-0 py-10 text-5xl text-right text-blue-700 bg-white dark:bg-gray-900 lg:hidden">
-    <ul>
-      <li class="inline-block mr-8">
-        <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
-            <svg viewBox="0 0 512 512" class="svg-share-post">
-              <path d="M419.6 168.6c-11.7 5.2-24.2 8.7-37.4 10.2 13.4-8.1 23.8-20.8 28.6-36 -12.6 7.5-26.5 12.9-41.3 15.8 -11.9-12.6-28.8-20.6-47.5-20.6 -42 0-72.9 39.2-63.4 79.9 -54.1-2.7-102.1-28.6-134.2-68 -17 29.2-8.8 67.5 20.1 86.9 -10.7-0.3-20.7-3.3-29.5-8.1 -0.7 30.2 20.9 58.4 52.2 64.6 -9.2 2.5-19.2 3.1-29.4 1.1 8.3 25.9 32.3 44.7 60.8 45.2 -27.4 21.4-61.8 31-96.4 27 28.8 18.5 63 29.2 99.8 29.2 120.8 0 189.1-102.1 185-193.6C399.9 193.1 410.9 181.7 419.6 168.6z"/>
-            </svg><!--[if lt IE 9]><em>Twitter</em><![endif]-->
-        </a>
-      </li>
-      <li class="inline-block mr-8">
-        <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
-          <svg viewBox="0 0 512 512" class="svg-share-post">
-            <path d="M186.4 142.4c0 19-15.3 34.5-34.2 34.5 -18.9 0-34.2-15.4-34.2-34.5 0-19 15.3-34.5 34.2-34.5C171.1 107.9 186.4 123.4 186.4 142.4zM181.4 201.3h-57.8V388.1h57.8V201.3zM273.8 201.3h-55.4V388.1h55.4c0 0 0-69.3 0-98 0-26.3 12.1-41.9 35.2-41.9 21.3 0 31.5 15 31.5 41.9 0 26.9 0 98 0 98h57.5c0 0 0-68.2 0-118.3 0-50-28.3-74.2-68-74.2 -39.6 0-56.3 30.9-56.3 30.9v-25.2H273.8z"/>
-          </svg><!--[if lt IE 9]><em>LinkedIn</em><![endif]-->
-        </a>
-      </li>
-    </ul>
-  </div>
-
   <div class="pt-8 bg-white dark:bg-gray-900 lg:relative lg:pt-8 lg:pb-40 lg:px-16 lg:mx-36 post-intro">
     <% if current_page?(admin_post_path(@post)) %>
       <%= render partial: 'shared/admin_edit_buttons', locals: { post: @post } %>
     <% end %>
     <% @post.tags.each do |tag| %>
-      <p class="inline-block mb-2 mr-6 text-3xl font-bold tracking-wide text-left text-indigo-700 rounded-sm lg:mr-2 sm:text-4xl dark:hover-text-indigo-600 hover:text-indigo-800 dark:text-indigo-500 lg:text-lg">
+      <p class="inline-block mb-4 mr-8 text-3xl font-bold tracking-wide text-left text-indigo-700 rounded-sm lg:mb-2 lg:mr-6 lg:mr-2 sm:text-4xl dark:hover-text-indigo-600 hover:text-indigo-800 dark:text-indigo-500 lg:text-lg">
         <%= link_to tag.name, posts_path(tag: tag.name)  %>
       </p>
     <% end %>
@@ -46,7 +27,7 @@
       <%= @post.title %> <%= '[PREVIEW]' if @post.draft? %>
     </h1>
 
-    <div class="pt-6 pb-2 mb-8 text-5xl font-bold border-t border-b border-gray-300 dark:border-indigo-500 lg:text-lg">
+    <div class="pt-6 pb-2 mb-8 text-5xl font-bold leading-relaxed border-t border-b border-gray-300 dark:border-indigo-500 lg:text-lg">
       <%= @post.intro %>
       </br>
       <div class="text-right text-indigo-700 dark:text-indigo-500">
@@ -54,7 +35,7 @@
           Share
         </a>
         <a href="<%= share_post_url(@post, 'twitter') %>" class="inline-block align-middle" target="_blank">
-          <svg viewBox="0 0 512 512" class="svg-share-post_intro">
+          <svg viewBox="0 0 512 512" class="w-14 lg:w-7 fill-indigo-700 dark:fill-indigo-500">
             <path d="M419.6 168.6c-11.7 5.2-24.2 8.7-37.4 10.2 13.4-8.1 23.8-20.8 28.6-36 -12.6 7.5-26.5 12.9-41.3 15.8 -11.9-12.6-28.8-20.6-47.5-20.6 -42 0-72.9 39.2-63.4 79.9 -54.1-2.7-102.1-28.6-134.2-68 -17 29.2-8.8 67.5 20.1 86.9 -10.7-0.3-20.7-3.3-29.5-8.1 -0.7 30.2 20.9 58.4 52.2 64.6 -9.2 2.5-19.2 3.1-29.4 1.1 8.3 25.9 32.3 44.7 60.8 45.2 -27.4 21.4-61.8 31-96.4 27 28.8 18.5 63 29.2 99.8 29.2 120.8 0 189.1-102.1 185-193.6C399.9 193.1 410.9 181.7 419.6 168.6z"/>
           </svg><!--[if lt IE 9]><em>Twitter</em><![endif]-->
         </a>
@@ -63,21 +44,21 @@
   </div>
 
   <div class="lg:block lg:relative">
-    <div id="post-body" class="mb-20 text-5xl font-normal lg:text-lg lg:px-16 lg:mx-36 lg:-mt-40">
+    <div id="post-body" class="mb-20 text-5xl font-normal leading-relaxed lg:text-lg lg:px-16 lg:mx-36 lg:-mt-40">
       <%= markdown_to_html(@post.body) %>
     </div>
     <div class="absolute top-0 left-0 h-full pl-12 text-3xl text-indigo-700 dark:text-indigo-500 lg:block sm:hidden">
       <ul class="sticky top-0">
         <li class="block pt-5">
           <a href="<%= share_post_url(@post, 'twitter') %>" target="_blank">
-            <svg viewBox="0 0 512 512" class="svg-share-post">
+            <svg viewBox="0 0 512 512" class="w-10 fill-indigo-700 dark:fill-indigo-500">
               <path d="M419.6 168.6c-11.7 5.2-24.2 8.7-37.4 10.2 13.4-8.1 23.8-20.8 28.6-36 -12.6 7.5-26.5 12.9-41.3 15.8 -11.9-12.6-28.8-20.6-47.5-20.6 -42 0-72.9 39.2-63.4 79.9 -54.1-2.7-102.1-28.6-134.2-68 -17 29.2-8.8 67.5 20.1 86.9 -10.7-0.3-20.7-3.3-29.5-8.1 -0.7 30.2 20.9 58.4 52.2 64.6 -9.2 2.5-19.2 3.1-29.4 1.1 8.3 25.9 32.3 44.7 60.8 45.2 -27.4 21.4-61.8 31-96.4 27 28.8 18.5 63 29.2 99.8 29.2 120.8 0 189.1-102.1 185-193.6C399.9 193.1 410.9 181.7 419.6 168.6z"/>
             </svg><!--[if lt IE 9]><em>Twitter</em><![endif]-->
           </a>
         </li>
         <li class="block mt-5">
           <a href="<%= share_post_url(@post, 'linkedin') %>" target="_blank">
-            <svg viewBox="0 0 512 512" class="svg-share-post">
+            <svg viewBox="0 0 512 512" class="w-10 fill-indigo-700 dark:fill-indigo-500">
               <path d="M186.4 142.4c0 19-15.3 34.5-34.2 34.5 -18.9 0-34.2-15.4-34.2-34.5 0-19 15.3-34.5 34.2-34.5C171.1 107.9 186.4 123.4 186.4 142.4zM181.4 201.3h-57.8V388.1h57.8V201.3zM273.8 201.3h-55.4V388.1h55.4c0 0 0-69.3 0-98 0-26.3 12.1-41.9 35.2-41.9 21.3 0 31.5 15 31.5 41.9 0 26.9 0 98 0 98h57.5c0 0 0-68.2 0-118.3 0-50-28.3-74.2-68-74.2 -39.6 0-56.3 30.9-56.3 30.9v-25.2H273.8z"/>
             </svg><!--[if lt IE 9]><em>LinkedIn</em><![endif]-->
           </a>
