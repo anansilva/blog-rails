@@ -1,11 +1,12 @@
 <% content_for :meta_title, 'Blog Posts' + " #{@tag}" %>
 <% content_for :meta_description, 'thoughts and learnings on software development' %>
 
-<div class="w-3/4 pb-4 m-auto mt-8 leading-10">
+<div class="px-10 pb-4 m-auto mt-16 lg:mt-8 lg:px-0 lg:w-3/4 leading-10">
 
   <%= render partial: 'shared/tags' %>
 
   <div class="flex flex-wrap justify-start w-full mx-auto mt-10 lg:container">
+
     <% @posts.each do |post| %>
       <%= render partial: 'shared/post_card', locals: { post: post } %>
     <% end %>
