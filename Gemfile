@@ -3,9 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 2.7.4'
 
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 7.0.1'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4'
+gem 'puma', '~> 5'
 gem 'sass-rails', '~> 5'
 gem 'webpacker', '~> 5.x'
 gem 'turbolinks', '~> 5'
@@ -18,7 +18,6 @@ gem 'ip_anonymizer'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
-# gem 'ruby-vips'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

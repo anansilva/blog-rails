@@ -2,10 +2,10 @@
   "name": "rails_blog_backoffice",
   "private": true,
   "dependencies": {
-    "@rails/actioncable": "^6.0.0-alpha",
+    "@rails/actioncable": "^7.0.2-2",
     "@rails/actiontext": "^6.0.0",
-    "@rails/activestorage": "^6.0.0-alpha",
-    "@rails/ujs": "^6.0.0-alpha",
+    "@rails/activestorage": "^7.0.2-2",
+    "@rails/ujs": "^7.0.2-2",
     "@rails/webpacker": "5.4.0",
     "autoprefixer": "^10.4.2",
     "highlight.js": "^10.4.1",

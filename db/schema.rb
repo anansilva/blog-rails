@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_01_192113) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_02_12_183535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -21,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_192113) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_02_01_192113) do
     t.string "content_type"
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -48,7 +47,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_192113) do
     t.string "event_type", null: false
     t.binary "metadata"
     t.binary "data", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["created_at"], name: "index_event_store_events_on_created_at"
     t.index ["event_type"], name: "index_event_store_events_on_event_type"
   end
@@ -57,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_192113) do
     t.string "stream", null: false
     t.integer "position"
     t.uuid "event_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["created_at"], name: "index_event_store_events_in_streams_on_created_at"
     t.index ["stream", "event_id"], name: "index_event_store_events_in_streams_on_stream_and_event_id", unique: true
     t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
@@ -68,7 +67,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_192113) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
@@ -76,12 +75,12 @@ ActiveRecord::Schema.define(version: 2022_02_01_192113) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "intro"
     t.integer "status", default: 0
     t.string "slug"
-    t.datetime "published_at"
+    t.datetime "published_at", precision: nil
     t.text "keywords"
     t.text "body"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
@@ -90,23 +89,23 @@ ActiveRecord::Schema.define(version: 2022_02_01_192113) do
   create_table "tag_posts", force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.bigint "post_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_tag_posts_on_post_id"
     t.index ["tag_id"], name: "index_tag_posts_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

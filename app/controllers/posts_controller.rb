@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  include Pagination
+  include ::Pagination
   POSTS_PER_PAGE = 6
 
   def index
