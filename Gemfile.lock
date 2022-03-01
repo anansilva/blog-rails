@@ -168,7 +168,7 @@ GEM
     hashdiff (1.0.1)
     i18n (1.9.1)
       concurrent-ruby (~> 1.0)
-    image_processing (1.12.1)
+    image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     ip_anonymizer (0.1.1)
@@ -373,7 +373,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   factory_bot_rails
   friendly_id (~> 5.2.4)
-  image_processing (~> 1.2)
+  image_processing (~> 1.12)
   ip_anonymizer
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
